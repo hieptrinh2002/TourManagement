@@ -41,6 +41,8 @@ gem "active_storage_validations"
 
 gem "image_processing"
 
+gem "bootstrap"
+
 group :development, :test do
   gem "debug", platforms: %i(mri mingw x64_mingw)
   gem "pry-rails"
