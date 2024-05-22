@@ -1,0 +1,20 @@
+VALID_EMAIL_REGEX: \A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z
+VALID_PHONE_REGEX: /\A\+?[\d\s\-\(\)]+\z/
+user:
+  min_len_email: 6
+  max_len_email: 25
+  max_len_address: 255
+  max_len_first_name: 50
+  max_len_last_name: 50
+  min_len_password: 6
+flight:
+tour:
+  max_len_name: 100
+  max_duration: 30
+  limit_250_250: [250, 250]
+review:
+  max_rating: 5
+  min_rating: 1
+booking:
+  min_guests: 1
+  min_price: 0

@@ -73,6 +73,8 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
+    ancestry (4.3.3)
+      activerecord (>= 5.2.6)
     ast (2.4.2)
     autoprefixer-rails (10.4.16.0)
       execjs (~> 2)
@@ -113,6 +115,8 @@ GEM
     faker (2.21.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.16.3)
+    figaro (1.2.0)
+      thor (>= 0.14.0, < 2)
     glob (0.4.1)
     globalid (1.1.0)
       activesupport (>= 5.0)
@@ -292,6 +296,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_storage_validations
+  ancestry
   bcrypt (= 3.1.18)
   bootsnap
   bootstrap
@@ -300,6 +305,7 @@ DEPENDENCIES
   debug
   dotenv-rails
   faker (= 2.21.0)
+  figaro
   i18n-js
   image_processing
   importmap-rails
