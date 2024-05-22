@@ -1,8 +1,13 @@
+remember_me_checked: "1"
 VALID_EMAIL_REGEX: \A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z
-VALID_PHONE_REGEX: /\A\+?[\d\s\-\(\)]+\z/
+VALID_PHONE_REGEX: "\\A\\+?[\\d\\s\\-\\(\\)]+\\z"
+ADMIN: 1
+USER: 0
 user:
   min_len_email: 6
   max_len_email: 25
+  min_len_phone: 8
+  max_len_phone: 15
   max_len_address: 255
   max_len_first_name: 50
   max_len_last_name: 50
