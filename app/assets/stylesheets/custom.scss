@@ -1,0 +1,76 @@
+a {
+  text-decoration: none;
+}
+
+.navbar {
+  &-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-left {
+    margin-left: 20px;
+  }
+
+  &-right {
+    margin-right: 20px;
+    display: flex;
+    gap: 20px;
+  }
+
+  &-dropdown {
+    ul {
+      padding: 0;
+      li {
+        list-style: none;
+      }
+    }
+  }
+
+  &-locale {
+    padding-left: 30px;
+
+    a {
+      color: #999;
+      padding-left: 15px;
+
+      &:hover {
+        color: #333;
+      }
+    }
+  }
+}
+
+.message {
+  background: url("https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/1bb1e554915695.596ef811f402e.png");
+  height: 400px;
+  align-content: center;
+
+  &-welcome {
+    font-size: 2.5rem;
+    width: fit-content;
+    background-color: #eee;
+  }
+}
+
+.dropdown {
+  cursor: pointer;
+  &-active {
+    display: block;
+    right: 0;
+    top: 130%;
+  }
+}
+
+.section {
+  display: flex;
+  gap: 20px;
+}
+
+.home-section {
+  &-item {
+    span {
+      font-size: 1.5rem;
+    }
+  }
+}

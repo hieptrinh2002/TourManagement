@@ -1,0 +1,27 @@
+<div class="home">
+  <div class="message row">
+    <span class="message-welcome mx-auto p-4 rounded-pill">
+      <%= t "welcome" %>
+    </span>
+  </div>
+  <div class="home-section row pt-4">
+    <div class="home-section-item home-section-left col-6 text-center">
+      <span>
+        <%= t "view_tour" %>
+      </span>
+      <p>
+        <%= t "view_tour_description" %>
+      </p>
+      <%= link_to t("click_here"), "/" %>
+    </div>
+    <div class="home-section-item home-section-right col-6 text-center">
+      <span>
+        <%= t "booked" %>
+      </span>
+      <p>
+        <%= t "booked_description" %>
+      </p>
+      <%= link_to t("click_here"), "/" %>
+    </div>
+  </div>
+</div>
