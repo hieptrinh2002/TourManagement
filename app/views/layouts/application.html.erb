@@ -25,8 +25,8 @@
             </span>
           </div>
           <div class="navbar-right text-primary">
-            <%= link_to t("register"), root_path %>
-            <%= link_to t("login"), root_path %>
+            <%= link_to t("register"), signup_path %>
+            <%= link_to t("login"), login_path %>
             <%= link_to t("view_tour"), root_path %>
             <div class="navbar-dropdown dropdown">
               <%= t "account" %>
@@ -47,6 +47,7 @@
         </div>
       </header>
       <div class="container vh-100">
+        <%= render "shared/flash_messages" %>
         <%= yield %>
       </div>
       <footer class="navbar bg-light border-top sticky-bottom row">
