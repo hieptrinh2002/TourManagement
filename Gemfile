@@ -43,6 +43,10 @@ gem "image_processing"
 
 gem "bootstrap"
 
+gem "ancestry"
+
+gem "figaro"
+
 group :development, :test do
   gem "debug", platforms: %i(mri mingw x64_mingw)
   gem "pry-rails"

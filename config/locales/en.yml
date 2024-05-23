@@ -16,3 +16,6 @@ en:
   click_here: "Click Here!"
   footer_left: "2024 Intern Ruby"
   footer_right: "Sun*"
+
+  error:
+    end_day_start_date: "End day must be after the start date"
