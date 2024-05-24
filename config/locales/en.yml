@@ -29,19 +29,42 @@ en:
   password_confirmation: "Password confirmation"
   sign_up: "Sign up"
   subscribe_to_our_newsletter: "Subscribe to our newsletter"
+  search: "Search"
+  share: "Share"
+  export: "Export"
+  this_week: "This Week"
+  dashboard: "Dashboard"
+  tour_orders: "Tour Orders"
+  tours_name: "Tours"
+  customers: "Customers"
+  report: "Report"
+  saved_reports: "Saved repost"
+  current_month: "Current month"
+  last_quarter: "Last quarter"
+  voucher: "Voucher"
+  update: "Update"
+  view: "View"
+  create_new: "Create new"
 
   tours:
     title: "All Available Tours Now"
     subtitle: "If you have any questions, please contact the admin."
     duration: "Duration: "
+    tour_name: "Tour Name"
+    city: "City"
+    tour_destination: "Destination"
+    price: "Price"
+    start_date: "Start date"
     day:
       one: "day"
       other: "days"
     start: "Start: "
     price: "Price: $"
 
-  error:
-    end_day_start_date: "End day must be after the start date"
+  errors:
+    end_day_start_date: "must be after the start date"
+    start_date_today: "must be after today's date"
+
   flash:
     user:
       signup_success: "User created successfully !"
@@ -53,8 +76,14 @@ en:
       login_before_update: "You need to login before updating !"
       cant_update_account: "You are not authorized to update this account"
       not_found: "user not found !"
+      access_denied: "access denied !"
+
     account:
       activation_success: "The account has been successfully activated !"
       activation_failure: "Account not activated. Check your email for the activation link. !"
       check_email_to_activate: "Please check your email to activate your account !"
       activation_subject: "Account activation !"
+    tour:
+      create_success: "Tour was successfully created !"
+      update_success: "Tour was successfully updated !"
+      not_exist: "Tour was not existed !"

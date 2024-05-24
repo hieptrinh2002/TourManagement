@@ -1,4 +1,6 @@
 remember_me_checked: "1"
+dd_mm_yyyy: "%d-%m-%Y"
+
 VALID_EMAIL_REGEX: \A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z
 VALID_PHONE_REGEX: "\\A\\+?[\\d\\s\\-\\(\\)]+\\z"
 ADMIN: 1
