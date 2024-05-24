@@ -125,3 +125,18 @@ a {
     cursor: pointer;
   }
 }
+
+.btn {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn-submit {
+  background-color: rgb(1, 100, 192);
+  color: #fff;
+
+  &:hover {
+    background-color: rgb(181, 216, 248);
+    color: #000;
+  }
+}
