@@ -2,6 +2,8 @@ vi:
   base_title: "Quản lý tour du lịch"
   en: "EN"
   vi: "VN"
+  say_hi: "Xin chào"
+  wellcome: "Chào mừng"
   register: "Đăng ký"
   login: "Đăng nhập"
   home: "Trang chủ"
@@ -16,6 +18,17 @@ vi:
   click_here: "Nhấn vào đây!"
   footer_left: "2024 Intern Ruby"
   footer_right: "Sun*"
+  create_new_account: "Tạo Tài Khoản Mới"
+  forgot_password: "Quên Mật Khẩu"
+  or_sign_in_with: "Hoặc đăng nhập với"
+  sign_up_now: "Đăng ký ngay"
+  first_name: "Tên"
+  last_name: "Họ"
+  email_address: "Địa chỉ email"
+  password: "Mật khẩu"
+  password_confirmation: "Xác nhận mật khẩu"
+  sign_up: "Đăng ký"
+  subscribe_to_our_newsletter: "Theo dõi bản tin của chúng tôi"
 
   tours:
     title: "Các tours hiện tại"
@@ -29,3 +42,20 @@ vi:
 
   error:
     end_day_start_date: "Ngày kết thúc phải lơn hơn ngày bắt đầu"
+  flash:
+    user:
+      signup_success: "Tạo người dùng thành công !"
+      signup_failure: "Đăng ký thất bại !"
+      login_success: "Login thành công !"
+      login_failure: "Login Thất bại !"
+      update_success: "Người dùng cập nhật thành công !"
+      not_exist: "Người dùng không tồn tại !"
+      login_before_update: "Bạn cần đăng nhập vào hệ thống trước khi cập nhật !"
+      cant_update_account: "Bạn không thể cập nhật thông tin ở tài khoản này !"
+      not_found: "Không tìm thấy người dùng !"
+
+    account:
+      activation_success: "Tài khoản được kính hoạt thành công !"
+      activation_failure: "Bạn cần kích hoạt tài khoản qua gmail !"
+      check_email_to_activate: "Check email của bạn để active tài khoản !"
+      activation_subject: "Kích hoạt tài khoản !"
