@@ -52,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_084331) do
   create_table "bookings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "tour_id", null: false
     t.bigint "user_id", null: false
+    t.bigint "flight_ticket_id", null: false
     t.string "phone_number"
     t.integer "number_of_guests"
     t.datetime "started_date"
@@ -62,18 +63,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_084331) do
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["flight_ticket_id"], name: "index_bookings_on_flight_ticket_id"
     t.index ["tour_id"], name: "index_bookings_on_tour_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
   create_table "flight_tickets", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "booking_id", null: false
     t.bigint "flight_id", null: false
     t.integer "ticket_class"
     t.decimal "price", precision: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["booking_id"], name: "index_flight_tickets_on_booking_id"
     t.index ["flight_id"], name: "index_flight_tickets_on_flight_id"
   end
 
@@ -97,17 +97,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_084331) do
     t.datetime "updated_at", null: false
     t.index ["tour_id"], name: "index_reviews_on_tour_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
-  end
-
-  create_table "ticket_instances", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "booking_id", null: false
-    t.bigint "flight_id", null: false
-    t.integer "number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["booking_id", "flight_id"], name: "index_ticket_instances_on_booking_id_and_flight_id", unique: true
-    t.index ["booking_id"], name: "index_ticket_instances_on_booking_id"
-    t.index ["flight_id"], name: "index_ticket_instances_on_flight_id"
   end
 
   create_table "tour_flights", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -176,14 +165,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_084331) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "booking_vouchers", "bookings"
   add_foreign_key "booking_vouchers", "vouchers"
+  add_foreign_key "bookings", "flight_tickets"
   add_foreign_key "bookings", "tours"
   add_foreign_key "bookings", "users"
-  add_foreign_key "flight_tickets", "bookings"
   add_foreign_key "flight_tickets", "flights"
   add_foreign_key "reviews", "tours"
   add_foreign_key "reviews", "users"
-  add_foreign_key "ticket_instances", "bookings"
-  add_foreign_key "ticket_instances", "flights"
   add_foreign_key "tour_flights", "flights"
   add_foreign_key "tour_flights", "tours"
   add_foreign_key "tours", "tour_types"
