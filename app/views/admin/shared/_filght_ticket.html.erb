@@ -1,0 +1,24 @@
+<table class="table table-striped table-hover my-4">
+  <thead>
+    <tr>
+      <th><%= t "ticket_class" %></th>
+      <th><%= t "number"  %></th>
+      <th><%= t "airline_brand" %></th>
+      <th><%= t "departure_time" %></th>
+      <th><%= t "arrival_time" %></th>
+      <th><%= t "origin" %></th>
+      <th><%= t "destination" %></th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><%= booking.flight_ticket.ticket_class %></td>
+        <td><%= booking.number_of_guests %></td>
+        <td><%= booking.flight.airline_brand %></td>
+        <td><%= booking.flight.departure_time %></td>
+        <td><%= booking.flight.arrival_time %></td>
+        <td><%= booking.flight.origin_place %></td>
+        <td><%= booking.flight.destination %></td>
+      </tr>
+  </tbody>
+</table>

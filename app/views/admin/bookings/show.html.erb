@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h5><%= t "bookings.card_header" %></h5>
+    </div>
+    <div class="card-body px-5">
+      <div class="d-flex flex-wrap justify-content-center">
+        <div class="col-7">
+          <div class="row mb-4">
+            <div class="col-md-5 fw-bold"><%= t "bookings.tour_name" %>:</div>
+            <div class="col-md-7"><%= @booking.tour.tour_name %></div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-5 fw-bold"><%= t "bookings.booking_user" %>:</div>
+            <div class="col-md-7"><%= @booking.user.last_name %></div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-5 fw-bold"><%= t "bookings.phone_number" %>:</div>
+            <div class="col-md-7"><%= @booking.phone_number %></div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-5 fw-bold"><%= t "bookings.number_of_guests" %>:</div>
+            <div class="col-md-7"><%= @booking.number_of_guests %></div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-5 fw-bold"><%= t "bookings.started_date" %>:</div>
+            <div class="col-md-7"><%= @booking.started_date.strftime(Settings.datime_format) %></div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-5 fw-bold"><%= t "bookings.total_price" %>:</div>
+            <div class="col-md-7">$<%= @booking.total_price %></div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-5 fw-bold"><%= t "bookings.payment_status" %>:</div>
+            <div class="col-md-7">
+              <button class="border-0 focus:shadow-none bg-transparent"
+                      data-bs-toggle="tooltip" data-bs-placement="top" title=<%= @booking.payment_status %>>
+                <%= status_badge(@booking.payment_status) %>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-5">
+          <div div class="row mb-4">
+            <div class="col-md-5 fw-bold"><%= t "bookings.confirmed_date" %>:</div>
+            <div class="col-md-7"><%= @booking.confirmed_date&.strftime(Settings.datime_format) %></div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-5 fw-bold"><%= t "bookings.cancellation_date" %>:</div>
+            <div class="col-md-7"><%= @booking.cancellation_date&.strftime(Settings.datime_format) %></div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-5 fw-bold"><%= t "bookings.status" %>:</div>
+            <div class="col-md-7">
+              <button class="border-0 focus:shadow-none bg-transparent"
+                      data-bs-toggle="tooltip" data-bs-placement="top" title=<%= @booking.status %>>
+                      <%= status_badge(@booking.status) %>
+              </button>
+            </div>
+
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-5 fw-bold"><%= t "bookings.created_at" %>:</div>
+            <div class="col-md-7"><%= @booking.created_at.strftime(Settings.datime_format) %></div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-5 fw-bold"><%= t "bookings.updated_at" %>:</div>
+            <div class="col-md-7"><%= @booking.updated_at.strftime(Settings.datime_format) %></div>
+          </div>
+        </div>
+      </div>
+      <%= render "admin/shared/filght_ticket", booking: @booking %>
+    </div>
+  </div>
+  <div class="container">
+    <div class="d-flex justify-content-end py-4">
+      <% if !@booking.confirmed? %>
+        <%= booking_button(t("confirm_btn"), t("confirm.confirm_mess"), :confirmed, "btn btn-success me-3") %>
+      <%end%>
+      <% if !@booking.cancelled? %>
+        <%= booking_button(t("cancel_btn"), t("confirm.cancel_confirmation"), :cancelled, "btn btn-danger") %>
+      <%end%>
+    </div>
+  </div>
+</div>
