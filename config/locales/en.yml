@@ -45,6 +45,10 @@ en:
   update: "Update"
   view: "View"
   create_new: "Create new"
+  delete: "Delete"
+
+  confirm:
+    delete_confirmation: "Are you sure you want to delete this item?"
 
   tours:
     title: "All Available Tours Now"
@@ -64,6 +68,7 @@ en:
   errors:
     end_day_start_date: "must be after the start date"
     start_date_today: "must be after today's date"
+    images_limit: "You can only upload a maximum of %{limit} photos"
 
   flash:
     user:
@@ -87,3 +92,6 @@ en:
       create_success: "Tour was successfully created !"
       update_success: "Tour was successfully updated !"
       not_exist: "Tour was not existed !"
+      delete_success: "Tour was successfully deleted !"
+      delete_failure: "Tour was not deleted !"
+      invalid_image: "Error with %{image_name} file!"

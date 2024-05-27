@@ -14,6 +14,8 @@
                     <th scope="col"><%= t "price" %></th>
                     <th scope="col"><%= t "start_day" %></th>
                     <th scope="col"></th>
+                    <th scope="col"></th>
+
                   </tr>
                 </thead>
                 <tbody>
@@ -26,6 +28,12 @@
                       <td><%= number_to_currency(tour.price) %></td>
                       <td><%= tour.start_date.strftime(Settings.dd_mm_yyyy) %></td>
                       <td><%= link_to t("view"), admin_tour_path(tour) %></td>
+                      <td>
+                          <%= button_to t("delete"), admin_tour_path(tour), method: :delete,
+                              class:"btn btn-danger",
+                              form: {data: {turbo_confirm: t("confirm.delete_confirmation")}} %>
+                      </td>
+
                     </tr>
                   <% end %>
                 </tbody>

@@ -1,6 +1,6 @@
 class Booking < ApplicationRecord
   enum status: {pending: 0, confirmed: 1, cancelled: 2}
-  enum payment_status: {pending: 0, paid: 1, refunded: 2}
+  enum payment_status: {payment_pending: 0, paid: 1, refunded: 2}
   belongs_to :tour
   belongs_to :user
   has_many :ticket_instances, dependent: :destroy

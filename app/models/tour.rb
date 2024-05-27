@@ -9,7 +9,7 @@ class Tour < ApplicationRecord
     start_date
     end_date
     tour_type_id
-    image
+    images: []
   ).freeze
 
   belongs_to :tour_type
@@ -26,9 +26,8 @@ class Tour < ApplicationRecord
                                       maximum: Settings.tour.max_duration}
   validates :start_date, :end_date, presence: true
   validate :end_date_after_start_date
-  validate :start_date_after_today
 
-  has_many_attached :image do |attachable|
+  has_many_attached :images do |attachable|
     attachable.variant :display, resize_to_limit: Settings.tour.limit_250_250
   end
 

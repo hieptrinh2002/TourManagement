@@ -1,0 +1,7 @@
+<% if @tour.images.attached? %>
+  <div class="d-flex flex-wrap">
+    <% @tour.images.each do |image| %>
+      <%= render "image", image: image %>
+    <% end %>
+  </div>
+<% end %>

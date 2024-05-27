@@ -20,12 +20,23 @@
         <%= f.label :description, class: "fw-bold mb-2" %>
         <%= f.text_area :description, class: "form-control" %>
       </div>
-      <div class="container my-3">
-        <span class="image">
-          <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
-        </span>
-      </div>
 
+      <div class="container my-3">
+        <% if @tour.images.attached? %>
+          <% @tour.images.each do |image| %>
+            <%= f.hidden_field :images, multiple: true, value: image.signed_id %>
+          <% end %>
+        <% end %>
+
+        <div class="container my-4">
+          <%= render "show_images", tour: @tour %>
+        </div>
+
+        <div class="mt-3">
+          <%= f.file_field :images, accept: Settings.img_format,
+                                    multiple: true, class: "form-control" %>
+        </div>
+      </div>
     </div>
     <div class="col-md-6">
       <div class="form-group mb-3">
@@ -51,11 +62,11 @@
       <div class="form-group mb-3">
         <%= f.label :tour_type_id, class: "fw-bold mb-2" %>
         <%= f.collection_select :tour_type_id, TourType.all, :id, :type_name, {},
-        { class: "form-control" } %>
+                                              { class: "form-control" } %>
       </div>
 
-      <div class="actions py-3">
-        <%= f.submit t("update"), class: "btn btn-primary w-100" %>
+      <div class="actions py-4">
+        <%= f.submit class: "btn btn-primary w-100" %>
       </div>
     </div>
   </div>
