@@ -5,9 +5,10 @@
         <div class="row justify-content-center">
           <div class="col-12">
             <div class="table-responsive bg-white">
-              <table class="table mb-0">
+              <table class="table mb-0 table-striped">
                 <thead>
                   <tr>
+                    <th scope="col"><%= t "stt" %></th>
                     <th scope="col"><%= t "tour_name" %></th>
                     <th scope="col"><%= t "city" %></th>
                     <th scope="col"><%= t "tour_destination" %></th>
@@ -19,15 +20,15 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <% @tours.each do |tour| %>
+                  <% @tours.each_with_index do |tour, index| %>
                     <tr>
-                      <td scope="row" class="fst-italic"><%= tour.tour_name %>
-                       </td>
+                      <td><%= index+1 %></td>
+                      <td scope="row" class="fst-italic"><%= tour.tour_name %></td>
                       <td><%= tour.city %></td>
-                      <td><%= truncate(tour.tour_destination, length: 35, omission: "....") %></td>
+                      <td><%= truncate(tour.tour_destination, length: 28, omission: "....") %></td>
                       <td><%= number_to_currency(tour.price) %></td>
                       <td><%= tour.start_date.strftime(Settings.dd_mm_yyyy) %></td>
-                      <td><%= link_to t("view"), admin_tour_path(tour) %></td>
+                      <td><%= link_to t("view"), admin_tour_path(tour), class: "btn text-primary" %></td>
                       <td>
                           <%= button_to t("delete"), admin_tour_path(tour), method: :delete,
                               class:"btn btn-danger",

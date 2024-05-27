@@ -4,7 +4,7 @@ class Admin::AdminController < ApplicationController
 
   private
   def authenticate_admin!
-    return if current_user.role.to_sym == :admin
+    return if current_user&.admin?
 
     flash[:warning] = t "flash.user.access_denied"
     redirect_to root_path

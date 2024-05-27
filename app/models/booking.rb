@@ -3,9 +3,10 @@ class Booking < ApplicationRecord
   enum payment_status: {payment_pending: 0, paid: 1, refunded: 2}
   belongs_to :tour
   belongs_to :user
-  has_many :ticket_instances, dependent: :destroy
   has_many :booking_vouchers, dependent: :destroy
   has_many :vouchers, through: :booking_vouchers
+  belongs_to :flight_ticket
+  has_one :flight, through: :flight_ticket
 
   validates :phone_number,
             presence: true,

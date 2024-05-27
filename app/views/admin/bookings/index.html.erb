@@ -1,0 +1,50 @@
+<section class="intro">
+  <div class="gradient-custom-1 h-100">
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div class="table-responsive bg-white">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col"><%= t "stt" %></th>
+                    <th scope="col"><%= t "tour_name" %></th>
+                    <th scope="col"><%= t "customer_name" %></th>
+                    <th scope="col"><%= t "num_passengers" %></th>
+                    <th scope="col"><%= t "start_date" %></th>
+                    <th scope="col"><%= t "total_amount" %></th>
+                    <th class="text-center" scope="col"><%= t "status" %></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @bookings.each_with_index  do |booking, index| %>
+                    <tr>
+                      <td><%= index+1 %></td>
+                      <td scope="row" class="fst-italic">
+                        <%= truncate(booking.tour.tour_name, length: Settings.digit_30, omission: "....") %>
+                      </td>
+                      <td><%= "#{booking.user.last_name} #{booking.user.first_name}" %></td>
+                      <td class="text-center"><%= booking.number_of_guests %></td>
+                      <td><%= booking.started_date.strftime(Settings.dd_mm_yyyy) %></td>
+                      <td><%= number_to_currency(booking.total_price) %></td>
+                      <td class="text-center"><%= status_badge(booking.status) %></td>
+                      <td><%= link_to t("view"), admin_booking_path(booking), class:"btn text-primary" %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="d-flex justify-content-between py-4">
+      <div></div>
+      <%== pagy_nav(@pagy) %>
+    </div>
+  </div>
+</section>
