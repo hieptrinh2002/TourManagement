@@ -29,19 +29,42 @@ vi:
   password_confirmation: "Xác nhận mật khẩu"
   sign_up: "Đăng ký"
   subscribe_to_our_newsletter: "Theo dõi bản tin của chúng tôi"
+  search: "Tìm kiếm"
+  share: "Chia sẻ"
+  export: "Xuất"
+  this_week: "Tuần này"
+  dashboard: "Bảng điều khiển"
+  tour_orders: "Đơn đặt tour"
+  tours_name: "Tours"
+  customers: "Khách hàng"
+  report: "Báo cáo"
+  saved_reports: "Báo cáo đã lưu"
+  current_month: "Tháng hiện tại"
+  last_quarter: "Quý trước"
+  voucher: "Phiếu giảm giá"
+  update: "Cập nhật"
+  view: "Xem"
+  create_new: "Tạo mới"
 
   tours:
     title: "Các tours hiện tại"
     subtitle: "Nếu có bất cứ câu hỏi gì, hãy liên hệ với quản trị viên"
     duration: "Thời lượng: "
+    tour_name: "Tên tour"
+    city: "Thành phố"
+    tour_destination: "Điểm đến"
+    price: "Giá"
+    start_date: "Ngày bắt đầu"
     day:
       one: "ngày"
       other: "ngày"
     start: "Bắt đầu từ: "
     price: "Chi phí: $"
 
-  error:
+  errors:
     end_day_start_date: "Ngày kết thúc phải lơn hơn ngày bắt đầu"
+    start_date_today: "Phải sau ngày hôm nay !"
+
   flash:
     user:
       signup_success: "Tạo người dùng thành công !"
@@ -53,9 +76,14 @@ vi:
       login_before_update: "Bạn cần đăng nhập vào hệ thống trước khi cập nhật !"
       cant_update_account: "Bạn không thể cập nhật thông tin ở tài khoản này !"
       not_found: "Không tìm thấy người dùng !"
+      access_denied: "Quyền truy cập bị từ chối !"
 
     account:
       activation_success: "Tài khoản được kính hoạt thành công !"
       activation_failure: "Bạn cần kích hoạt tài khoản qua gmail !"
       check_email_to_activate: "Check email của bạn để active tài khoản !"
       activation_subject: "Kích hoạt tài khoản !"
+    tour:
+      create_success: "Tour đã được tạo thành công !"
+      update_success: "Tour đã được cập nhật thành công !"
+      not_exist: "Tour không tồn tại"

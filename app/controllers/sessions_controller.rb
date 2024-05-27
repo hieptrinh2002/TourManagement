@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
     else
       forget(user)
     end
-    redirect_back user
     flash[:success] = t "flash.user.login_success"
+    redirect_to user.role.to_sym == :admin ? admin_path : root_path
   end
 end
