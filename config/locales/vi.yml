@@ -95,3 +95,9 @@ vi:
       not_exist: "Tour không tồn tại"
       delete_success: "Tour đã được xóa thành công !"
       delete_failure: "Tour không được xóa thành công !"
+    booking:
+      create_success: "Booking đã được tạo thành công !"
+      update_success: "Booking đã được cập nhật thành công !"
+      not_exist: "Booking không tồn tại"
+      delete_success: "Booking đã được xóa thành công !"
+      delete_failure: "Booking không được xóa thành công !"

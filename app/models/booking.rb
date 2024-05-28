@@ -6,6 +6,7 @@ class Booking < ApplicationRecord
   has_many :ticket_instances, dependent: :destroy
   has_many :booking_vouchers, dependent: :destroy
   has_many :vouchers, through: :booking_vouchers
+  has_many :flight_tickets, through: :ticket_instances
 
   validates :phone_number,
             presence: true,

@@ -1,0 +1,28 @@
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Ticket Class</th>
+      <th>Number</th>
+      <th>Airline Brand</th>
+      <th>Departure Time</th>
+      <th>Arrival Time</th>
+      <th>Origin</th>
+      <th>Destination</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% booking.ticket_instances.each do |ticket_instance| %>
+      <% flight_ticket = ticket_instance.flight_ticket %>
+      <% flight = flight_ticket.flight %>
+      <tr>
+        <td><%= flight_ticket.ticket_class %></td>
+        <td><%= ticket_instance.number %></td>
+        <td><%= flight.airline_brand %></td>
+        <td><%= flight.departure_time %></td>
+        <td><%= flight.arrival_time %></td>
+        <td><%= flight.origin_place %></td>
+        <td><%= flight.destination %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -94,3 +94,9 @@ en:
       not_exist: "Tour was not existed !"
       delete_success: "Tour was successfully deleted !"
       delete_failure: "Tour was not deleted !"
+    booking:
+      create_success: "Booking was successfully created !"
+      update_success: "Booking was successfully updated !"
+      not_exist: "Booking was not existed !"
+      delete_success: "Booking was successfully deleted !"
+      delete_failure: "Booking was not deleted !"

@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h5>Booking Details</h5>
+    </div>
+    <div class="card-body px-5">
+      <div class="d-flex flex-wrap justify-content-center">
+        <div class="col-7">
+          <div class="row mb-4">
+            <div class="col-md-5 fw-bold">Tour name:</div>
+            <div class="col-md-7"><%= @booking.tour.tour_name %></div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-5 fw-bold">Booking user:</div>
+            <div class="col-md-7"><%= @booking.user.last_name %></div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-5 fw-bold">Phone Number:</div>
+            <div class="col-md-7"><%= @booking.phone_number %></div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-5 fw-bold">Number of Guests:</div>
+            <div class="col-md-7"><%= @booking.number_of_guests %></div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-5 fw-bold">Started Date:</div>
+            <div class="col-md-7"><%= @booking.started_date.strftime('%d-%m-%Y %H:%M:%S') %></div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-5 fw-bold">Total Price:</div>
+            <div class="col-md-7">$<%= @booking.total_price %></div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-5 fw-bold">Payment Status:</div>
+            <div class="col-md-7"><%= status_badge(@booking.payment_status) %></div>
+          </div>
+        </div>
+        <div class="col-5">
+          <div div class="row mb-4">
+            <div class="col-md-5 fw-bold">Confirmed Date:</div>
+            <div class="col-md-7"><%= @booking.confirmed_date&.strftime('%d-%m-%Y %H:%M:%S') %></div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-5 fw-bold">Cancellation Date:</div>
+            <div class="col-md-7"><%= @booking.cancellation_date&.strftime('%d-%m-%Y %H:%M:%S') %></div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-5 fw-bold">Status:</div>
+            <div class="col-md-7"><%= status_badge(@booking.status) %></div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-5 fw-bold">Created At:</div>
+            <div class="col-md-7"><%= @booking.created_at.strftime('%d-%m-%Y %H:%M:%S') %></div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-5 fw-bold">Updated At:</div>
+            <div class="col-md-7"><%= @booking.updated_at.strftime('%d-%m-%Y %H:%M:%S') %></div>
+          </div>
+        </div>
+      </div>
+      <%= render "admin/shared/filght_ticket", booking: @booking %>
+
+    </div>
+  </div>
+  <div class="container">
+    <div class="d-flex justify-content-end py-4">
+      <% if @booking.status != "confirmed" %>
+        <%= button_to "Phê duyệt", admin_booking_path, method: :patch,
+                                  class:"btn btn-success me-3",
+                                  params: { status: :confirmed },
+                                  form: {data: {turbo_confirm: "Phê duyệt ?" }} %>
+      <%end%>
+      <% if @booking.status != "cancelled" %>
+        <%= button_to "Loại bỏ", admin_booking_path, method: :patch,
+                                class:"btn btn-danger",
+                                params: { status: :cancelled },
+                                form: {data: {turbo_confirm: "Loại bỏ ?"}} %>
+      <%end%>
+    </div>
+  </div>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_24_084331) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_28_173945) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -67,13 +67,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_084331) do
   end
 
   create_table "flight_tickets", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "booking_id", null: false
     t.bigint "flight_id", null: false
     t.integer "ticket_class"
     t.decimal "price", precision: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["booking_id"], name: "index_flight_tickets_on_booking_id"
     t.index ["flight_id"], name: "index_flight_tickets_on_flight_id"
   end
 
@@ -101,13 +99,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_084331) do
 
   create_table "ticket_instances", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "booking_id", null: false
-    t.bigint "flight_id", null: false
+    t.bigint "flight_ticket_id", null: false
     t.integer "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["booking_id", "flight_id"], name: "index_ticket_instances_on_booking_id_and_flight_id", unique: true
+    t.index ["booking_id", "flight_ticket_id"], name: "index_ticket_instances_on_booking_id_and_flight_ticket_id", unique: true
     t.index ["booking_id"], name: "index_ticket_instances_on_booking_id"
-    t.index ["flight_id"], name: "index_ticket_instances_on_flight_id"
+    t.index ["flight_ticket_id"], name: "index_ticket_instances_on_flight_ticket_id"
   end
 
   create_table "tour_flights", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -178,12 +176,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_084331) do
   add_foreign_key "booking_vouchers", "vouchers"
   add_foreign_key "bookings", "tours"
   add_foreign_key "bookings", "users"
-  add_foreign_key "flight_tickets", "bookings"
   add_foreign_key "flight_tickets", "flights"
   add_foreign_key "reviews", "tours"
   add_foreign_key "reviews", "users"
   add_foreign_key "ticket_instances", "bookings"
-  add_foreign_key "ticket_instances", "flights"
+  add_foreign_key "ticket_instances", "flights", column: "flight_ticket_id"
   add_foreign_key "tour_flights", "flights"
   add_foreign_key "tour_flights", "tours"
   add_foreign_key "tours", "tour_types"
