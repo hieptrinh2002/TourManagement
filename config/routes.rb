@@ -13,7 +13,12 @@ Rails.application.routes.draw do
 
   get "/admin", to: "admin/tours#index"
   namespace :admin do
-    resources :tours
+    resources :tours do
+      member do
+        #remove_image_admin_tour_path
+        delete :remove_image
+      end
+    end
   end
 
   root "static_pages#home"

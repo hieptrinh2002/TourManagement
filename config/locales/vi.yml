@@ -45,6 +45,10 @@ vi:
   update: "Cập nhật"
   view: "Xem"
   create_new: "Tạo mới"
+  delete: "Xóa"
+
+  confirm:
+    delete_confirmation: "Bạn có chắc chắn muốn xóa ?"
 
   tours:
     title: "Các tours hiện tại"
@@ -64,6 +68,8 @@ vi:
   errors:
     end_day_start_date: "Ngày kết thúc phải lơn hơn ngày bắt đầu"
     start_date_today: "Phải sau ngày hôm nay !"
+    images_limit: "Bạn chỉ có thể upload tối đa %{limit} ảnh !"
+
 
   flash:
     user:
@@ -87,3 +93,6 @@ vi:
       create_success: "Tour đã được tạo thành công !"
       update_success: "Tour đã được cập nhật thành công !"
       not_exist: "Tour không tồn tại"
+      delete_success: "Tour đã được xóa thành công !"
+      delete_failure: "Tour không được xóa thành công !"
+      invalid_image: "Đã có lỗi mới file ảnh %{image_name} !"

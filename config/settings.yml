@@ -1,6 +1,11 @@
 remember_me_checked: "1"
 dd_mm_yyyy: "%d-%m-%Y"
+images_limit: 6
+img_tag_size: "150x150"
+height_img_250: 250
+width_img_250: 250
 
+img_format: "image/jpeg,image/gif,image/png"
 VALID_EMAIL_REGEX: \A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z
 VALID_PHONE_REGEX: "\\A\\+?[\\d\\s\\-\\(\\)]+\\z"
 ADMIN: 1
