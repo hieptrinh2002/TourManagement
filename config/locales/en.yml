@@ -64,6 +64,16 @@ en:
       other: "days"
     start: "Start: "
     price: "Price: $"
+    search:
+      action: "Search for Tours"
+      name: "Name of Tours"
+      min_duration: "Min Duration"
+      max_duration: "Max Duration"
+      city: "City"
+      min_price: "Min Price"
+      max_price: "Max Price"
+      start_date: "Start Date"
+      or: "Search by OR condition"
 
   errors:
     end_day_start_date: "must be after the start date"

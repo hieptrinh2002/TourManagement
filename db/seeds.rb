@@ -1,5 +1,7 @@
-beach_tour = TourType.create(type_name: "Beach Tour", ancestry: nil)
-mountain_tour = TourType.create(type_name: "Mountain Tour", ancestry: nil)
+all_tour = TourType.create(type_name: "All Tour", ancestry: nil)
+
+beach_tour = TourType.create(type_name: "Beach Tour", ancestry: all_tour.id)
+mountain_tour = TourType.create(type_name: "Mountain Tour", ancestry: all_tour.id)
 
 TourType.create(type_name: "North Beach", ancestry: beach_tour.id)
 TourType.create(type_name: "South Beach", ancestry: beach_tour.id)
