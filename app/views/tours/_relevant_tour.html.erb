@@ -1,0 +1,12 @@
+<div class="col-2 m-2 rev rounded-3 d-flex flex-column justify-content-between">
+  <h5>
+    <%= relevant_tour.tour_name %>
+  </h5>
+  <div class="d-flex flex-column gap-2">
+    <span>
+      <b><%= t "tours.details.duration" %></b>
+      <%= pluralize relevant_tour.day_duration, t("tours.day", count: relevant_tour.day_duration) %>
+    </span>
+    <%= link_to t("tours.details.self"), relevant_tour %>
+  </div>
+</div>

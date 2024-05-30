@@ -74,6 +74,17 @@ en:
       max_price: "Max Price"
       start_date: "Start Date"
       or: "Search by OR condition"
+    details:
+      self: "View"
+      address: "Address: "
+      description: "Description: "
+      price: "Price: $"
+      duration: "Duration: "
+      from: "From: "
+      to: "To: "
+      tag: "#"
+      back: "<< Back to Tours Page"
+      relevant: "Relevant Tours"
 
   errors:
     end_day_start_date: "must be after the start date"
@@ -105,3 +116,4 @@ en:
       delete_success: "Tour was successfully deleted !"
       delete_failure: "Tour was not deleted !"
       invalid_image: "Error with %{image_name} file!"
+      find_tour_failed: "Cannot find tour!"

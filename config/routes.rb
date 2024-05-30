@@ -23,5 +23,5 @@ Rails.application.routes.draw do
 
   root "static_pages#home"
 
-  resources :tours, only: :index
+  resources :tours, only: %i(index show)
 end
