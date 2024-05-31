@@ -58,7 +58,7 @@ end
 100.times do
   flight = Flight.create!(
     airline_brand: Faker::Company.name,
-    flight_number: Faker::Alphanumeric.alphanumeric(number: 6).upcase,
+    flight_number: Faker::Lorem.characters(number: 6, min_alpha: 3, min_numeric: 3),
     departure_time: Faker::Time.forward(days: 23, period: :morning),
     arrival_time: Faker::Time.forward(days: 23, period: :afternoon),
     origin_place: Faker::Address.city,

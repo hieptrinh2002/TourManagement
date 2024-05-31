@@ -69,7 +69,9 @@
           </div>
         </div>
       </div>
-      <%= render "admin/shared/filght_ticket", booking: @booking %>
+      <% if @booking.flight.present? %>
+        <%= render "admin/shared/filght_ticket", booking: @booking %>
+      <% end %>
     </div>
   </div>
   <div class="container">

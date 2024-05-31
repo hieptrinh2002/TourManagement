@@ -52,15 +52,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_084331) do
   create_table "bookings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "tour_id", null: false
     t.bigint "user_id", null: false
-    t.bigint "flight_ticket_id", null: false
+    t.bigint "flight_ticket_id"
     t.string "phone_number"
     t.integer "number_of_guests"
     t.datetime "started_date"
     t.decimal "total_price", precision: 10
-    t.integer "payment_status"
+    t.integer "payment_status", default: 0
     t.datetime "confirmed_date"
     t.datetime "cancellation_date"
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["flight_ticket_id"], name: "index_bookings_on_flight_ticket_id"
@@ -79,7 +79,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_084331) do
 
   create_table "flights", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "airline_brand"
-    t.datetime "flight_number"
+    t.string "flight_number"
     t.datetime "departure_time"
     t.datetime "arrival_time"
     t.string "origin_place"

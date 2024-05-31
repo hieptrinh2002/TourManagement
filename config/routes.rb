@@ -22,7 +22,9 @@ Rails.application.routes.draw do
     resources :bookings, only: %i(index show destroy update)
   end
 
-  root "static_pages#home"
+  resources :tours, only: %i(index show) do
+    resources :bookings
+  end
 
-  resources :tours, only: %i(index show)
+  root "static_pages#home"
 end
