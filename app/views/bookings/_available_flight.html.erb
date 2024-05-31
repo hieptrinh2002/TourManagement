@@ -1,0 +1,48 @@
+
+<table class="table table-striped table-hover my-4">
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th><%= t "airline_brand" %></th>
+      <th><%= t "departure_time" %></th>
+      <th><%= t "hour" %></th>
+      <th><%= t "origin" %></th>
+      <th><%= t "destination" %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% flights.each_with_index do |flight, index| %>
+      <tr class="py-5">
+        <td class="td-pointer text-center"><%= index + 1 %></td>
+        <td class="td-pointer"><%= flight.airline_brand %></td>
+        <td class="td-pointer"><%= flight.departure_time.strftime(Settings.datime_format_hour) %>h</td>
+        <td class="td-pointer"><%= time_difference_in_hours_and_minutes(flight.departure_time,flight.arrival_time) %></td>
+        <td class="td-pointer"><%= flight.origin_place %></td>
+        <td class="td-pointer"><%= flight.destination %></td>
+        <td>
+          <span class="badge bg-info text-dark">#<%= flight.flight_number %></span>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <% flight.flight_tickets.each_with_index do |ticket, index| %>
+        <td>
+           <div class="row">
+              <div>
+                <input type="radio" name="ticket_id" value="<%= ticket.id %>" class="flight-ticket-radio" id="flight_ticket_id">
+              </div>
+              <div>
+                <label for="flight_ticket_id" class="form-check-label"><%= ticket.ticket_class %></label>
+                <p class="text-success py-2" id="ticket-price-<%= ticket.id %>"><%= ticket.price%></p>
+              </div>
+            </div>
+        </td>
+        <% end %>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

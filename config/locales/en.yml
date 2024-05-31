@@ -152,6 +152,7 @@ en:
       find_tour_failed: "Cannot find tour!"
     booking:
       create_success: "Booking was successfully created !"
+      create_failed: "Creating a tour booking failed !"
       update_success: "Booking was successfully updated !"
       not_exist: "Booking was not existed !"
       delete_success: "Booking was successfully deleted !"

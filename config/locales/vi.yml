@@ -154,6 +154,7 @@ vi:
       find_tour_failed: "Không thể tìm được tour!"
     booking:
       create_success: "Booking đã được tạo thành công !"
+      create_failed: "Tạo booking không thành công !"
       update_success: "Booking đã được cập nhật thành công !"
       not_exist: "Booking không tồn tại"
       delete_success: "Booking đã được xóa thành công !"

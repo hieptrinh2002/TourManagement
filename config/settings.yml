@@ -4,6 +4,8 @@ cancelled_status: "cancelled"
 remember_me_checked: "1"
 dd_mm_yyyy: "%d-%m-%Y"
 datime_format: "%d-%m-%Y %H:%M:%S"
+datime_format_hour: "%d-%m-%Y %H"
+
 images_limit: 6
 img_tag_size: "150x150"
 height_img_250: 250

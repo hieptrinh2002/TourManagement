@@ -1,4 +1,4 @@
-<div class="row my-4 tour">
+<div class="row my-4 tour mx-5">
   <div class="mb-6">
     <%= link_to t("tours.details.back"), tours_path %>
   </div>
@@ -29,10 +29,15 @@
       <b><%= t "tours.details.to" %></b>
       <%= @tour.end_date %>
     </span>
-    <span class="tour-tag rounded-2">
-      <%= t "tours.details.tag" %>
-      <%= @tour.tour_type.type_name %>
-    </span>
+    <div class="d-flex justify-content-start">
+      <span class="tour-tag rounded-2">
+        <%= t "tours.details.tag" %>
+        <%= @tour.tour_type.type_name %>
+      </span>
+    </div>
+      <%= link_to "Book tour 👉", new_tour_booking_path(@tour), class: "btn btn-primary" %>
+
   </div>
+  <hr class="my-5">
   <%= render "relevant_tours" %>
 </div>
