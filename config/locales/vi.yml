@@ -74,6 +74,17 @@ vi:
       max_price: "Chi phí lớn nhất"
       start_date: "Ngày bắt đầu"
       or: "Tìm kiếm các tour thỏa mãn ít nhất 1 điều kiện"
+    details:
+      self: "Xem"
+      address: "Địa chỉ: "
+      description: "Mô tả: "
+      price: "Chi phí: $"
+      duration: "Thời lượng: "
+      from: "Từ: "
+      to: "Đến: "
+      tag: "#"
+      back: "<< Quay về trang tours"
+      relevant: "Các tour liên quan"
 
   errors:
     end_day_start_date: "Ngày kết thúc phải lơn hơn ngày bắt đầu"
@@ -106,3 +117,4 @@ vi:
       delete_success: "Tour đã được xóa thành công !"
       delete_failure: "Tour không được xóa thành công !"
       invalid_image: "Đã có lỗi mới file ảnh %{image_name} !"
+      find_tour_failed: "Không thể tìm được tour!"

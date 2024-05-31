@@ -111,6 +111,7 @@ a {
     &-second {
       display: flex;
       justify-content: flex-end;
+      gap: 10px;
     }
   }
 }
@@ -139,4 +140,18 @@ a {
     background-color: rgb(181, 216, 248);
     color: #000;
   }
+}
+
+.tour {
+  &-tag {
+    background-color: rgb(108, 183, 233);
+    padding: 4px;
+    width: fit-content;
+  }
+}
+
+.rev {
+  height: 120px;
+  border: 1px solid #ccc;
+  box-shadow: #eee;
 }

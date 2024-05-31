@@ -1,0 +1,7 @@
+<div class="row mt-2">
+  <h4>
+    <%= t "tours.details.relevant" %>
+  </h4>
+  <%= render partial: "relevant_tour", collection: @relevant_tours %>
+  <%== pagy_nav(@relevant_pagy) %>
+</div>

@@ -1,5 +1,38 @@
-<div>
-  <h1>
-    <%= tour.tour_name %>
-  </h1>
+<div class="row my-4 tour">
+  <div class="mb-6">
+    <%= link_to t("tours.details.back"), tours_path %>
+  </div>
+  <div class="col-6 d-flex flex-column gap-4">
+    <h1>
+      <%= @tour.tour_name %>
+    </h1>
+    <span>
+      <b><%= t "tours.details.address" %></b>
+      <%= @tour.city %>
+      (<%= @tour.tour_destination %>)
+    </span>
+    <span>
+      <b><%= t "tours.details.description" %></b>
+      <%= @tour.description %>
+    </span>
+    <span>
+      <b><%= t "tours.details.price" %></b>
+      <%= @tour.price %>
+    </span>
+    <span>
+      <b><%= t "tours.details.duration" %></b>
+      <%= pluralize @tour.day_duration, t("tours.day", count: @tour.day_duration) %>
+    </span>
+    <span>
+      <b><%= t "tours.details.from" %></b>
+      <%= @tour.start_date %>
+      <b><%= t "tours.details.to" %></b>
+      <%= @tour.end_date %>
+    </span>
+    <span class="tour-tag rounded-2">
+      <%= t "tours.details.tag" %>
+      <%= @tour.tour_type.type_name %>
+    </span>
+  </div>
+  <%= render "relevant_tours" %>
 </div>

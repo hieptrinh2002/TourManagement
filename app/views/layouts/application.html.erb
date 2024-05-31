@@ -25,7 +25,7 @@
             </span>
           </div>
          <div class="navbar-right text-primary">
-            <%= link_to t("view_tour"), root_path %>
+            <%= link_to t("view_tour"), tours_path %>
             <% if current_user.present? %>
               <div class="navbar-dropdown dropdown">
                 <%= t "account" %>
