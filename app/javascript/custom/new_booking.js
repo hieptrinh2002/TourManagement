@@ -30,8 +30,10 @@ document.addEventListener("turbo:load", () => {
   });
 
   const guestNumber = document.querySelector(".number-of-guest");
-  guestNumber.addEventListener("change", ()=>{
-    if(selectedTicketId)
-      updateTotalPrice();
-  });
+  if(guestNumber){
+    guestNumber.addEventListener("change", ()=>{
+      if(selectedTicketId)
+        updateTotalPrice();
+    });
+  }
 });

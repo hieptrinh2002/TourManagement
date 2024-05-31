@@ -41,3 +41,12 @@
   <hr class="my-5">
   <%= render "relevant_tours" %>
 </div>
+
+<div class="container my-5">
+  <h5><%= t "review" %></h5>
+  <%= render "reviews/form", review: @tour.reviews.build, tour: @tour %>
+</div>
+
+<div id="reviews" class="my-5">
+  <%= render partial: "reviews/review", collection: @reviews %>
+</div>

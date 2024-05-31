@@ -42,6 +42,16 @@ class Booking < ApplicationRecord
     where(status: statuses) if statuses.present?
   end)
 
+  scope :belongs_to_user, (lambda do |user_id|
+    where(user_id:) if user_id.present?
+  end)
+
+  scope :for_tour, (lambda do |tour_id|
+    where(tour_id:) if tour_id.present?
+  end)
+
+  accepts_nested_attributes_for :flight_ticket
+
   validates :number_of_guests,
             presence: true,
             numericality: {greater_than: Settings.booking.min_guests}

@@ -5,6 +5,8 @@ class ToursController < ApplicationController
     @relevant_pagy,
     @relevant_tours = pagy(Tour.by_tour_type_id(@tour.tour_type_id),
                            items: Settings.tour.rev_tours_per_page)
+
+    @reviews = @tour.reviews.order_by_create_at
   end
 
   def index

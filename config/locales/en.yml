@@ -77,7 +77,10 @@ en:
   filter_airlines: "Filter Airlines"
   no_flights: "There are currently no flights available"
   all: "All"
-
+  review_placeholder: "Enter your thoughts here..."
+  review: "Review"
+  edited: "edited "
+  ago: "ago"
 
   confirm:
     delete_confirmation: "Are you sure you want to delete this item?"
@@ -207,3 +210,9 @@ en:
       delete_failure: "Booking was not deleted !"
       not_allowed: "You are not allowed to booking, please login !"
       is_used: "Voucher is used!"
+    review:
+      create_failed: "Create review failed !"
+      update_failed: "Review was updated failed !"
+      destroy_failed: "Review was destroyed failed !"
+      not_found: "Review was not found !"
+      review_denied: "You need to participate in the tour to be evaluated !"

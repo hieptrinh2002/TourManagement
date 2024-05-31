@@ -99,3 +99,12 @@ end
     status: ['pending', 'confirmed', 'cancelled'].sample
   )
 end
+
+130.times do
+  Review.create!(
+    rating: rand(1..5),
+    comment: Faker::Lorem.sentence(word_count: 12),
+    tour_id: Faker::Number.between(from: 1, to: 30),
+    user_id: Faker::Number.between(from: 1, to: 100)
+  )
+end

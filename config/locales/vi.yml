@@ -77,6 +77,10 @@ vi:
   filter_airlines: "Lọc Airlines"
   no_flights: "Hiện không có chuyến bay nào phù hợp"
   all: "Tất cả"
+  review_placeholder: "Bạn có suy nghĩ gì sau chuyến đi..."
+  review: "Đánh giá"
+  edited: "đã edit "
+  ago: "trước"
 
   confirm:
     delete_confirmation: "Bạn có chắc chắn muốn xóa ?"
@@ -223,7 +227,7 @@ vi:
       not_exist: "Tour không tồn tại"
       delete_success: "Tour đã được xóa thành công !"
       delete_failure: "Tour không được xóa thành công !"
-      invalid_image: "Đã có lỗi mới file ảnh %{image_name} !"
+      invalid_image: "Đã có lỗi với file ảnh %{image_name} !"
       find_tour_failed: "Không thể tìm được tour!"
     booking:
       create_success: "Booking đã được tạo thành công !"
@@ -243,3 +247,9 @@ vi:
       find_voucher_failed: "Không tìm thấy voucher!"
       find_tour_failed: "Không thể tìm được tour!"
       is_used: "Voucher đã được sử dụng!"
+    review:
+      create_failed: "Tạo review không thành công !"
+      update_failed: "Cập nhật không thành công !"
+      destroy_failed: "Xóa review không thành công !"
+      not_found: "Không tìm thấy review !"
+      review_denied: "Bạn cần tham gia tour để được đánh giá !"
