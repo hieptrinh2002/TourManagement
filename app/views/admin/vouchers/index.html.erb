@@ -1,0 +1,42 @@
+<section class="intro">
+  <div class="gradient-custom-1 h-100">
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div class="table-responsive bg-white">
+              <div class="row pt-4 pb-4">
+                <%= render "admin/vouchers/search_form" %>
+              </div>
+              <table class="table mb-0">
+                <thead>
+                  <tr>
+                    <th scope="col"><%= t "admin.vouchers.code" %></th>
+                    <th scope="col"><%= t "admin.vouchers.percent_discount" %></th>
+                    <th scope="col"><%= t "admin.vouchers.min_total_price" %></th>
+                    <th scope="col"><%= t "admin.vouchers.expiry_date" %></th>
+                    <th scope="col"><%= t "admin.vouchers.created_at" %></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @vouchers.each do |voucher| %>
+                    <%= render "admin/vouchers/admin_voucher", voucher: voucher %>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="d-flex justify-content-between py-4">
+      <%= link_to t("create_new"), new_admin_voucher_path, class: "btn btn-primary" %>
+      <%== pagy_nav(@pagy) %>
+    </div>
+  </div>
+</section>

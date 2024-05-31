@@ -72,9 +72,28 @@ vi:
   promotion_code: "Mã khuyến mãi"
   total_usd: "Tổng tiền (USD)"
   apply: "Áp mã"
+  edit: "Sửa"
 
   confirm:
     delete_confirmation: "Bạn có chắc chắn muốn xóa ?"
+    confirm_mess: "Bạn có chắc chắn muốn xác nhận ?"
+    cancel_confirmation: "Bạn có chắc chắn muốn loại bỏ ?"
+
+
+  bookings:
+    card_header: "Thông Tin Booking"
+    tour_name: "Tên Tour"
+    booking_user: "Người book"
+    phone_number: "Số điện thoại"
+    number_of_guests: "Số lượng khách"
+    started_date: "Ngày bắt đầu"
+    total_price: "Tổng tiền"
+    payment_status: "Trạng thái thanh toán"
+    confirmed_date: "Ngày xác nhận"
+    cancellation_date: "Ngày loại bỏ"
+    status: "Trạng thái"
+    created_at: "Đặt lúc"
+    updated_at: "Cập nhật lúc"
     confirm_mess: "Bạn có chắc chắn muốn xác nhận ?"
     cancel_confirmation: "Bạn có chắc chắn muốn loại bỏ ?"
 
@@ -129,12 +148,47 @@ vi:
       tag: "#"
       back: "<< Quay về trang tours"
       relevant: "Các tour liên quan"
+    search:
+      action: "Tìm kiếm tour"
+      name: "Tên tour"
+      min_duration: "Thời lượng ngắn nhất"
+      max_duration: "Thời lượng dài nhất"
+      city: "Thành phố"
+      min_price: "Chi phí nhỏ nhất"
+      max_price: "Chi phí lớn nhất"
+      start_date: "Ngày bắt đầu"
+      or: "Tìm kiếm các tour thỏa mãn ít nhất 1 điều kiện"
+    details:
+      self: "Xem"
+      address: "Địa chỉ: "
+      description: "Mô tả: "
+      price: "Chi phí: $"
+      duration: "Thời lượng: "
+      from: "Từ: "
+      to: "Đến: "
+      tag: "#"
+      back: "<< Quay về trang tours"
+      relevant: "Các tour liên quan"
 
   errors:
     end_day_start_date: "Ngày kết thúc phải lơn hơn ngày bắt đầu"
     start_date_today: "Phải sau ngày hôm nay !"
     images_limit: "Bạn chỉ có thể upload tối đa %{limit} ảnh !"
 
+  vouchers:
+    details: "Chi tiết voucher"
+    expired: "Hết hạn"
+    is_used: "Đã dùng"
+    search:
+      code: "Mã"
+      min_total_price: "Tổng chi phí tối thiểu"
+      percent_discount: "Phần trăm giảm giá"
+      action: "Tìm kiếm voucher"
+      status: "Trạng thái"
+      status_options:
+        all: "Tất cả"
+        available: "Còn hạn"
+        expired: "Hết hạn"
 
   flash:
     user:
@@ -170,3 +224,13 @@ vi:
       delete_success: "Booking đã được xóa thành công !"
       delete_failure: "Booking không được xóa thành công !"
       not_allowed: "Bạn không được phép book tour, hãy login !"
+    voucher:
+      create_success: "Tạo voucher thành công!"
+      wrong_expiry_date: "phải sau ngày hôm nay!"
+      code_exist: " đã tồn tại!"
+      edit_success: "Cập nhật voucher thành công!"
+      delete_failed: "Xóa voucher thất bại!"
+      delete_success: "Xóa voucher thành công!"
+      find_voucher_failed: "Không tìm thấy voucher!"
+      find_tour_failed: "Không thể tìm được tour!"
+      is_used: "Voucher đã được sử dụng!"

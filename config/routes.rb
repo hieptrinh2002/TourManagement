@@ -19,6 +19,7 @@ Rails.application.routes.draw do
         delete :remove_image
       end
     end
+    resources :vouchers
     resources :bookings, only: %i(index show destroy update)
   end
 

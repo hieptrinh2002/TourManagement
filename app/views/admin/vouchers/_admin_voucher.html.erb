@@ -1,0 +1,19 @@
+<tr>
+  <td><%= voucher.code %></td>
+  <td><%= voucher.percent_discount %><%= t "%" %></td>
+  <td><%= number_to_currency(voucher.min_total_price) %></td>
+  <td><%= voucher.expiry_date %></td>
+  <td><%= voucher.created_at %></td>
+  <td><%= link_to t("view"), admin_voucher_path(voucher) %></td>
+  <td>
+    <%= button_to t("delete"), admin_voucher_path(voucher), method: :delete, class:"btn btn-danger", 
+    form: {data: {turbo_confirm: t("confirm.delete_confirmation")}} %>
+  </td>
+  <td>
+    <% if voucher.is_used %>
+      <%= t "vouchers.is_used" %>
+    <% elsif voucher.is_expired? %>
+      <%= t "vouchers.expired" %>
+    <% end %>
+  </td>
+</tr>

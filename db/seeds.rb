@@ -8,7 +8,6 @@ TourType.create(type_name: "South Beach", ancestry: beach_tour.id)
 TourType.create(type_name: "Lowland Mountain", ancestry: mountain_tour.id)
 TourType.create(type_name: "Highland Mountain", ancestry: mountain_tour.id)
 
-
 30.times do |n|
 	tour_name = Faker::Australia.state
 	city = Faker::Address.city
@@ -16,7 +15,7 @@ TourType.create(type_name: "Highland Mountain", ancestry: mountain_tour.id)
 	description = Faker::Lorem.paragraph(sentence_count: 2)
 	price = Faker::Number.decimal(l_digits: 3, r_digits: 3)
 	day_duration = Faker::Number.within(range: 1..29)
-	start_date = Faker::Date.between(from: '2024-09-23', to: '2025-09-23')
+	start_date = Faker::Date.between(from: "2024-09-23", to: "2025-09-23")
 	end_date = start_date + day_duration.days
 	tour_type_id = Faker::Number.within(range: 3..6)
 	Tour.create!(tour_name:, city:, tour_destination:, description:, price:, day_duration:, start_date:, end_date:, tour_type_id:)
@@ -37,6 +36,14 @@ User.create!(role: 0, first_name:"User", last_name:"Trinh",
             password_confirmation:"123456",
             activated: true,
             activated_at: Time.zone.now)
+
+100.times do |n|
+  expiry_date = Faker::Date.between(from: "2024-01-23", to: "2025-09-23")
+  code =  Faker::Alphanumeric.alpha(number: 6)
+  min_total_price = Faker::Number.decimal(l_digits: 3, r_digits: 3)
+  percent_discount = Faker::Number.decimal(l_digits: 2, r_digits: 2)
+  Voucher.create!(expiry_date:, code:, min_total_price:, percent_discount:, is_used: [true, false].sample )
+end
 
 100.times do
   User.create!(
@@ -79,7 +86,7 @@ end
 40.times do
   booking = Booking.create!(
     tour_id: Faker::Number.between(from: 1, to: 30),
-    user_id: Faker::Number.between(from: 2, to: 100),
+    user_id: Faker::Number.within(range: 2..10),
     flight_ticket_id: Faker::Number.between(from: 2, to: 32),
     phone_number: Faker::PhoneNumber.phone_number,
     number_of_guests: Faker::Number.between(from: 2, to: 15),
