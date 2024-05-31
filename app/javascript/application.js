@@ -2,5 +2,6 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "./custom/dropdown"
+import "./custom/new_booking"
 import "popper"
 import "bootstrap"

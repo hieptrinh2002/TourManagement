@@ -1,9 +1,20 @@
 class BookingsController < ApplicationController
+  include BookingsHelper
   before_action :authenticate_user!
   before_action :set_tour
 
   def new
     @booking = current_user.bookings.build tour_id: @tour.id
+
+    flights_scope = Flight.departing_on(@tour.start_date)
+                          .arriving_at(@tour.city)
+                          .order_by_brand
+
+    if params[:airline_brand].present?
+      flights_scope = flights_scope.airline_brand(params[:airline_brand])
+    end
+
+    @pagy, @available_flights = pagy(flights_scope, items: Settings.digit_4)
   end
 
   def create

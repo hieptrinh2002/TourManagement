@@ -74,6 +74,10 @@ en:
   apply: "Apply"
   edit: "Edit"
   result: "result"
+  filter_airlines: "Filter Airlines"
+  no_flights: "There are currently no flights available"
+  all: "All"
+
 
   confirm:
     delete_confirmation: "Are you sure you want to delete this item?"
