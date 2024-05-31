@@ -18,4 +18,29 @@ module Admin::BookingsHelper
               params: {status: new_status},
               form: {data: {turbo_confirm: confirm_message}}
   end
+
+  def render_breadcrumbs
+    content_tag(:nav, aria: { label: 'breadcrumb' }) do
+      content_tag(:ol, class: 'breadcrumb') do
+        breadcrumbs.collect do |name, url|
+          if url.nil?
+            content_tag(:li, name, class: 'breadcrumb-item active', aria: { current: 'page' })
+          else
+            content_tag(:li, class: 'breadcrumb-item') do
+              link_to(name, url)
+            end
+          end
+        end.join.html_safe
+      end
+    end
+  end
+
+  def add_breadcrumb(name, url = nil)
+    breadcrumbs << [name, url]
+  end
+
+  def breadcrumbs
+    @breadcrumbs ||= []
+  end
+
 end

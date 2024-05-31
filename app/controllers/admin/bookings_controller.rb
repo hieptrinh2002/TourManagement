@@ -3,6 +3,8 @@ class Admin::BookingsController < Admin::AdminController
 
   before_action :set_booking, only: %i(show edit update)
   def index
+    add_breadcrumb "Home", admin_bookings_path
+    add_breadcrumb "Articles", admin_bookings_path
     @pagy, @bookings = pagy(Booking.ordered_by_status,
                             items: Settings.tour.items_per_page)
   end
