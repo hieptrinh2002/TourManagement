@@ -1,0 +1,35 @@
+<%= form_with model: booking, url: tour_bookings_path, local: true do |f| %>
+  <%= f.hidden_field :user_id %>
+
+  <%= f.hidden_field :tour_id  %>
+
+  <%= f.hidden_field :flight_ticket_id, class:"flight-ticket-id" %>
+
+  <div class="mb-4">
+    <%= f.label :phone_number, t("bookings.phone_number") %>
+    <%= f.text_field :phone_number, class: "form-control", placeholder: t("enter_your_phone"), required: true %>
+  </div>
+
+  <div class="row">
+    <div class="col mb-4">
+      <%= f.label :number_of_guests, t("bookings.number_of_guests") %>
+      <%= f.number_field :number_of_guests, class: "form-control number-of-guest",
+            value: Settings.default_number_of_guests,
+            min: Settings.min_number_of_guests,
+            max: Settings.max_number_of_guests
+      %>
+    </div>
+
+    <div class="col mb-4">
+      <%= f.label :started_date, t("bookings.started_date") %>
+      <%= f.date_field :started_date, class: "form-control",value: @tour.start_date %>
+    </div>
+  </div>
+
+  <hr>
+
+  <h4 class="mb-5"><%= t "flight_tickets" %></h4>
+  <div class="d-grid gap-2">
+    <%= f.submit t("book_tour"), class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -62,6 +62,16 @@ vi:
   confirm: "Xác nhận"
   cancel: "Loại bỏ"
   tour_detail: "Thông tin tour"
+  enter_your_phone: "Nhập số điện thoại"
+  book_tour: "Đặt tour"
+  book_tour_icon: "Đặt tour 👉"
+  your_order: "Đơn đặt của bạn"
+  flight_tickets: "Vé máy bay"
+  booking_tour: "Đặt tour"
+  number: "Số lượng: "
+  promotion_code: "Mã khuyến mãi"
+  total_usd: "Tổng tiền (USD)"
+  apply: "Áp mã"
 
   confirm:
     delete_confirmation: "Bạn có chắc chắn muốn xóa ?"
@@ -154,7 +164,9 @@ vi:
       find_tour_failed: "Không thể tìm được tour!"
     booking:
       create_success: "Booking đã được tạo thành công !"
+      create_failed: "Tạo booking không thành công !"
       update_success: "Booking đã được cập nhật thành công !"
       not_exist: "Booking không tồn tại"
       delete_success: "Booking đã được xóa thành công !"
       delete_failure: "Booking không được xóa thành công !"
+      not_allowed: "Bạn không được phép book tour, hãy login !"
