@@ -34,7 +34,7 @@
                     <%= link_to t("profile"), current_user, class: "dropdown-item" %>
                   </li>
                   <li>
-                    <%= link_to t("booked"), root_path, class: "dropdown-item" %>
+                    <%= link_to t("booked"), current_user, class: "dropdown-item" %>
                   </li>
                   <li>
                     <li><%= button_to t("logout"), logout_path, method: :delete, class: "dropdown-item" %></li>

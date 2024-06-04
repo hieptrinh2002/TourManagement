@@ -1,0 +1,42 @@
+<%= form_tag(user_path(@user), method: :get) do |f| %>
+  <div class="row">
+    <div class="col-6">
+      <%= label_tag :tour_name, t("bookings.tour_name"), class: "form-label" %>
+      <%= text_field_tag :tour_name, params[:tour_name], class: "form-control" %>
+    </div>
+    <div class="col-2">
+      <%= label_tag :guests, t("bookings.number_of_guests"), class: "form-label" %>
+      <%= number_field_tag :guests, params[:guests], class: "form-control" %>
+    </div>
+    <div class="col-2">
+      <%= label_tag :total_price, t("bookings.total_price"), class: "form-label" %>
+      <%= number_field_tag :total_price, params[:total_price], class: "form-control" %>
+    </div>
+    <div class="col-2">
+      <%= label_tag :started_date, t("bookings.started_date"), class: "form-label" %>
+      <%= date_field_tag :started_date, params[:started_date], class: "form-control" %>
+    </div>
+  </div>
+  <div class="row my-2">
+    <div class="col-2 d-flex flex-column">
+      <%= t "bookings.status" %>
+      <div class="d-flex gap-2">
+        <%= check_box_tag "status[]", 0, params[:status]&.include?("0") %>
+        <%= label_tag "status_0", t("bookings.pending") %>
+      </div>
+      <div class="d-flex gap-2">
+        <%= check_box_tag "status[]", 1, params[:status]&.include?("1") %>
+        <%= label_tag "status_1", t("bookings.confirmed") %>
+      </div>
+      <div class="d-flex gap-2">
+        <%= check_box_tag "status[]", 2, params[:status]&.include?("2") %>
+        <%= label_tag "status_2", t("bookings.cancelled") %>
+      </div> 
+    </div>
+  </div>
+  <div class="row mb-4 mt-2">
+    <div class="col-2">
+      <%= submit_tag t("bookings.search"), class: "btn btn-submit" %>
+    </div>
+  </div>
+<% end %>

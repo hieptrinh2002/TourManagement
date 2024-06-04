@@ -18,6 +18,28 @@ class Booking < ApplicationRecord
   belongs_to :flight_ticket, optional: true
   has_one :flight, through: :flight_ticket
 
+  scope :by_tour_name, (lambda do |name|
+    if name.present?
+      joins(:tour)
+        .where("tours.tour_name LIKE ?", "%#{sanitize_sql_like(name)}%")
+    end
+  end)
+  scope :by_min_guests, (lambda do |guests|
+    where("number_of_guests >= ?", guests.presence ||
+    Settings.booking.search.min_guests)
+  end)
+  scope :by_min_total_price, (lambda do |total_price|
+    where("total_price >= ?", total_price.presence ||
+    Settings.booking.search.min_total_price)
+  end)
+  scope :by_started_date, (lambda do |started_date|
+    where("started_date >= ?", started_date.presence ||
+    Settings.booking.search.min_started_date)
+  end)
+  scope :by_status, (lambda do |statuses|
+    where(status: statuses) if statuses.present?
+  end)
+
   validates :number_of_guests,
             presence: true,
             numericality: {greater_than: Settings.booking.min_guests}
