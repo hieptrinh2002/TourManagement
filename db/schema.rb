@@ -157,6 +157,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_084331) do
     t.string "code"
     t.decimal "percent_discount", precision: 10
     t.decimal "min_total_price", precision: 10
+    t.boolean "is_used"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
