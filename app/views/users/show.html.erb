@@ -5,5 +5,46 @@
       <h3><%= @user.first_name %><%= @user.last_name %></h3>
       <p><%= @user.email %></p>
     </div>
+    <section class="intro">
+      <div class="gradient-custom-1 h-100">
+        <div class="mask d-flex align-items-center h-100">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-12">
+                <%= render "bookings/search_form" %>
+                <span class="pb-2">
+                  <%= pluralize @pagy.count, t("result", count: @pagy.count) %>
+                </span>
+                <div class="table-responsive bg-white mt-4">
+                  <table class="table mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col"><%= t "tour" %></th>
+                        <th scope="col"><%= t "guests" %></th>
+                        <th scope="col"><%= t "total_price" %></th>
+                        <th scope="col"><%= t "phone_number" %></th>
+                        <th scope="col"><%= t "started_date" %></th>
+                        <th scope="col"><%= t "flight_ticket" %></th>
+                        <th scope="col"><%= t "status" %></th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <%= render partial: "bookings/booking", collection: @bookings %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="d-flex justify-content-between py-4">
+          <%= link_to t("create_new"), "/", class: "btn btn-primary" %>
+          <%== pagy_nav(@pagy) %>
+        </div>
+      </div>
+    </section>    
   </div>
 </div>

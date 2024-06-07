@@ -73,6 +73,7 @@ en:
   total_usd: "Total (USD)"
   apply: "Apply"
   edit: "Edit"
+  result: "result"
 
   confirm:
     delete_confirmation: "Are you sure you want to delete this item?"
@@ -85,7 +86,7 @@ en:
     booking_user: "Booking user"
     phone_number: "Phone Number"
     number_of_guests: "Number of Guests"
-    started_date: "Start Date"
+    started_date: "Started Date"
     total_price: "Total Price"
     payment_status: "Payment Status"
     confirmed_date: "Confirmed Date"
@@ -93,6 +94,9 @@ en:
     status: "Status"
     created_at: "Created At"
     updated_at: "Updated At"
+    confirm_mess: "Are you sure you want to confirm?"
+    cancel_confirmation: "Are you sure you want to remove ?"
+    search: "Search Bookings"
 
   tours:
     title: "All Available Tours Now"
@@ -171,6 +175,15 @@ en:
       delete_success: "Tour was successfully deleted !"
       delete_failure: "Tour was not deleted !"
       invalid_image: "Error with %{image_name} file!"
+      find_tour_failed: "Cannot find tour!"
+    voucher:
+      create_success: "Voucher was successfully created!"
+      wrong_expiry_date: "must be after today!"
+      code_exist: " is existed!"
+      edit_success: "Voucher was successfully updated!"
+      delete_failed: "Delete voucher failed!"
+      delete_success: "Delete voucher successfully!"
+      find_voucher_failed: "Cannot find voucher!"
       find_tour_failed: "Cannot find tour!"
     voucher:
       create_success: "Voucher was successfully created!"

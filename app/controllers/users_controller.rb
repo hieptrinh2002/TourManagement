@@ -1,10 +1,8 @@
 class UsersController < ApplicationController
+  before_action :load_user, only: :show
   def show
-    @user = User.find_by id: params[:id]
-    return if @user
-
-    flash[:warning] = t "flash.user.not_found"
-    redirect_to root_path
+    @pagy, @bookings = pagy(search_bookings,
+                            items: Settings.booking.items_per_page)
   end
 
   def new
@@ -23,6 +21,15 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def load_user
+    @user = User.includes(:bookings).find_by id: params[:id]
+    return if @user
+
+    flash[:warning] = t "flash.user.not_found"
+    redirect_to root_path
+  end
+
   def user_params
     params.require(:user).permit User::ATTRIBUTES
   end
@@ -30,5 +37,14 @@ class UsersController < ApplicationController
   def handle_failed_signup
     flash.now[:danger] = t "flash.user.signup_failure"
     render :new, status: :unprocessable_entity
+  end
+
+  def search_bookings
+    @user.bookings.ordered_by_status
+         .by_tour_name(params[:tour_name])
+         .by_min_guests(params[:guests])
+         .by_min_total_price(params[:total_price])
+         .by_started_date(params[:start_date])
+         .by_status(params[:status])
   end
 end
