@@ -1,0 +1,11 @@
+<td>
+  <div class="row">
+    <div>
+      <input type="radio" name="ticket_id" value="<%= ticket.id %>" class="flight-ticket-radio" id="flight_ticket_id">
+    </div>
+    <div>
+      <label for="flight_ticket_id" class="form-check-label"><%= ticket.ticket_class %></label>
+      <p class="text-success py-2" id="ticket-price-<%= ticket.id %>"><%= ticket.price %></p>
+    </div>
+  </div>
+</td>

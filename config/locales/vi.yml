@@ -74,6 +74,9 @@ vi:
   apply: "Áp mã"
   edit: "Sửa"
   result: "kết quả"
+  filter_airlines: "Lọc Airlines"
+  no_flights: "Hiện không có chuyến bay nào phù hợp"
+  all: "Tất cả"
 
   confirm:
     delete_confirmation: "Bạn có chắc chắn muốn xóa ?"

@@ -3,7 +3,7 @@ class Admin::BookingsController < Admin::AdminController
 
   before_action :set_booking, only: %i(show edit update)
   def index
-    @pagy, @bookings = pagy(Booking.ordered_by_status,
+    @pagy, @bookings = pagy(Booking.ordered_by_status.ordered_by_created_at,
                             items: Settings.tour.items_per_page)
   end
 
