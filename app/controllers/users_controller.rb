@@ -44,7 +44,7 @@ class UsersController < ApplicationController
          .by_tour_name(params[:tour_name])
          .by_min_guests(params[:guests])
          .by_min_total_price(params[:total_price])
-         .by_started_date(params[:start_date])
+         .by_started_date(params[:started_date])
          .by_status(params[:status])
   end
 end

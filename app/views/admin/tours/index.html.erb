@@ -4,6 +4,12 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-12">
+            <div class="my-2 d-flex">
+              <%= render "search-form" %>
+              <div>
+                 <%= link_to t("refresh"), admin_tours_path, class:"btn btn-secondary mx-3" %>
+              </div>
+            </div>
             <div class="table-responsive bg-white">
               <table class="table mb-0 table-striped">
                 <thead>
@@ -16,7 +22,6 @@
                     <th scope="col"><%= t "start_day" %></th>
                     <th scope="col"></th>
                     <th scope="col"></th>
-
                   </tr>
                 </thead>
                 <tbody>
@@ -34,7 +39,6 @@
                               class:"btn btn-danger",
                               form: {data: {turbo_confirm: t("confirm.delete_confirmation")}} %>
                       </td>
-
                     </tr>
                   <% end %>
                 </tbody>

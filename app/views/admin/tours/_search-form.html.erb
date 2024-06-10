@@ -1,0 +1,6 @@
+<%= form_tag admin_tours_path, method: :get, class: "form-inline" do %>
+  <div class="input-group mb-3">
+    <%= text_field_tag :search, params[:search], class: "form-control border-2 mx-2", placeholder: "Search by keyword..." %>
+    <%= submit_tag "Search", class: "btn btn-outline-success mx-3" %>
+  </div>
+<% end %>

@@ -1,0 +1,43 @@
+<%= form_tag(admin_bookings_path, method: :get) do %>
+  <div class="row">
+    <div class="col-md-4">
+      <%= label_tag :tour_name, t("bookings.tour_name"), class: "form-label fw-bold" %>
+      <%= text_field_tag :tour_name, params[:tour_name], class: "form-control" %>
+    </div>
+    <div class="col-md-2">
+      <%= label_tag :guests, t("min_guest"), class: "form-label fw-bold" %>
+      <%= number_field_tag :guests, params[:guests], class: "form-control" %>
+    </div>
+    <div class="col-md-2">
+      <%= label_tag :total_price, t("min_total"), class: "form-label fw-bold" %>
+      <%= number_field_tag :total_price, params[:total_price], class: "form-control" %>
+    </div>
+    <div class="col-md-3">
+      <%= label_tag :started_date, t("min_start_date"), class: "form-label fw-bold" %>
+      <%= date_field_tag :started_date, params[:started_date], class: "form-control" %>
+    </div>
+  </div>
+  <div class="row g-3">
+    <div class="col-md-4 py-2">
+      <label class="form-label fw-bold d-block"><%= t "bookings.status" %></label>
+      <div class="form-check form-check-inline">
+        <%= check_box_tag "status[]", 0, params[:status]&.include?("0"), class: "form-check-input" %>
+        <%= label_tag "status_0", t("bookings.pending"), class: "form-check-label" %>
+      </div>
+      <div class="form-check form-check-inline">
+        <%= check_box_tag "status[]", 1, params[:status]&.include?("1"), class: "form-check-input" %>
+        <%= label_tag "status_1", t("bookings.confirmed"), class: "form-check-label" %>
+      </div>
+      <div class="form-check form-check-inline">
+        <%= check_box_tag "status[]", 2, params[:status]&.include?("2"), class: "form-check-input" %>
+        <%= label_tag "status_2", t("bookings.cancelled"), class: "form-check-label" %>
+      </div>
+    </div>
+    <div class="col-md-2 mt-5">
+      <%= submit_tag t("bookings.search"), class: "btn btn-primary w-100" %>
+    </div>
+     <div class="col-md-2 mt-5">
+      <%= link_to t("refresh"), admin_bookings_path, class: "btn btn-secondary w-100" %>
+    </div>
+  </div>
+<% end %>
