@@ -36,8 +36,28 @@
       </span>
     </div>
       <%= link_to t("book_tour_icon"), new_tour_booking_path(@tour), class: "btn btn-primary" %>
-
   </div>
+  <div class="col-6 image-box">
+    <div id="myCarousel" class="carousel slide">
+      <div class="carousel-inner">
+        <% @tour.images.each.with_index do |image, i| %>
+          <%= render partial: "carousel_inner", locals: {image: image, index: i} %>
+        <% end %>
+      </div>
+      <div class="carousel-control">
+        <button class="left carousel-btn" data-slide="prev">
+          <span class="sr-only">
+            <%= t "tours.carousel_prev" %>
+          </span>
+        </button>
+        <button class="right carousel-btn" data-slide="next">
+          <span class="sr-only">
+            <%= t "tours.carousel_next" %>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>  
   <hr class="my-5">
   <%= render "relevant_tours" %>
 </div>
