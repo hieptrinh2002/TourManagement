@@ -1,5 +1,6 @@
 class Admin::ToursController < Admin::AdminController
   include Admin::ToursHelper
+  before_action :set_breadcrumbs
   before_action :set_tour, only: %i(show edit update destroy remove_image)
   before_action :set_uploaded_images, only: %i(create update resize_before_save)
   before_action :resize_before_save, only: %i(create update)
@@ -13,7 +14,9 @@ class Admin::ToursController < Admin::AdminController
     @pagy, @tours = pagy(tours.upcoming, items: Settings.tour.items_per_page)
   end
 
-  def show; end
+  def show
+    add_breadcrumb(@tour.tour_name)
+  end
 
   def new
     @tour = Tour.new
@@ -62,6 +65,11 @@ class Admin::ToursController < Admin::AdminController
   end
 
   private
+
+  def set_breadcrumbs
+    add_breadcrumb(t("breadcrumb.home"), admin_path)
+    add_breadcrumb(t("breadcrumb.tours"), admin_tours_path)
+  end
 
   def check_image_limits record, images
     if total_image_count_exceeds_limit?(record.images.count, images,

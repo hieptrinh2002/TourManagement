@@ -1,5 +1,6 @@
 class Admin::VouchersController < Admin::AdminController
   before_action :voucher, only: %i(edit update destroy show)
+  before_action :set_breadcrumbs
 
   def index
     @pagy, @vouchers = pagy(Voucher.by_status(params[:status])
@@ -13,7 +14,9 @@ class Admin::VouchersController < Admin::AdminController
     @voucher = Voucher.new
   end
 
-  def show; end
+  def show
+    add_breadcrumb(@voucher.code)
+  end
 
   def create
     @voucher = Voucher.new(voucher_params)
@@ -50,6 +53,11 @@ class Admin::VouchersController < Admin::AdminController
   end
 
   private
+
+  def set_breadcrumbs
+    add_breadcrumb(t("breadcrumb.home"), admin_path)
+    add_breadcrumb(t("breadcrumb.vouchers"), admin_vouchers_path)
+  end
 
   def voucher
     @voucher = Voucher.find_by(id: params[:id])

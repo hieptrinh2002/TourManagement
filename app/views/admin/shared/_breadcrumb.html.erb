@@ -1,0 +1,17 @@
+<nav aria-label="breadcrumb" class="mt-3">
+  <ol class="breadcrumb">
+    <% breadcrumbs.each do |crumb| %>
+      <li class="breadcrumb-item">
+        <% if crumb == breadcrumbs.last %>
+          <span class="text-secondary"><%= crumb.name %></span>
+        <% elsif crumb.link? %>
+          <%= link_to crumb.name, crumb.path, class: "breadcrumb-link" %>
+        <% else %>
+          <span class="breadcrumb-page">
+            <%= crumb.name %>
+          </span>
+        <% end %>
+      </li>
+    <% end %>
+  </ol>
+</nav>

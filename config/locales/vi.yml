@@ -221,3 +221,10 @@ vi:
       destroy_failed: "Xóa review không thành công !"
       not_found: "Không tìm thấy review !"
       review_denied: "Bạn cần tham gia tour để được đánh giá !"
+
+  breadcrumb:
+    home: "Trang chủ"
+    tours: "Danh sách tour"
+    bookings: "Danh sách đặt tour"
+    create_new: "Create new"
+    vouchers: "khuyến mãi"
