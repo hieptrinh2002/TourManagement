@@ -10,6 +10,7 @@ class CreateBookings < ActiveRecord::Migration[7.0]
       t.decimal :total_price
       t.integer :payment_status, default: 0
       t.datetime :confirmed_date
+      t.string :voucher_code
       t.datetime :cancellation_date
       t.integer :status, default: 0
 

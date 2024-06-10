@@ -209,3 +209,47 @@ a {
     }
   }
 }
+
+.choose-voucher {
+  height: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  
+  &-item {
+    box-shadow: 1.2px 1px #ccccccd0;
+    border: 0.5px solid #ccc;
+    border-radius: 8px;
+    margin: 8px 0;
+    padding: 8px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #ccccccd0;
+    }
+
+    &-first {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &-icon {
+      color: red;
+      font-size: 1.5rem;
+    }
+
+    &-min {
+      font-size: 0.9rem;
+    }
+
+    &-expiry {
+      font-size: 0.8rem;
+      color: #666;
+    }
+  }
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}

@@ -104,6 +104,10 @@ vi:
     confirm_mess: "Bạn có chắc chắn muốn xác nhận ?"
     cancel_confirmation: "Bạn có chắc chắn muốn loại bỏ ?"
     search: "Tìm kiếm Bookings"
+    new:
+      discount: "↓"
+      min: "Ít nhất $"
+      expired: "Còn hạn tới "
 
   tours:
     title: "Các tours hiện tại"
