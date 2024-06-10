@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 
   resources :tours, only: %i(index show) do
     resources :bookings
+    resources :reviews
   end
-
   root "static_pages#home"
 end

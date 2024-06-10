@@ -1,0 +1,14 @@
+<% if logged_in? && review.user == current_user %>
+  <%= link_to t("delete"), tour_review_path(tour_id: @tour.id, id: review.id),
+    data: { turbo_method: :delete, turbo_confirm: t("confirm.delete_confirmation") },
+    class: "btn btn-danger" %>
+
+  <%= link_to t("edit"), nil, remote: true, class: "btn btn-warning",
+                data:{
+                  controller: "reviews",
+                  action: "reviews#toggleForm",
+                  reviews_form_param: "edit-form-#{review.id}",
+                  reviews_body_param: "review-body-#{review.id}"
+                }
+  %>
+<% end %>
