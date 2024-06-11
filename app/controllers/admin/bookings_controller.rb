@@ -3,7 +3,7 @@ class Admin::BookingsController < Admin::AdminController
 
   before_action :set_booking, only: %i(show edit update)
   def index
-    @pagy, @bookings = pagy(Booking.ordered_by_status.ordered_by_created_at,
+    @pagy, @bookings = pagy(search_bookings,
                             items: Settings.tour.items_per_page)
   end
 
@@ -41,5 +41,14 @@ class Admin::BookingsController < Admin::AdminController
 
   def current_time_formatted
     Time.current.strftime(Settings.datime_format)
+  end
+
+  def search_bookings
+    Booking.ordered_by_status
+           .by_tour_name(params[:tour_name])
+           .by_min_guests(params[:guests])
+           .by_min_total_price(params[:total_price])
+           .by_started_date(params[:started_date])
+           .by_status(params[:status])
   end
 end

@@ -81,6 +81,10 @@ en:
   review: "Review"
   edited: "edited "
   ago: "ago"
+  min_guests: "Min guest"
+  min_total: "Min total"
+  min_start_date: "Min start date"
+  refresh: "Refresh"
 
   confirm:
     delete_confirmation: "Are you sure you want to delete this item?"

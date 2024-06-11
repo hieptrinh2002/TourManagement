@@ -5,8 +5,12 @@ class Admin::ToursController < Admin::AdminController
   before_action :resize_before_save, only: %i(create update)
 
   def index
-    @pagy, @tours = pagy(Tour.upcoming,
-                         items: Settings.tour.items_per_page)
+    tours = if params[:search].present?
+              search_tours(params[:search])
+            else
+              Tour.all
+            end
+    @pagy, @tours = pagy(tours.upcoming, items: Settings.tour.items_per_page)
   end
 
   def show; end
@@ -110,5 +114,11 @@ class Admin::ToursController < Admin::AdminController
       render :show, status: :unprocessable_entity
       false
     end
+  end
+
+  def search_tours search_term
+    Tour.by_name(search_term)
+        .or(Tour.by_city(search_term))
+        .or(Tour.by_destination(search_term))
   end
 end

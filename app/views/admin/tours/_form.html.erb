@@ -1,22 +1,22 @@
 <%= form_with(model: [:admin, @tour]) do |f| %>
   <div class="row">
     <div class="col-md-6">
-      <div class="form-group mb-3">
+      <div class="form-group mb-4">
         <%= f.label :tour_name, class: "fw-bold mb-2" %>
         <%= f.text_field :tour_name, class: "form-control" %>
       </div>
 
-      <div class="form-group mb-3">
+      <div class="form-group mb-4">
         <%= f.label :city, class: "fw-bold mb-2" %>
         <%= f.text_field :city, class: "form-control" %>
       </div>
 
-      <div class="form-group mb-3">
+      <div class="form-group mb-4">
         <%= f.label :tour_destination, class: "fw-bold mb-2" %>
         <%= f.text_field :tour_destination, class: "form-control" %>
       </div>
 
-      <div class="form-group mb-3">
+      <div class="form-group mb-4">
         <%= f.label :description, class: "fw-bold mb-2" %>
         <%= f.text_area :description, class: "form-control" %>
       </div>
@@ -39,27 +39,24 @@
       </div>
     </div>
     <div class="col-md-6">
-      <div class="form-group mb-3">
+      <div class="form-group mb-4">
         <%= f.label :price, class: "fw-bold mb-2" %>
-        <%= f.number_field :price, class: "form-control" %>
+        <%= f.number_field :price, class: "form-control", min: 1 %>
       </div>
 
-      <div class="form-group mb-3">
-        <%= f.label :day_duration, class: "fw-bold mb-2" %>
-        <%= f.number_field :day_duration, class: "form-control" %>
-      </div>
+      <%= f.hidden_field :day_duration, class: "form-control" %>
 
-      <div class="form-group mb-3">
+      <div class="form-group mb-4">
         <%= f.label :start_date, class: "fw-bold mb-2" %>
         <%= f.date_field :start_date, class: "form-control" %>
       </div>
 
-      <div class="form-group mb-3">
+      <div class="form-group mb-4">
         <%= f.label :end_date, class: "fw-bold mb-2" %>
         <%= f.date_field :end_date, class: "form-control" %>
       </div>
 
-      <div class="form-group mb-3">
+      <div class="form-group mb-4">
         <%= f.label :tour_type_id, class: "fw-bold mb-2" %>
         <%= f.collection_select :tour_type_id, TourType.all, :id, :type_name, {},
                                               { class: "form-control" } %>

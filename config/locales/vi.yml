@@ -81,6 +81,10 @@ vi:
   review: "Đánh giá"
   edited: "đã edit "
   ago: "trước"
+  min_guests: "Số khách nhỏ nhất"
+  min_total: "Tổng tiền từ"
+  min_start_date: "Bắt đầu sau"
+  refresh: "Làm mới"
 
   confirm:
     delete_confirmation: "Bạn có chắc chắn muốn xóa ?"

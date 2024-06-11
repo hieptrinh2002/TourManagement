@@ -41,6 +41,8 @@ class Tour < ApplicationRecord
   validates :start_date, :end_date, presence: true
   validate :end_date_after_start_date
 
+  before_validation :calculate_day_duration
+
   has_many_attached :images do |attachable|
     attachable.variant :display, resize_to_limit: Settings.tour.limit_250_250
   end
@@ -59,6 +61,12 @@ class Tour < ApplicationRecord
   scope :by_city, lambda {|city|
     where("city LIKE ?", "%#{sanitize_sql_like(city)}%") if city.present?
   }
+  scope :by_destination, lambda {|tour_destination|
+    if tour_destination.present?
+      sanitized_destination = sanitize_sql_like(tour_destination)
+      where("tour_destination LIKE ?", "%#{sanitized_destination}%")
+    end
+  }
   scope :by_min_price, lambda {|min_price|
     where("price >= ?", min_price.presence ||
     Settings.tour.search.min_price)
@@ -76,6 +84,10 @@ class Tour < ApplicationRecord
   }
 
   private
+
+  def calculate_day_duration
+    self.day_duration = (end_date - start_date).to_i + 1
+  end
 
   def end_date_after_start_date
     return if end_date.blank? || start_date.blank?
