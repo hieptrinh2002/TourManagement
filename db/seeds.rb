@@ -64,8 +64,10 @@ User.create!(role: 0, first_name:"User", last_name:"Trinh",
   code =  Faker::Alphanumeric.alpha(number: 6)
   min_total_price = Faker::Number.decimal(l_digits: 3, r_digits: 3)
   percent_discount = Faker::Number.decimal(l_digits: 2, r_digits: 2)
-  Voucher.create!(expiry_date:, code:, min_total_price:, percent_discount:, is_used: [true, false].sample )
+  Voucher.create!(expiry_date:, code:, min_total_price:, percent_discount:, is_used: [true, false].sample)
 end
+
+Voucher.create!(expiry_date: "2099-12-31", code: "", min_total_price: 0, percent_discount: 0, is_used: false)
 
 100.times do
   User.create!(
@@ -96,6 +98,7 @@ end
     payment_status: ['paid', 'payment_pending', 'refunded'].sample,
     confirmed_date: Faker::Date.backward(days: 10),
     cancellation_date: nil,
+    voucher_code: "",
     status: ['pending', 'confirmed', 'cancelled'].sample
   )
 end
