@@ -1,0 +1,14 @@
+<div class="row offset-md-2">
+  <div class="choose-voucher-item col-11 d-flex flex-column">
+    <div class="d-flex gap-4 choose-voucher-item-first">
+      <h4 class="code"><%= voucher.code %></h4>
+      <span>
+        <span class="choose-voucher-item-icon">
+          <%= t "bookings.new.discount" %>
+        </span>
+        <%= voucher.percent_discount %><%= t "%" %></span>
+    </div>
+    <span class="pt-2 choose-voucher-item-min"><%= t "bookings.new.min" %><%= voucher.min_total_price %></span>
+    <span class="pt-2 choose-voucher-item-expiry"><%= t "bookings.new.expired" %><%= voucher.expiry_date %></span>
+  </div>
+</div>

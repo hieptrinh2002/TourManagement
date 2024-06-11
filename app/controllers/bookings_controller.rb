@@ -15,10 +15,33 @@ class BookingsController < ApplicationController
     end
 
     @pagy, @available_flights = pagy(flights_scope, items: Settings.digit_4)
+    @available_vouchers = get_available_voucher @tour.price
   end
 
   def create
     @booking = Booking.new(booking_params)
+    return unless handle_voucher
+
+    handle_booking
+  end
+
+  private
+
+  def handle_voucher
+    voucher = Voucher.find_by(code: booking_params[:voucher_code])
+    if voucher.blank?
+      flash.now[:danger] = t "flash.booking.voucher_not_exist"
+      return false
+    elsif !voucher.is_available? @tour.price
+      flash[:danger] = t "flash.booking.voucher_unavailable"
+      return false
+    end
+
+    voucher.update(is_used: true)
+    true
+  end
+
+  def handle_booking
     if @booking.save
       flash[:success] = t "flash.booking.create_success"
       redirect_to tours_path
@@ -28,7 +51,12 @@ class BookingsController < ApplicationController
     end
   end
 
-  private
+  def get_available_voucher total_price
+    Voucher.by_min_total_price(total_price)
+           .available
+           .valid
+           .max_discount
+  end
 
   def set_tour
     @tour = Tour.find_by(id: params[:tour_id])

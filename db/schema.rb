@@ -39,16 +39,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_084331) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "booking_vouchers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "booking_id", null: false
-    t.bigint "voucher_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["booking_id", "voucher_id"], name: "index_booking_vouchers_on_booking_id_and_voucher_id", unique: true
-    t.index ["booking_id"], name: "index_booking_vouchers_on_booking_id"
-    t.index ["voucher_id"], name: "index_booking_vouchers_on_voucher_id"
-  end
-
   create_table "bookings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "tour_id", null: false
     t.bigint "user_id", null: false
@@ -59,6 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_084331) do
     t.decimal "total_price", precision: 10
     t.integer "payment_status", default: 0
     t.datetime "confirmed_date"
+    t.string "voucher_code"
     t.datetime "cancellation_date"
     t.integer "status", default: 0
     t.datetime "created_at", null: false
@@ -164,8 +155,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_084331) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "booking_vouchers", "bookings"
-  add_foreign_key "booking_vouchers", "vouchers"
   add_foreign_key "bookings", "flight_tickets"
   add_foreign_key "bookings", "tours"
   add_foreign_key "bookings", "users"

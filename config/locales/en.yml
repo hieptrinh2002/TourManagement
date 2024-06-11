@@ -108,6 +108,10 @@ en:
     confirm_mess: "Are you sure you want to confirm?"
     cancel_confirmation: "Are you sure you want to remove ?"
     search: "Search Bookings"
+    new:
+      discount: "↓"
+      min: "Min. Spend $"
+      expired: "Valid till "
 
   tours:
     title: "All Available Tours Now"

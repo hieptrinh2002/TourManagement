@@ -6,6 +6,8 @@ class Booking < ApplicationRecord
     phone_number
     number_of_guests
     started_date
+    voucher_code
+    total_price
   ).freeze
 
   scope :ordered_by_status, ->{order(status: :asc)}

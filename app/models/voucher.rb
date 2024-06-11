@@ -6,9 +6,8 @@ class Voucher < ApplicationRecord
     min_total_price
   ).freeze
 
-  has_many :booking_vouchers, dependent: :destroy
   validate :validate_expiry_date
-  validate :validate_unique_code, on: %i(new update)
+  validate :validate_unique_code, on: :new
 
   scope :ordered, (lambda do
     select("vouchers.*,
@@ -21,6 +20,7 @@ class Voucher < ApplicationRecord
   scope :expired, (lambda do
     where("expiry_date < NOW()").order(expiry_date: :asc)
   end)
+  scope :max_discount, ->{order(percent_discount: :desc)}
   scope :by_status, (lambda do |status|
     case status
     when "all"
@@ -34,20 +34,25 @@ class Voucher < ApplicationRecord
     end
   end)
   scope :by_code, (lambda do |code|
-    where("code LIKE ?", "%#{sanitize_sql_like(code)}%") if code.present?
+    where("code LIKE ?", "%#{sanitize_sql_like(code)}") if code.present?
   end)
   scope :by_percent_discount, (lambda do |percent_discount|
     where("percent_discount >= ?", percent_discount.presence ||
     Settings.voucher.search.percent_discount)
   end)
   scope :by_min_total_price, (lambda do |min_total_price|
-    where("min_total_price >= ?", min_total_price.presence ||
+    where("min_total_price <= ?", min_total_price.presence ||
     Settings.voucher.search.min_total_price)
   end)
   scope :with_code, ->(code){where(code:)}
+  scope :valid, ->{where(is_used: false)}
 
   def is_expired?
     expiry_date < Time.zone.now
+  end
+
+  def is_available? price
+    expiry_date >= Time.zone.now && !is_used && price >= min_total_price
   end
 
   private
