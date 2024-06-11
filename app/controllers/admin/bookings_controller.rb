@@ -1,13 +1,15 @@
 class Admin::BookingsController < Admin::AdminController
   include Admin::BookingsHelper
-
+  before_action :set_breadcrumbs
   before_action :set_booking, only: %i(show edit update)
   def index
     @pagy, @bookings = pagy(search_bookings,
                             items: Settings.tour.items_per_page)
   end
 
-  def show; end
+  def show
+    add_breadcrumb(@booking.tour.tour_name)
+  end
 
   def edit; end
 
@@ -26,6 +28,11 @@ class Admin::BookingsController < Admin::AdminController
   end
 
   private
+
+  def set_breadcrumbs
+    add_breadcrumb(t("breadcrumb.home"), admin_path)
+    add_breadcrumb(t("breadcrumb.bookings"), admin_bookings_path)
+  end
 
   def set_booking
     @booking = Booking.find(params[:id])

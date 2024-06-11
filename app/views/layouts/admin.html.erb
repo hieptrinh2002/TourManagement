@@ -7,7 +7,6 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "admin", media: "all", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "custom", media: "all", "data-turbo-track": "reload" %>
-
     <%= javascript_importmap_tags %>
   </head>
   <body>
@@ -17,7 +16,7 @@
       <div class="row">
         <%= render "admin/shared/vertical_navbar" %>
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-1 mb-3 border-bottom">
             <%= render "admin/shared/page_header" %>
           </div>
           <%= yield %>

@@ -226,3 +226,10 @@ en:
       destroy_failed: "Review was destroyed failed !"
       not_found: "Review was not found !"
       review_denied: "You need to participate in the tour to be evaluated !"
+
+  breadcrumb:
+    home: "Home"
+    tours: "Tours"
+    bookings: "Tour order"
+    create_new: "Create new"
+    vouchers: "Vouchers"

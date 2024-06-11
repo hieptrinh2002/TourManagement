@@ -16,10 +16,31 @@ TourType.create(type_name: "Highland Mountain", ancestry: mountain_tour.id)
 	price = Faker::Number.decimal(l_digits: 3, r_digits: 3)
 	day_duration = Faker::Number.within(range: 1..29)
 	start_date = Faker::Date.between(from: "2024-09-23", to: "2025-09-23")
-	start_date = Faker::Date.between(from: "2024-09-23", to: "2025-09-23")
 	end_date = start_date + day_duration.days
 	tour_type_id = Faker::Number.within(range: 3..6)
 	Tour.create!(tour_name:, city:, tour_destination:, description:, price:, day_duration:, start_date:, end_date:, tour_type_id:)
+
+  # Create flights
+  10.times do
+    flight = Flight.create!(
+      airline_brand: Faker::Company.name,
+      flight_number: Faker::Lorem.characters(number: 6, min_alpha: 3, min_numeric: 3),
+      departure_time: start_date,
+      arrival_time: start_date + rand(1..6).hours,
+      origin_place: Faker::Address.city,
+      destination: city
+    )
+
+    # Create tickets for each flight
+    ['economy_class', 'business_class', 'first_class'].each do |ticket_class|
+      FlightTicket.create!(
+        flight: flight,
+        ticket_class: ticket_class,
+        price: Faker::Commerce.price(range: 50.0..500.0)
+      )
+    end
+end
+
 end
 
 User.create!(role: 1, first_name:"Admin", last_name:"Trinh",
@@ -39,7 +60,7 @@ User.create!(role: 0, first_name:"User", last_name:"Trinh",
             activated_at: Time.zone.now)
 
 100.times do |n|
-  expiry_date = Faker::Date.between(from: "2024-01-23", to: "2025-09-23")
+  expiry_date = Faker::Date.between(from: "2024-07-23", to: "2025-09-23")
   code =  Faker::Alphanumeric.alpha(number: 6)
   min_total_price = Faker::Number.decimal(l_digits: 3, r_digits: 3)
   percent_discount = Faker::Number.decimal(l_digits: 2, r_digits: 2)
@@ -60,27 +81,6 @@ end
     activated: true,
     activated_at: Time.zone.now
   )
-end
-
-# Create flights
-100.times do
-  flight = Flight.create!(
-    airline_brand: Faker::Company.name,
-    flight_number: Faker::Lorem.characters(number: 6, min_alpha: 3, min_numeric: 3),
-    departure_time: Faker::Time.forward(days: 23, period: :morning),
-    arrival_time: Faker::Time.forward(days: 23, period: :afternoon),
-    origin_place: Faker::Address.city,
-    destination: Faker::Address.city
-  )
-
-  # Create tickets for each flight
-  ['economy_class', 'business_class', 'first_class'].each do |ticket_class|
-    FlightTicket.create!(
-      flight: flight,
-      ticket_class: ticket_class,
-      price: Faker::Commerce.price(range: 50.0..500.0)
-    )
-  end
 end
 
 # Seed Bookings
