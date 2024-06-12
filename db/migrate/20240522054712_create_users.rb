@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :phone
       t.string :address
       t.date :date_of_birth
-      t.integer :role
+      t.integer :role, default: 0, null: false
       t.string :activation_digest
       t.boolean :activated, default: false
       t.datetime :activated_at

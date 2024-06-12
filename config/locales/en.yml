@@ -85,6 +85,8 @@ en:
   min_total: "Min total"
   min_start_date: "Min start date"
   refresh: "Refresh"
+  back: "Back"
+  tour_details: "Tour Details"
 
   confirm:
     delete_confirmation: "Are you sure you want to delete this item?"
@@ -132,6 +134,10 @@ en:
     tour_destination: "Destination"
     price: "Price"
     start_date: "Start date"
+    end_date: "End date"
+    tour_type: "Tour Type"
+    description: "Description"
+    images: "Images"
     day:
       one: "day"
       other: "days"
