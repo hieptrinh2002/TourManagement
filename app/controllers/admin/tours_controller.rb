@@ -15,7 +15,7 @@ class Admin::ToursController < Admin::AdminController
   end
 
   def show
-    add_breadcrumb(@tour.tour_name)
+    add_breadcrumb(@tour.tour_name, admin_tours_path(@tour))
   end
 
   def new
@@ -33,7 +33,10 @@ class Admin::ToursController < Admin::AdminController
     end
   end
 
-  def edit; end
+  def edit
+    add_breadcrumb(@tour.tour_name, admin_tours_path(@tour))
+    add_breadcrumb(t("edit"))
+  end
 
   def update
     if @tour.update(tour_params) && check_image_limits(@tour, @uploaded_images)

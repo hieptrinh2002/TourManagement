@@ -85,6 +85,9 @@ vi:
   min_total: "Tổng tiền từ"
   min_start_date: "Bắt đầu sau"
   refresh: "Làm mới"
+  back: "Trở lại"
+  tour_details: "Chi tiết tour"
+
 
   confirm:
     delete_confirmation: "Bạn có chắc chắn muốn xóa ?"
@@ -132,6 +135,10 @@ vi:
     tour_destination: "Điểm đến"
     price: "Giá"
     start_date: "Ngày bắt đầu"
+    end_date: "Ngày kết thúc"
+    tour_type: "Loại tour"
+    description: "Môn tả"
+    images: "Hình ảnh"
     day:
       one: "ngày"
       other: "ngày"

@@ -1,5 +1,63 @@
 <div class="container px-5">
-  <h3 class="pb-2"><%= t "tour_detail" %></h3>
-  <%= render "shared/error_messages", resource: @tour  %>
-  <%= render "form" %>
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <h5><%= t "tour_details" %></h5>
+      </div>
+      <div class="card-body px-5">
+        <div class="d-flex flex-wrap justify-content-center">
+          <div class="col-7">
+            <div class="row mb-4">
+              <div class="col-md-5 fw-bold"><%= t "tours.tour_name" %>:</div>
+              <div class="col-md-7"><%= @tour.tour_name %></div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-md-5 fw-bold"><%= t "tours.tour_destination" %>:</div>
+              <div class="col-md-7"><%= @tour.tour_destination %></div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-md-5 fw-bold"><%=t "tours.city" %>:</div>
+              <div class="col-md-7"><%= @tour.city %></div>
+            </div>
+          </div>
+          <div class="col-5">
+            <div class="row mb-4">
+              <div class="col-md-5 fw-bold"><%= t "tours.start_date" %>:</div>
+              <div class="col-md-7"><%= @tour.start_date %></div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-md-5 fw-bold"><%= t "tours.end_date" %>:</div>
+              <div class="col-md-7"><%= @tour.end_date %></div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-md-5 fw-bold"><%= t "tours.tour_type" %>:</div>
+              <div class="col-md-7"><%= @tour.tour_type.type_name %></div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="row mb-4">
+              <p class="fw-bold"><%= t "tour.description" %>:</p>
+              <div class="mx-2">
+                <p><%= @tour.description %></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+          <h5><%= t "tours.images" %></h5>
+          <% if @tour.images.attached? %>
+            <div class="d-flex flex-wrap">
+              <%= render partial: "image", collection: @tour.images %>
+            </div>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="d-flex justify-content-end py-4">
+      <%= link_to t("back"), admin_tours_path, class: "btn btn-primary me-3 px-3" %>
+      <%= link_to t("edit"), edit_admin_tour_path(@tour), class: "btn btn-success me-3 px-4" %>
+    </div>
+  </div>
 </div>

@@ -130,7 +130,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_084331) do
     t.string "phone"
     t.string "address"
     t.date "date_of_birth"
-    t.integer "role"
+    t.integer "role", default: 0, null: false
     t.string "activation_digest"
     t.boolean "activated", default: false
     t.datetime "activated_at"
