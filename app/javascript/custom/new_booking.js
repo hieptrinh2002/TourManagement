@@ -37,3 +37,21 @@ document.addEventListener("turbo:load", () => {
     });
   }
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+  const voucherCodes = document.querySelectorAll(".choose-voucher-item");
+  const voucherCodeInput = document.getElementById("voucher-code-input");
+  const textCode = document.querySelector(".voucher-code")
+
+  voucherCodes.forEach(function(voucherCode) {
+    voucherCode.addEventListener("click", function() {
+      const code = this.querySelector(".code").innerText;
+      voucherCodeInput.value = code;
+      textCode.innerHTML = code
+    });
+  });
+
+  voucherCodeInput.addEventListener("change", () => {
+    textCode.innerHTML = voucherCodeInput.value
+  })
+});

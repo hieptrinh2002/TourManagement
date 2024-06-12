@@ -1,7 +1,8 @@
 class BookingsController < ApplicationController
   include BookingsHelper
   before_action :authenticate_user!
-  before_action :set_tour
+  before_action :set_tour, only: %i(new create)
+  before_action :get_booking, only: %i(show destroy)
 
   def new
     @booking = current_user.bookings.build tour_id: @tour.id
@@ -25,14 +26,45 @@ class BookingsController < ApplicationController
     handle_booking
   end
 
+  def show
+    return if current_user == User.find_by(id: @booking.user_id)
+
+    flash[:danger] = t "flash.booking.unauthorized"
+    redirect_to current_user, status: :see_other
+  end
+
+  def destroy
+    voucher = Voucher.find_by(code: @booking.voucher_code)
+    voucher.update(is_used: false)
+    if @booking.destroy
+      flash[:success] = t "flash.booking.delete_success"
+      redirect_to root_path, status: :see_other
+    else
+      flash[:danger] = t "flash.booking.delete_failure"
+      redirect_to current_user, status: :unprocessable_entity
+    end
+  end
+
   private
 
+  def get_booking
+    @booking = Booking.includes(:user, :tour, :flight_ticket)
+                      .find_by(id: params[:id])
+    @flight = Flight.find_by(id: @booking.flight_ticket.flight_id)
+    return if @booking.voucher_code.blank?
+
+    @voucher = Voucher.find_by(code: @booking.voucher_code)
+  end
+
   def handle_voucher
+    return true if booking_params[:voucher_code].blank?
+
     voucher = Voucher.find_by(code: booking_params[:voucher_code])
     if voucher.blank?
       flash.now[:danger] = t "flash.booking.voucher_not_exist"
       return false
-    elsif !voucher.is_available? @tour.price
+    end
+    unless voucher.is_available? @tour.price
       flash[:danger] = t "flash.booking.voucher_unavailable"
       return false
     end

@@ -9,12 +9,9 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create"
 
   resources :users, only: %i(new create show) do
-    member do
-      resources :bookings
-    end
+    resources :bookings
   end
   resources :account_activations, only: :edit
-
 
   get "/admin", to: "admin/tours#index"
   namespace :admin do

@@ -17,8 +17,6 @@ class Booking < ApplicationRecord
   enum payment_status: {payment_pending: 0, paid: 1, refunded: 2}
   belongs_to :tour
   belongs_to :user
-  has_many :booking_vouchers, dependent: :destroy
-  has_many :vouchers, through: :booking_vouchers
   belongs_to :flight_ticket, optional: true
   has_one :flight, through: :flight_ticket
 
@@ -70,6 +68,9 @@ class Booking < ApplicationRecord
     return if flight_ticket.blank?
 
     self.total_price += flight_ticket.price * number_of_guests
-    # add Coupons logic
+    return if voucher_code.blank?
+
+    voucher = Voucher.find_by(code: voucher_code)
+    self.total_price *= 1 - voucher.percent_discount / 100
   end
 end

@@ -1,0 +1,117 @@
+<div class="row booking-details">
+  <div class="col-10 offset-md-1">
+    <div class="row mt-4">
+      <div class="col-7 booking-details-left">
+        <span class="d-flex align-items-center justify-content-between booking-details-title">
+          <h4>
+            <%= t "bookings.number" %>
+              <%= @booking.id %>
+          </h4>
+          <h5>
+            <span class="text-secondary">
+              <%= t "bookings.tour_to" %>
+            </span>
+            <%= link_to @booking.tour.tour_name, @booking.tour %>
+          </h5>
+        </span>
+
+        <hr class="mt-2">
+
+        <p class="mt-3 d-flex justify-content-between">
+          <span class="text-secondary">
+            <%= t "bookings.phone_number" %>
+          </span>
+          <%= @booking.phone_number %>
+        </p>
+        <p class="mt-3 d-flex justify-content-between">
+          <span class="text-secondary">
+            <%= t "bookings.status" %>
+          </span>
+          <%= @booking.status %>
+        </p>
+
+        <hr class="my-4">
+
+        <h4>Time Information:</h4>
+        <p class="mt-3 d-flex justify-content-between">
+          <span class="text-secondary">
+            <%= t "bookings.start_date" %>
+          </span>
+          <%= @booking.tour.start_date %>
+        </p>
+        <p class="mt-3 d-flex justify-content-between">
+          <span class="text-secondary">
+            <%= t "bookings.end_date" %>
+          </span>
+          <%= @booking.tour.end_date %>
+        </p>
+
+        <hr class="my-4">
+
+        <h4>Flight Information:</h4>
+        <p class="mt-3 d-flex justify-content-between">
+          <span class="text-secondary">
+            <%= t "bookings.airline_brand" %>
+          </span>
+          <%= @flight.airline_brand %>
+        </p>
+        <p class="mt-3 d-flex justify-content-between">
+          <span class="text-secondary">
+            <%= t "bookings.class" %>
+          </span>
+          <%= t @booking.flight_ticket.ticket_class %>
+        </p>
+      </div>
+
+      <div class="col-4 offset-md-1 booking-details-right">
+        <h4>
+          <%= t "bookings.estimated_cost" %>
+        </h4>
+        <p class="mt-3 d-flex justify-content-between">
+          <span class="text-secondary">
+            <%= t "bookings.tour_price" %>
+          </span>
+          <%= number_to_currency @booking.tour.price %>
+        </p>
+        <p class="mt-3 d-flex justify-content-between">
+          <span class="text-secondary">
+            <%= t "bookings.flight_price" %>
+          </span>
+          <%= number_to_currency @booking.flight_ticket.price %>
+        </p>
+        <p class="mt-3 d-flex justify-content-between">
+          <span class="text-secondary">
+            <%= t "bookings.number_of_guests" %>
+          </span>
+          <%= @booking.number_of_guests %>
+        </p>
+        <hr>
+        <% if @voucher.present? %>
+          <p class="mt-3 d-flex justify-content-between booking-details-total">
+            <span class="text-secondary">
+              <%= t "bookings.voucher" %>
+            </span>
+            <span class="d-flex flex-column">
+              <%= @booking.voucher_code %>
+              <span>
+                <%= t "bookings.new.discount" %>
+                <%= @voucher.percent_discount %>
+                <%= t "%" %>
+              </span>
+            </span>
+          </p>
+        <% end %>
+        <p class="mt-3 d-flex justify-content-between booking-details-total">
+          <span class="text-secondary">
+            <%= t "bookings.total_price" %>
+          </span>
+          <%= number_to_currency @booking.total_price %>
+        </p>
+
+        <hr class="mt-4">
+        <%= link_to t("bookings.cancel_booking"), user_booking_path(@booking.user, @booking), data: {turbo_method:
+          :delete, turbo_confirm: t("confirm.delete_confirmation")}, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>
