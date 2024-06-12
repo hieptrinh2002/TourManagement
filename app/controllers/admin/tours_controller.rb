@@ -44,7 +44,7 @@ class Admin::ToursController < Admin::AdminController
       flash[:success] = t "flash.tour.update_success"
       redirect_to admin_tours_path, status: :see_other
     else
-      render :show, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -122,7 +122,7 @@ class Admin::ToursController < Admin::AdminController
     rescue StandardError => _e
       flash.now[:danger] = I18n.t("flash.tour.invalid_image",
                                   image_name: image_param.original_filename)
-      render :show, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
       false
     end
   end

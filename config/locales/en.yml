@@ -87,6 +87,10 @@ en:
   refresh: "Refresh"
   back: "Back"
   tour_details: "Tour Details"
+  edit_booking_info: "Edit booking information"
+  selected_flight: "Selected flight"
+  available_flight: "Available flights"
+  per_one_ticket: "/ 1 ticket"
 
   confirm:
     delete_confirmation: "Are you sure you want to delete this item?"
@@ -231,11 +235,13 @@ en:
       create_success: "Booking was successfully created !"
       create_failed: "Creating a tour booking failed !"
       update_success: "Booking was successfully updated !"
+      update_failed: "Booking updated failed !"
       not_exist: "Booking was not existed !"
       delete_success: "Booking was successfully deleted !"
       delete_failure: "Booking was not deleted !"
       not_allowed: "You are not allowed to booking, please login !"
       is_used: "Voucher is used!"
+      access_denied: "You cannot access edit or update your booking because the status is confirmed/cancelled !"
     review:
       create_failed: "Create review failed !"
       update_failed: "Review was updated failed !"

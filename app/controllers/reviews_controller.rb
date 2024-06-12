@@ -61,7 +61,13 @@ class ReviewsController < ApplicationController
   end
 
   def booking_exists_for_user_and_tour?
-    Booking.for_tour(@tour.id)
-           .belongs_to_user(current_user.id).present?
+    bookings = Booking.for_tour(@tour.id)
+                      .belongs_to_user(current_user.id)
+    return false if bookings.blank?
+
+    bookings.any? do |booking|
+      booking.confirmed? &&
+        booking.started_date < Time.zone.now
+    end
   end
 end

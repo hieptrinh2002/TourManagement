@@ -87,6 +87,11 @@ vi:
   refresh: "Làm mới"
   back: "Trở lại"
   tour_details: "Chi tiết tour"
+  edit_booking_info: "Chỉnh sửa thông tin đặt tour"
+  selected_flight: "Chuyến bay đã chọn"
+  available_flight: "Chuyến bay hiện có"
+  per_one_ticket: "/ 1 vé"
+
 
 
   confirm:
@@ -218,10 +223,13 @@ vi:
       create_success: "Booking đã được tạo thành công !"
       create_failed: "Tạo booking không thành công !"
       update_success: "Booking đã được cập nhật thành công !"
+      update_failed: "Booking không được cập nhật, vui lòng kiểm tra lại !"
       not_exist: "Booking không tồn tại"
       delete_success: "Booking đã được xóa thành công !"
       delete_failure: "Booking không được xóa thành công !"
       not_allowed: "Bạn không được phép book tour, hãy login !"
+      access_denied: "Bạn không thể chỉnh sửa hoặc cập nhật đặt booking của mình vì trạng thái đã được xác nhận/hủy !"
+
     voucher:
       create_success: "Tạo voucher thành công!"
       wrong_expiry_date: "phải sau ngày hôm nay!"

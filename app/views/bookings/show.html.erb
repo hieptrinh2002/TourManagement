@@ -37,13 +37,13 @@
           <span class="text-secondary">
             <%= t "bookings.start_date" %>
           </span>
-          <%= @booking.tour.start_date %>
+          <%= @booking.started_date.strftime(Settings.dd_mm_yyyy) %>
         </p>
         <p class="mt-3 d-flex justify-content-between">
           <span class="text-secondary">
             <%= t "bookings.end_date" %>
           </span>
-          <%= @booking.tour.end_date %>
+          <%= @booking.tour.end_date.strftime(Settings.dd_mm_yyyy) %>
         </p>
 
         <hr class="my-4">
@@ -53,13 +53,13 @@
           <span class="text-secondary">
             <%= t "bookings.airline_brand" %>
           </span>
-          <%= @flight.airline_brand %>
+          <%= @flight.airline_brand if @flight.present? %>
         </p>
         <p class="mt-3 d-flex justify-content-between">
           <span class="text-secondary">
             <%= t "bookings.class" %>
           </span>
-          <%= t @booking.flight_ticket.ticket_class %>
+          <%= t @booking.flight_ticket&.ticket_class %>
         </p>
       </div>
 
@@ -77,7 +77,7 @@
           <span class="text-secondary">
             <%= t "bookings.flight_price" %>
           </span>
-          <%= number_to_currency @booking.flight_ticket.price %>
+          <%= number_to_currency @booking.flight_ticket&.price %>
         </p>
         <p class="mt-3 d-flex justify-content-between">
           <span class="text-secondary">
@@ -109,8 +109,12 @@
         </p>
 
         <hr class="mt-4">
-        <%= link_to t("bookings.cancel_booking"), user_booking_path(@booking.user, @booking), data: {turbo_method:
+        <% if @booking.pending? %>
+          <%= link_to t("bookings.cancel_booking"), user_booking_path(@booking.user, @booking), data: {turbo_method:
           :delete, turbo_confirm: t("confirm.delete_confirmation")}, class: "btn btn-danger" %>
+
+          <%= link_to "Edit booking", edit_user_booking_path(@booking.user, @booking), class: "btn btn-warning" %>
+        <% end %>
       </div>
     </div>
   </div>

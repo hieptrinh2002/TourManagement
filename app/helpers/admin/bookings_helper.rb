@@ -9,6 +9,8 @@ module Admin::BookingsHelper
       content_tag(:span, "❌")
     when "refunded"
       content_tag(:span, "refunded", class: "text-danger fw-bold")
+    else
+      content_tag(:span, status, class: "text-danger fw-bold")
     end
   end
 
