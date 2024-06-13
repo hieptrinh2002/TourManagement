@@ -13,22 +13,28 @@
 
   <body>
     <div class="main">
-      <header class="navbar bg-light border-bottom sticky-top row">
+      <header class="navbar sticky-top row">
         <div class="navbar-container">
           <div class="navbar-left">
             <span class="navbar-logo">
-              <%= link_to t("base_title"), root_path, class: "text-info" %>
+              <%= link_to image_tag("logo.png", alt: t("base_title")), root_path, class: "app-logo" %>
             </span>
             <span class="navbar-locale">
-              <%= link_to t("en"), locale: :en %>
-              <%= link_to t("vi"), locale: :vi %>
+              <span class="navbar-en">
+                <%= link_to t("en"), locale: :en %>
+              </span>
+              <span class="navbar-vi">
+                <%= link_to t("vi"), locale: :vi %>
+              </span>
             </span>
           </div>
-         <div class="navbar-right text-primary">
-            <%= link_to t("view_tour"), tours_path %>
+          <div class="navbar-center mx-auto">
+            <%= link_to t("view_tour"), tours_path, class: "navbar-tours navbar-btn" %>
+          </div>
+          <div class="navbar-right text-primary">
             <% if current_user.present? %>
               <div class="navbar-dropdown dropdown">
-                <%= t "account" %>
+                <span class="navbar-btn"><%= t "account" %></span>
                 <ul class="dropdown-menu">
                   <li>
                     <%= link_to t("profile"), current_user, class: "dropdown-item" %>
@@ -42,8 +48,8 @@
                 </ul>
               </div>
             <% else %>
-              <%= link_to t("register"), signup_path %>
-              <%= link_to t("login"), login_path %>
+              <%= link_to t("register"), signup_path, class: "navbar-btn" %>
+              <%= link_to t("login"), login_path, class: "navbar-btn" %>
             <% end %>
           </div>
         </div>
@@ -52,12 +58,12 @@
         <%= render "shared/flash_messages" %>
         <%= yield %>
       </div>
-      <footer class="navbar bg-light border-top sticky-bottom row">
-        <div class="navbar-container">
-          <span class="text-secondary navbar-left">
+      <footer class="bg-light row">
+        <div class="footer">
+          <span class="text-secondary footer-left">
             <%= t "footer_left" %>
           </span>
-          <span class="text-secondary navbar-right">
+          <span class="text-secondary footer-right">
             <%= t "footer_right" %>
           </span>
         </div>

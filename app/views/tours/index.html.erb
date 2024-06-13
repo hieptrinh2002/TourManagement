@@ -1,15 +1,22 @@
 <div class="tours">
-  <div class="row text-center pt-4">
+  <div class="row text-center pt-4 d-flex flex-column align-items-center">
     <h1 class="tours-title"><%= t "tours.title" %></h1>
     <p class="tours-subtitle"><%= t "tours.subtitle" %></p>
+    <button class="tours-btn btn">
+      <%= t "tours.show_search_form" %>
+    </button>
   </div>
-  <div class="row pt-4 pb-4">
-    <%= render "search_form" %>
-  </div>
-  <div class="row tours-container">
-    <%= render @tours %>
-  </div>
-  <div class="container py-5">
-    <%== pagy_nav(@pagy) %>
+  <div class="tours-page">
+    <div class="row pt-4 pb-4 tours-search">
+      <%= render "search_form" %>
+    </div>
+    <div class="tours-container">
+      <div class="row tours-container-inner">
+        <%= render @tours %>
+      </div>
+      <div class="container py-5">
+        <%== pagy_nav(@pagy) %>
+      </div>
+    </div>
   </div>
 </div>

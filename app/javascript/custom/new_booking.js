@@ -7,8 +7,8 @@ document.addEventListener("turbo:load", () => {
     flightTicketIdField.value = selectedTicketId;
 
     const guestNumber = document.querySelector(".number-of-guest");
-    const ticketPrice = document.getElementById(`ticket-price-${selectedTicketId}`);
     const tourPrice = document.getElementById("tour-price-id");
+    const ticketPrice = document.getElementById(`ticket-price-${selectedTicketId}`);
     const totalTicketPrice = document.getElementById("total-ticket-price-id");
     const numberOfTicket = document.getElementById("number-ticket-id");
     const totalPrice = document.getElementById("total-booking-price");
@@ -38,7 +38,7 @@ document.addEventListener("turbo:load", () => {
   }
 });
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("turbo:load", function() {
   const voucherCodes = document.querySelectorAll(".choose-voucher-item");
   const voucherCodeInput = document.getElementById("voucher-code-input");
   const textCode = document.querySelector(".voucher-code")

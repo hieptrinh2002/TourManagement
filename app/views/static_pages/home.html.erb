@@ -1,27 +1,23 @@
 <div class="home">
-  <div class="message row">
-    <span class="message-welcome mx-auto p-4 rounded-pill">
-      <%= t "welcome" %>
-    </span>
-  </div>
-  <div class="home-section row pt-4">
-    <div class="home-section-item home-section-left col-6 text-center">
-      <span>
-        <%= t "view_tour" %>
-      </span>
-      <p>
-        <%= t "view_tour_description" %>
-      </p>
-      <%= link_to t("click_here"), tours_path %>
-    </div>
-    <div class="home-section-item home-section-right col-6 text-center">
-      <span>
-        <%= t "booked" %>
-      </span>
-      <p>
-        <%= t "booked_description" %>
-      </p>
-      <%= link_to t("click_here"), root_path %>
-    </div>
+  <div class="row">
+    <%= image_tag("home_bg.jpg", alt: t("logo"), class: "home-section-img") %>
+    <div class="home-section d-flex">
+      <div class="home-section-left col-6 text-center">
+        <%= link_to tours_path do %>
+          <div class="home-section-item d-flex flex-column align-items-center justify-content-center">
+            <h4 class="text-bold"><%= t "view_tour" %></h4>
+            <p><%= t "view_tour_description" %></p>
+          </div>
+        <% end %>
+      </div>
+      <div class="home-section-right col-6 text-center">
+        <%= link_to tours_path do %>
+          <div class="home-section-item d-flex flex-column align-items-center justify-content-center">
+            <h4 class="text-bold"><%= t "booked" %></h4>
+            <p><%= t "booked_description" %></p>
+          </div>
+        <% end %>
+      </div>
+      </div>
   </div>
 </div>
