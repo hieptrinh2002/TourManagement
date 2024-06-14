@@ -10,6 +10,7 @@ confirmed_status: "confirmed"
 cancelled_status: "cancelled"
 remember_me_checked: "1"
 dd_mm_yyyy: "%d-%m-%Y"
+yyyy_mm_dd: "%Y/%m/%d"
 datime_format: "%d-%m-%Y %H:%M:%S"
 datime_format_hour: "%d-%m-%Y %H"
 default_number_of_guests: 1
@@ -53,7 +54,7 @@ review:
 booking:
   min_guests: 0
   min_price: 0
-  items_per_page: 5
+  items_per_page: 4
   search:
     min_guests: 1
     min_total_price: 0

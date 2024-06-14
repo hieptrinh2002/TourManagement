@@ -60,17 +60,23 @@
 
   <h4 class="mt-4"><%= t "choose_voucher" %></h4>
   <div class="row">
-    <div class="mt-4 d-flex flex-column col-4">
+    <div class="mt-4 d-flex flex-column col-lg-4 col-12">
       <%= f.label :voucher_code %>
       <%= f.text_field :voucher_code, id: "voucher-code-input", class: "voucher-code-input voucher-id rounded-3 border-1 p-2" %>
     </div>
-    <div class="d-flex flex-column mt-4 col-8">
-      <span class="offset-md-5">
-        <%= t "available_vouchers" %>
-      </span>
-      <div class="d-flex flex-column choose-voucher">
-        <%= render partial: "bookings/available_voucher", collection: @available_vouchers, as: :voucher %>
-      </div>
+    <div class="d-flex flex-column mt-4 col-lg-8 col-12">
+      <% if @available_vouchers.present? %>
+        <span class="offset-lg-5 offset-2">
+          <%= t "available_vouchers" %>
+        </span>
+        <div class="d-flex flex-column choose-voucher">
+          <%= render partial: "bookings/available_voucher", collection: @available_vouchers, as: :voucher %>
+        </div>
+      <% else %>
+        <span>
+          <%= t "vouchers.no_voucher" %>
+        </span>
+      <% end %>
     </div>
   </div>
 

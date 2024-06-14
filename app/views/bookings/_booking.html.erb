@@ -1,9 +1,35 @@
-<tr>
-  <td><%= link_to booking.tour.tour_name, booking.tour %></td>
-  <td><%= booking.number_of_guests %></td>
-  <td><%= booking.total_price %></td>
-  <td><%= booking.phone_number %></td>
-  <td><%= booking.started_date %></td>
-  <td><%= booking.status %></td>
-  <td><%= link_to t("view"), user_booking_path(booking.user, booking) %></td>
-</tr>
+<div class="col-12 col-lg-3 col-md-6">
+  <%= link_to user_booking_path(booking.user, booking) do %>
+    <div class="mx-1 book d-flex flex-column text-left justify-content-between">
+      <span class="book-tour">
+        <%= booking.tour.tour_name %>
+      </span>
+      <div class="d-flex flex-column">
+        <span class="book-guests"> 
+          <%= pluralize booking.number_of_guests, t("tours.guest", count: booking.number_of_guests) %>
+        </span>
+        <span class="book-status">
+          <span class="book-label">
+            <%= t "tours.details.status" %>
+          </span>
+          <%= booking.status %>
+        </span>
+        <span class="book-price">
+          <%= number_to_currency booking.total_price %>
+        </span>
+        <span class="book-create">
+          <span class="book-label">
+            <%= t "created_at" %>
+          </span>
+          <%= booking.created_at.strftime Settings.yyyy_mm_dd %>
+        </span>
+        <span class="book-create">
+          <span class="book-label">
+            <%= t "start" %>
+          </span>
+          <%= booking.started_date.strftime Settings.yyyy_mm_dd %>
+        </span>
+      </div>
+    </div>
+    <% end %>
+</div>

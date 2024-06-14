@@ -61,10 +61,9 @@
                 </div>
                 <!-- Checkbox -->
                 <div class="form-check d-flex justify-content-center mb-4">
-                  <%= f.check_box :subscribe_newsletter, class: "form-check-input me-2", id: "form2Example33",
-                     checked: true %>
-                    <%= f.label :subscribe_newsletter, t("subscribe_to_our_newsletter"),
-                      class: "form-check-label mx-2", for: "form2Example33" %>
+                  <%= f.label :subscribe_newsletter, t("subscribe_to_our_newsletter"), class: "form-check-label mx-2", for: "form2Example33" %>
+                  <%= f.check_box :subscribe_newsletter, class: "form-check-input me-2" , id: "form2Example33" ,
+                    checked: true %>
                 </div>
                 <!-- Submit button -->
                 <div class="text-center w-100">

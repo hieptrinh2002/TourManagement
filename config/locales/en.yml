@@ -138,6 +138,7 @@ en:
     tour_destination: "Destination"
     price: "Price"
     start_date: "Start date"
+    guest: "guest"
     end_date: "End date"
     tour_type: "Tour Type"
     description: "Description"
@@ -167,7 +168,8 @@ en:
       to: "To: "
       tag: "#"
       back: "<< Back to Tours Page"
-      relevant: "Relevant Tours"
+      relevant: "Related Tours"
+      status: "Status:"
     carousel_next: "Next >>"
     carousel_prev: "<< Prev"
 
