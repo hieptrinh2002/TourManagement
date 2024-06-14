@@ -110,8 +110,8 @@
 
         <hr class="mt-4">
         <% if @booking.pending? %>
-          <%= link_to t("bookings.cancel_booking"), user_booking_path(@booking.user, @booking), data: {turbo_method:
-          :delete, turbo_confirm: t("confirm.delete_confirmation")}, class: "btn btn-danger" %>
+        <%= link_to t("bookings.cancel_booking"), cancel_user_booking_path(@booking.user, @booking),
+            data: {turbo_method: :patch, turbo_confirm: t("confirm.cancel_confirmation")}, class: "btn btn-danger" %>
 
           <%= link_to "Edit booking", edit_user_booking_path(@booking.user, @booking), class: "btn btn-warning" %>
         <% end %>

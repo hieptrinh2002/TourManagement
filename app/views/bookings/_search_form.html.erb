@@ -28,6 +28,10 @@
         <div class="d-flex gap-2">
           <%= check_box_tag "status[]", "cancelled", params[:status]&.include?("cancelled") %>
           <%= label_tag "status_cancelled", t("bookings.cancelled") %>
+        </div>
+        <div class="d-flex gap-2">
+          <%= check_box_tag "status[]", "cancelled_by_user", params[:status]&.include?("cancelled_by_user") %>
+          <%= label_tag "status_cancelled", t("bookings.cancelled_by_user") %>
         </div> 
       </div>      
     </div>
