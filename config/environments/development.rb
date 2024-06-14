@@ -41,6 +41,19 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  host = ENV["HOST"]
+  config.action_mailer.default_url_options = {host: host}
+
+  # SMTP settings for gmail
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    user_name: ENV["USER_EMAIL"],
+    password: ENV["USER_PASSWORD"],
+    authentication: "plain",
+    enable_starttls_auto: true
+  }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
@@ -67,18 +80,4 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
-
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = {host: ENV["localhost"]}
-
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    user_name: ENV["email_user_name"],
-    password: ENV["email_password"],
-    address: ENV["email_address"],
-    host: ENV["email_host"],
-    port: ENV["email_port"],
-    authentication: :cram_md5
-  }
 end
