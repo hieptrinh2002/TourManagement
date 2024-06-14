@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create"
 
   resources :users, only: %i(new create show) do
-    resources :bookings
+    resources :bookings do
+      member do
+        patch :cancel
+      end
+    end    
   end
   resources :account_activations, only: :edit
 

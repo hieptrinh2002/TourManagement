@@ -126,6 +126,10 @@ vi:
     tour_price: "Giá tour"
     flight_price: "Giá vé máy bay"
     cancel_booking: "Hủy booking này"
+    pending: "Đang chờ"
+    confirmed: "Đã xác nhận"
+    cancelled: "Đã bị hủy"
+    cancelled_by_user: "Đã hủy"
     new:
       discount: "↓"
       min: "Ít nhất $"
@@ -142,6 +146,10 @@ vi:
     start_date: "Ngày bắt đầu"
     end_date: "Ngày kết thúc"
     tour_type: "Loại tour"
+    guest: "khách"
+    status: "Trạng thái"
+    created_at: "Tạo lúc"
+    start: "Bắt đầu"
     description: "Môn tả"
     images: "Hình ảnh"
     day:
@@ -183,6 +191,7 @@ vi:
     expired: "Hết hạn"
     is_used: "Đã dùng"
     search:
+      action: "Tìm voucher"
       code: "Mã"
       min_total_price: "Tổng chi phí tối thiểu"
       percent_discount: "Phần trăm giảm giá"

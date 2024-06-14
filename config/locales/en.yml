@@ -124,6 +124,10 @@ en:
     tour_price: "Tour price"
     flight_price: "Flight ticket price"
     cancel_booking: "Cancel this booking"
+    pending: "Pending"
+    confirmed: "Confirmed"
+    cancelled: "Cancelled"
+    cancelled_by_user: "Cancelled by user"
     new:
       discount: "↓"
       min: "Min. Spend $"
@@ -178,6 +182,7 @@ en:
     expired: "Expired"
     is_used: "Used"
     search:
+      action: "Search vouchers"
       status: "Status"
       status_options:
         all: "Ordered"

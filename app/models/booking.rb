@@ -12,8 +12,7 @@ class Booking < ApplicationRecord
 
   scope :ordered_by_status, ->{order(status: :asc)}
   scope :ordered_by_created_at, ->{order(created_at: :desc)}
-
-  enum status: {pending: 0, confirmed: 1, cancelled: 2}
+  enum status: {pending: 0, confirmed: 1, cancelled: 2, cancelled_by_user: 3}
   enum payment_status: {payment_pending: 0, paid: 1, refunded: 2}
   belongs_to :tour
   belongs_to :user
@@ -63,14 +62,30 @@ class Booking < ApplicationRecord
   before_validation :calculate_total_price
 
   private
+
   def calculate_total_price
+    calculate_tour_price
+    calculate_flight_ticket_price
+    apply_voucher_discount
+  end
+
+  def calculate_tour_price
     self.total_price = tour.price
+  end
+
+  def calculate_flight_ticket_price
     return if flight_ticket.blank?
 
     self.total_price += flight_ticket.price * number_of_guests
+  end
+
+  def apply_voucher_discount
     return if voucher_code.blank?
 
     voucher = Voucher.find_by(code: voucher_code)
-    self.total_price *= 1 - voucher.percent_discount / 100
+    return if voucher.blank?
+
+    discount = 1 - voucher.percent_discount.to_f / 100
+    self.total_price *= discount
   end
 end

@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
   include BookingsHelper
   before_action :authenticate_user!
   before_action :set_tour, only: %i(new create)
-  before_action :get_booking, only: %i(show destroy edit update check_status)
+  before_action :get_booking, only: %i(show cancel edit update check_status)
   before_action :check_status, only: %i(edit update)
 
   def new
@@ -51,14 +51,14 @@ class BookingsController < ApplicationController
     end
   end
 
-  def destroy
+  def cancel
     voucher = Voucher.find_by(code: @booking.voucher_code)
     voucher.update(is_used: false)
-    if @booking.destroy
-      flash[:success] = t "flash.booking.delete_success"
+    if @booking.update(status: :cancelled_by_user)
+      flash[:success] = t "flash.booking.cancel_success"
       redirect_to root_path, status: :see_other
     else
-      flash[:danger] = t "flash.booking.delete_failure"
+      flash[:danger] = t "flash.booking.cancel_failure"
       redirect_to current_user, status: :unprocessable_entity
     end
   end
@@ -101,7 +101,7 @@ class BookingsController < ApplicationController
   def handle_booking
     if @booking.save
       flash[:success] = t "flash.booking.create_success"
-      redirect_to tours_path
+      redirect_to user_booking_path(@booking.user, @booking)
     else
       flash[:danger] = t "flash.booking.create_failed"
       render :new

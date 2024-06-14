@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   end
 
   def search_bookings
-    @user.bookings.ordered_by_status
+    @user.bookings.ordered_by_created_at
          .by_tour_name(params[:tour_name])
          .by_min_guests(params[:guests])
          .by_min_total_price(params[:total_price])

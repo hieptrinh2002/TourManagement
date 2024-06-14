@@ -10,22 +10,22 @@
         </span>
         <span class="book-status">
           <span class="book-label">
-            <%= t "tours.details.status" %>
+            <%= t "tours.status" %>
           </span>
-          <%= booking.status %>
+          <%= t(booking.status) %>
         </span>
         <span class="book-price">
           <%= number_to_currency booking.total_price %>
         </span>
         <span class="book-create">
           <span class="book-label">
-            <%= t "created_at" %>
+            <%= t "tours.created_at" %>
           </span>
           <%= booking.created_at.strftime Settings.yyyy_mm_dd %>
         </span>
         <span class="book-create">
           <span class="book-label">
-            <%= t "start" %>
+            <%= t "tours.start" %>
           </span>
           <%= booking.started_date.strftime Settings.yyyy_mm_dd %>
         </span>
