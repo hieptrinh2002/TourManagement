@@ -1,0 +1,17 @@
+<% if voucher.present? %>
+  <div class="my-4 fs-5">
+    <div class="mt-3 d-flex justify-content booking-details-total">
+      <span class="text-secondary">
+        <%= t "bookings.voucher" %>
+      </span>
+      <span class="d-flex flex-column px-4">
+        <%= @booking.voucher_code %>
+        <span class="text-success">
+          <%= t "bookings.new.discount" %>
+          <%= voucher.percent_discount %>
+          <%= t "%" %>
+        </span>
+      </span>
+    </div>
+  </div>
+<% end %>

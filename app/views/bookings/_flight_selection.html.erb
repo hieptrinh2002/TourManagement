@@ -1,0 +1,18 @@
+<tr class="py-5">
+  <td class="td-pointer text-center"><%= index + 1 %></td>
+  <td class="td-pointer"><%= flight.airline_brand %></td>
+  <td class="td-pointer"><%= flight.departure_time.strftime(Settings.datime_format_hour) %>h</td>
+  <td class="td-pointer"><%= time_difference_in_hours_and_minutes(flight.departure_time, flight.arrival_time) %></td>
+  <td class="td-pointer"><%= flight.origin_place %></td>
+  <td class="td-pointer"><%= flight.destination %></td>
+  <td>
+    <span class="badge bg-info text-dark">#<%= flight.flight_number %></span>
+  </td>
+</tr>
+<tr>
+  <td></td>
+  <%= render partial: "flight_ticket_edit", collection: flight.flight_tickets, as: :ticket %>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>

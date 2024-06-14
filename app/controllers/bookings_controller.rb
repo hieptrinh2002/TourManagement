@@ -2,7 +2,8 @@ class BookingsController < ApplicationController
   include BookingsHelper
   before_action :authenticate_user!
   before_action :set_tour, only: %i(new create)
-  before_action :get_booking, only: %i(show destroy)
+  before_action :get_booking, only: %i(show destroy edit update check_status)
+  before_action :check_status, only: %i(edit update)
 
   def new
     @booking = current_user.bookings.build tour_id: @tour.id
@@ -33,6 +34,23 @@ class BookingsController < ApplicationController
     redirect_to current_user, status: :see_other
   end
 
+  def edit
+    flights = Flight.departing_on(@booking.tour.start_date)
+                    .arriving_at(@booking.tour.city)
+                    .order_by_brand
+    @pagy, @available_flights = pagy(flights, items: Settings.digit_4)
+  end
+
+  def update
+    if @booking.update(booking_params)
+      flash[:success] = t "flash.booking.update_success"
+      redirect_to user_booking_path(@booking), status: :see_other
+    else
+      flash[:danger] = t "flash.booking.update_failed"
+      redirect_to current_user, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     voucher = Voucher.find_by(code: @booking.voucher_code)
     voucher.update(is_used: false)
@@ -47,10 +65,17 @@ class BookingsController < ApplicationController
 
   private
 
+  def check_status
+    return if @booking.pending?
+
+    flash[:danger] = t "flash.booking.access_denied"
+    redirect_to user_booking_path(@booking), status: :see_other
+  end
+
   def get_booking
     @booking = Booking.includes(:user, :tour, :flight_ticket)
                       .find_by(id: params[:id])
-    @flight = Flight.find_by(id: @booking.flight_ticket.flight_id)
+    @flight = Flight.find_by(id: @booking.flight_ticket&.flight_id)
     return if @booking.voucher_code.blank?
 
     @voucher = Voucher.find_by(code: @booking.voucher_code)

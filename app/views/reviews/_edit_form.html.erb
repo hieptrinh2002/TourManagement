@@ -16,7 +16,7 @@
   </div>
 
   <%= f.hidden_field :tour_id %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :user_id, value: current_user&.id %>
 
   <div class="d-flex justify-content-end my-2">
     <%= f.submit t("update"), class: "btn btn-primary" %>
