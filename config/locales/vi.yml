@@ -185,6 +185,7 @@ vi:
     end_day_start_date: "Ngày kết thúc phải lơn hơn ngày bắt đầu"
     start_date_today: "Phải sau ngày hôm nay !"
     images_limit: "Bạn chỉ có thể upload tối đa %{limit} ảnh !"
+    min_guest_greater_max_guest: "Phải lớn hơn số khách tối thiểu !"
 
   vouchers:
     details: "Chi tiết voucher"

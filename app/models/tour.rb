@@ -26,6 +26,7 @@ class Tour < ApplicationRecord
     city
   ).freeze
 
+  enum status: {not_yet_active: 0, active: 1, removed: 2}
   belongs_to :tour_type
   has_many :tour_flights, dependent: :destroy
   has_many :flights, through: :tour_flights
@@ -40,6 +41,19 @@ class Tour < ApplicationRecord
                                       maximum: Settings.tour.max_duration}
   validates :start_date, :end_date, presence: true
   validate :end_date_after_start_date
+
+  validates :min_guests, presence: true,
+                         numericality: {only_integer: true,
+                                        greater_than: Settings.digit_0}
+  validates :max_guests, presence: true,
+                         numericality: {only_integer: true,
+                                        greater_than: Settings.digit_0}
+  validates :deposit_percent, presence: true,
+                              numericality: {greater_than: Settings.digit_0,
+                                             less_than: Settings.digit_100}
+
+  # Ensure max_guests is greater than or equal to min_guests
+  validate :max_guests_greater_than_or_equal_to_min_guests
 
   before_validation :calculate_day_duration
 
@@ -84,6 +98,12 @@ class Tour < ApplicationRecord
   }
 
   private
+
+  def max_guests_greater_than_or_equal_to_min_guests
+    if max_guests.present? && min_guests.present? && max_guests < min_guests
+      errors.add(:max_guests, I18n.t("errors.min_guest_greater_max_guest"))
+    end
+  end
 
   def calculate_day_duration
     self.day_duration = (end_date - start_date).to_i + 1

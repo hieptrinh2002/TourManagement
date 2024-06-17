@@ -9,8 +9,11 @@ class CreateTours < ActiveRecord::Migration[7.0]
       t.integer :day_duration
       t.date :start_date
       t.date :end_date
+      t.integer :min_guests
+      t.integer :max_guests
+      t.decimal :deposit_percent
+      t.integer :status
       t.references :tour_type, null: false, foreign_key: true
-
       t.timestamps
     end
   end

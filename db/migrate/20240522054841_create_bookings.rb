@@ -14,6 +14,7 @@ class CreateBookings < ActiveRecord::Migration[7.0]
       t.datetime :cancellation_date
       t.integer :status, default: 0
 
+      t.string :canceled_reason
       t.timestamps
     end
   end

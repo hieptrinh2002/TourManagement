@@ -6,6 +6,10 @@ class Voucher < ApplicationRecord
     min_total_price
   ).freeze
 
+  validates :max_uses, presence: true,
+                      numericality: {only_integer: true,
+                                     greater_than: Settings.digit_0}
+
   validate :validate_expiry_date
   validate :validate_unique_code, on: :new
 

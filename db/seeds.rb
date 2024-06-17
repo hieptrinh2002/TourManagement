@@ -9,17 +9,34 @@ TourType.create(type_name: "Lowland Mountain", ancestry: mountain_tour.id)
 TourType.create(type_name: "Highland Mountain", ancestry: mountain_tour.id)
 
 30.times do |n|
-	tour_name = Faker::Australia.state
-	city = Faker::Address.city
-	tour_destination = Faker::Address.full_address
-	description = Faker::Lorem.paragraph(sentence_count: 2)
-	price = Faker::Number.decimal(l_digits: 3, r_digits: 3)
-	day_duration = Faker::Number.within(range: 1..29)
-	start_date = Faker::Date.between(from: "2024-09-23", to: "2025-09-23")
-	end_date = start_date + day_duration.days
-	tour_type_id = Faker::Number.within(range: 3..6)
-	Tour.create!(tour_name:, city:, tour_destination:, description:, price:, day_duration:, start_date:, end_date:, tour_type_id:)
-
+	tour_name = Faker::Address.state
+  city = Faker::Address.city
+  tour_destination = Faker::Address.full_address
+  description = Faker::Lorem.paragraph(sentence_count: 2)
+  price = Faker::Number.decimal(l_digits: 3, r_digits: 3)
+  day_duration = Faker::Number.within(range: 1..29)
+  start_date = Faker::Date.between(from: "2024-09-23", to: "2025-09-23")
+  end_date = start_date + day_duration.days
+  tour_type_id = Faker::Number.within(range: 3..6)
+  min_guests = 5
+  max_guests = Faker::Number.within(range: 11..50)
+  deposit_percent = Faker::Number.between(from: 1.0, to: 99.9)
+  status = ['not_yet_active', 'active', 'removed'].sample
+  Tour.create!(
+    tour_name: tour_name,
+    city: city,
+    tour_destination: tour_destination,
+    description: description,
+    price: price,
+    day_duration: day_duration,
+    start_date: start_date,
+    end_date: end_date,
+    tour_type_id: tour_type_id,
+    min_guests: min_guests,
+    max_guests: max_guests,
+    deposit_percent: deposit_percent,
+    status: status
+  )
   # Create flights
   10.times do
     flight = Flight.create!(
@@ -60,14 +77,16 @@ User.create!(role: 0, first_name:"User", last_name:"Trinh",
             activated_at: Time.zone.now)
 
 100.times do |n|
-  expiry_date = Faker::Date.between(from: "2024-07-23", to: "2025-09-23")
-  code =  Faker::Alphanumeric.alpha(number: 6)
-  min_total_price = Faker::Number.decimal(l_digits: 3, r_digits: 3)
-  percent_discount = Faker::Number.decimal(l_digits: 2, r_digits: 2)
-  Voucher.create!(expiry_date:, code:, min_total_price:, percent_discount:, is_used: [true, false].sample)
+  Voucher.create!(
+    expiry_date: Faker::Date.between(from: "2024-07-23", to: "2025-09-23"),
+    code:  Faker::Alphanumeric.alpha(number: 6),
+    min_total_price: Faker::Number.decimal(l_digits: 3, r_digits: 3),
+    percent_discount: Faker::Number.decimal(l_digits: 2, r_digits: 2),
+    max_uses: Faker::Number.between(from: 10, to: 300),
+    is_used: [true, false].sample
+  )
 end
 
-Voucher.create!(expiry_date: "2099-12-31", code: "", min_total_price: 0, percent_discount: 0, is_used: false)
 
 100.times do
   User.create!(
@@ -99,7 +118,8 @@ end
     confirmed_date: Faker::Date.backward(days: 10),
     cancellation_date: nil,
     voucher_code: "",
-    status: ['pending', 'confirmed', 'cancelled'].sample
+    status: ['pending', 'confirmed', 'cancelled'].sample,
+    canceled_reason: ""
   )
 end
 
