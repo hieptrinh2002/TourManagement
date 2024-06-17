@@ -52,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_084331) do
     t.string "voucher_code"
     t.datetime "cancellation_date"
     t.integer "status", default: 0
+    t.string "canceled_reason"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["flight_ticket_id"], name: "index_bookings_on_flight_ticket_id"
@@ -117,6 +118,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_084331) do
     t.integer "day_duration"
     t.date "start_date"
     t.date "end_date"
+    t.integer "min_guests"
+    t.integer "max_guests"
+    t.decimal "deposit_percent", precision: 10
+    t.integer "status"
     t.bigint "tour_type_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -149,6 +154,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_084331) do
     t.decimal "percent_discount", precision: 10
     t.decimal "min_total_price", precision: 10
     t.boolean "is_used"
+    t.integer "max_uses"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
