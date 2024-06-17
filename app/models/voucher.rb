@@ -8,7 +8,8 @@ class Voucher < ApplicationRecord
 
   validate :validate_expiry_date
   validate :validate_unique_code, on: :new
-
+  validate :max_uses, presence: true,
+                      numericality: {greater_than: Settings.digit_0}
   scope :ordered, (lambda do
     select("vouchers.*,
             CASE WHEN expiry_date >= NOW() THEN 0 ELSE 1 END AS order_field")

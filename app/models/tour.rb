@@ -41,6 +41,21 @@ class Tour < ApplicationRecord
   validates :start_date, :end_date, presence: true
   validate :end_date_after_start_date
 
+  # Validations
+  validates :min_guests, presence: true,
+                         numericality: {only_integer: true,
+                                        greater_than: Settings.digit_0}
+  validates :max_guests, presence: true,
+                         numericality: {only_integer: true,
+                                        greater_than: Settings.digit_1}
+
+  validates :deposit_percent, presence: true,
+                         numericality: {greater_than: Settings.digit_0,
+                                        less_than: Settings.digit_100}
+
+  # Ensure max_guests is greater than or equal to min_guests
+  validate :max_guests_greater_than_or_equal_to_min_guests
+
   before_validation :calculate_day_duration
 
   has_many_attached :images do |attachable|
@@ -103,5 +118,11 @@ class Tour < ApplicationRecord
     return unless start_date <= Time.zone.today
 
     errors.add(:start_date, I18n.t("errors.start_date_today"))
+  end
+
+  def max_guests_greater_than_or_equal_to_min_guests
+    if max_guests.present? && min_guests.present? && max_guests < min_guests
+      errors.add(:max_guests, I18n.t("errors.min_greater_max_guests"))
+    end
   end
 end

@@ -5,8 +5,7 @@ class CreateVouchers < ActiveRecord::Migration[7.0]
       t.string :code
       t.decimal :percent_discount
       t.decimal :min_total_price
-      t.boolean :is_used
-
+      t.integer :max_uses
       t.timestamps
     end
   end

@@ -12,6 +12,7 @@ class CreateBookings < ActiveRecord::Migration[7.0]
       t.datetime :confirmed_date
       t.string :voucher_code
       t.datetime :cancellation_date
+      t.string :canceled_reason
       t.integer :status, default: 0
 
       t.timestamps

@@ -193,6 +193,7 @@ en:
     end_day_start_date: "must be after the start date"
     start_date_today: "must be after today's date"
     images_limit: "You can only upload a maximum of %{limit} photos"
+    min_greater_max_guests: "must be greater than or equal to min guests"
 
   flash:
     user:
