@@ -6,4 +6,8 @@ module Admin::ToursHelper
   def total_image_count_exceeds_limit? current_count, new_images, limit
     current_count + new_images.count > limit
   end
+
+  def can_edit_tour tour
+    tour.bookings.pending_or_past_confirmed.blank?
+  end
 end

@@ -25,6 +25,13 @@ class Booking < ApplicationRecord
         .where("tours.tour_name LIKE ?", "%#{sanitize_sql_like(name)}%")
     end
   end)
+
+  scope :pending_or_past_confirmed, (lambda do
+    where("status = ? OR (status = ? AND started_date < ?)",
+          "pending", "confirmed", Time.zone.today ||
+          Settings.booking.search.min_started_date)
+  end)
+
   scope :by_min_guests, (lambda do |guests|
     where("number_of_guests >= ?", guests.presence ||
     Settings.booking.search.min_guests)
@@ -51,6 +58,7 @@ class Booking < ApplicationRecord
 
   accepts_nested_attributes_for :flight_ticket
 
+  validates :started_date, :status, presence: true
   validates :number_of_guests,
             presence: true,
             numericality: {greater_than: Settings.booking.min_guests}

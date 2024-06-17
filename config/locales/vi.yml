@@ -91,7 +91,11 @@ vi:
   selected_flight: "Chuyến bay đã chọn"
   available_flight: "Chuyến bay hiện có"
   per_one_ticket: "/ 1 vé"
-
+  day_duration: "Số ngày"
+  Deposit: "Đặt cọc"
+  min_guest: "Sô khách tối thiểu"
+  max_guest: "Số khác tối đa"
+  deposit_percent: "Phần trăm đặc cọc"
 
 
   confirm:
@@ -187,6 +191,17 @@ vi:
     images_limit: "Bạn chỉ có thể upload tối đa %{limit} ảnh !"
     min_guest_greater_max_guest: "Phải lớn hơn số khách tối thiểu !"
 
+  statuses:
+    pending: "đang chờ xử lý"
+    payment_pending: "đang chờ thanh toán"
+    confirmed: "đã xác nhận"
+    paid: "đã thanh toán"
+    cancelled: "đã hủy"
+    refunded: "đã hoàn tiền"
+    not_yet_active: "Chưa kích hoạt"
+    active: "Đang hoạt động"
+    removed: "Đã loại bỏ"
+
   vouchers:
     details: "Chi tiết voucher"
     expired: "Hết hạn"
@@ -229,6 +244,7 @@ vi:
       delete_failure: "Tour không được xóa thành công !"
       invalid_image: "Đã có lỗi với file ảnh %{image_name} !"
       find_tour_failed: "Không thể tìm được tour!"
+      invalid_update: "Bạn không thể cập nhật tour này ở thời điểm hiện tại vì đang có đặt tour !"
     booking:
       create_success: "Booking đã được tạo thành công !"
       create_failed: "Tạo booking không thành công !"

@@ -22,16 +22,20 @@
           </div>
           <div class="col-5">
             <div class="row mb-4">
-              <div class="col-md-5 fw-bold"><%= t "tours.start_date" %>:</div>
-              <div class="col-md-7"><%= @tour.start_date %></div>
+              <div class="col-md-5 fw-bold"><%= t "min_guest" %>:</div>
+              <div class="col-md-7"><%= @tour.min_guests %></div>
             </div>
             <div class="row mb-4">
-              <div class="col-md-5 fw-bold"><%= t "tours.end_date" %>:</div>
-              <div class="col-md-7"><%= @tour.end_date %></div>
+              <div class="col-md-5 fw-bold"><%= t "max_guest" %>:</div>
+              <div class="col-md-7"><%= @tour.max_guests %></div>
             </div>
             <div class="row mb-4">
               <div class="col-md-5 fw-bold"><%= t "tours.tour_type" %>:</div>
               <div class="col-md-7"><%= @tour.tour_type.type_name %></div>
+            </div>
+             <div class="row mb-4">
+              <div class="col-md-5 fw-bold"><%= t "deposit_percent" %>:</div>
+              <div class="col-md-7"><%= @tour.deposit_percent %>%</div>
             </div>
           </div>
           <div class="col-12">
@@ -57,7 +61,9 @@
   <div class="container">
     <div class="d-flex justify-content-end py-4">
       <%= link_to t("back"), admin_tours_path, class: "btn btn-primary me-3 px-3" %>
-      <%= link_to t("edit"), edit_admin_tour_path(@tour), class: "btn btn-success me-3 px-4" %>
+      <% if can_edit_tour(@tour) %>
+        <%= link_to t("edit"), edit_admin_tour_path(@tour), class: "btn btn-success me-3 px-4" %>
+      <% end %>
     </div>
   </div>
 </div>
