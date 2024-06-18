@@ -134,6 +134,7 @@ vi:
       discount: "↓"
       min: "Ít nhất $"
       expired: "Còn hạn tới "
+      used: "Đã dùng"
 
   tours:
     title: "Các tours hiện tại"
@@ -239,7 +240,8 @@ vi:
       delete_failure: "Booking không được xóa thành công !"
       not_allowed: "Bạn không được phép book tour, hãy login !"
       access_denied: "Bạn không thể chỉnh sửa hoặc cập nhật đặt booking của mình vì trạng thái đã được xác nhận/hủy !"
-
+      cancel_success: "Booking được hủy thành công!"
+      cancel_failed: "Booking hủy thật bại!"
     voucher:
       create_success: "Tạo voucher thành công!"
       wrong_expiry_date: "phải sau ngày hôm nay!"
@@ -249,7 +251,7 @@ vi:
       delete_success: "Xóa voucher thành công!"
       find_voucher_failed: "Không tìm thấy voucher!"
       find_tour_failed: "Không thể tìm được tour!"
-      is_used: "Voucher đã được sử dụng!"
+      used: "Voucher đã được sử dụng!"
     review:
       create_failed: "Tạo review không thành công !"
       update_failed: "Cập nhật không thành công !"

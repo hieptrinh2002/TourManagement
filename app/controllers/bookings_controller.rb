@@ -4,6 +4,7 @@ class BookingsController < ApplicationController
   before_action :set_tour, only: %i(new create)
   before_action :get_booking, only: %i(show cancel edit update check_status)
   before_action :check_status, only: %i(edit update)
+  before_action :get_current_user_used_voucher_ids, only: %i(new create)
 
   def new
     @booking = current_user.bookings.build tour_id: @tour.id
@@ -17,7 +18,7 @@ class BookingsController < ApplicationController
     end
 
     @pagy, @available_flights = pagy(flights_scope, items: Settings.digit_4)
-    @available_vouchers = get_available_voucher @tour.price
+    @available_vouchers = get_available_vouchers @tour.price
   end
 
   def create
@@ -53,7 +54,7 @@ class BookingsController < ApplicationController
 
   def cancel
     voucher = Voucher.find_by(code: @booking.voucher_code)
-    voucher.update(is_used: false)
+    delete_user_voucher voucher
     if @booking.update(status: :cancelled_by_user)
       flash[:success] = t "flash.booking.cancel_success"
       redirect_to root_path, status: :see_other
@@ -81,21 +82,56 @@ class BookingsController < ApplicationController
     @voucher = Voucher.find_by(code: @booking.voucher_code)
   end
 
+  def validate_voucher code
+    voucher = Voucher.find_by(code:)
+    return true if voucher.blank?
+
+    unless voucher.is_available? @tour.price
+      flash[:danger] = t("flash.booking.voucher_unavailable")
+      return false
+    end
+
+    true
+  end
+
+  def update_voucher_usage voucher
+    voucher.update(used: voucher.used + 1)
+  end
+
   def handle_voucher
     return true if booking_params[:voucher_code].blank?
 
-    voucher = Voucher.find_by(code: booking_params[:voucher_code])
-    if voucher.blank?
-      flash.now[:danger] = t "flash.booking.voucher_not_exist"
-      return false
+    code = booking_params[:voucher_code]
+    return false unless validate_voucher code
+
+    voucher = Voucher.find_by(code:)
+
+    return false if @current_user_used_voucher_ids.include? voucher.id
+
+    Booking.transaction do
+      update_voucher_usage voucher
+      create_user_voucher voucher
     end
-    unless voucher.is_available? @tour.price
-      flash[:danger] = t "flash.booking.voucher_unavailable"
+
+    true
+  rescue ActiveRecord::RecordInvalid => e
+    flash[:danger] = e.message
+    false
+  end
+
+  def delete_user_voucher voucher
+    voucher.update(used: voucher.used - 1) if voucher.present?
+    user_voucher = UserVoucher.find_by(user: current_user, voucher:)
+    unless user_voucher.destroy
+      flash[:danger] = t "flash.voucher.delete_failed"
       return false
     end
 
-    voucher.update(is_used: true)
     true
+  end
+
+  def create_user_voucher voucher
+    UserVoucher.create!(user: current_user, voucher:)
   end
 
   def handle_booking
@@ -108,11 +144,16 @@ class BookingsController < ApplicationController
     end
   end
 
-  def get_available_voucher total_price
+  def get_available_vouchers total_price
     Voucher.by_min_total_price(total_price)
            .available
-           .valid
-           .max_discount
+           .can_use
+           .not_used(@current_user_used_voucher_ids)
+  end
+
+  def get_current_user_used_voucher_ids
+    @current_user_used_voucher_ids = UserVoucher.used_by(current_user.id)
+                                                .pluck(:voucher_id)
   end
 
   def set_tour

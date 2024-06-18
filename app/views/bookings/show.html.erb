@@ -45,22 +45,6 @@
           </span>
           <%= @booking.tour.end_date.strftime(Settings.dd_mm_yyyy) %>
         </p>
-
-        <hr class="my-4">
-
-        <h4>Flight Information:</h4>
-        <p class="mt-3 d-flex justify-content-between">
-          <span class="text-secondary">
-            <%= t "bookings.airline_brand" %>
-          </span>
-          <%= @flight.airline_brand if @flight.present? %>
-        </p>
-        <p class="mt-3 d-flex justify-content-between">
-          <span class="text-secondary">
-            <%= t "bookings.class" %>
-          </span>
-          <%= t @booking.flight_ticket&.ticket_class %>
-        </p>
       </div>
 
       <div class="col-4 offset-md-1 booking-details-right">
@@ -72,12 +56,6 @@
             <%= t "bookings.tour_price" %>
           </span>
           <%= number_to_currency @booking.tour.price %>
-        </p>
-        <p class="mt-3 d-flex justify-content-between">
-          <span class="text-secondary">
-            <%= t "bookings.flight_price" %>
-          </span>
-          <%= number_to_currency @booking.flight_ticket&.price %>
         </p>
         <p class="mt-3 d-flex justify-content-between">
           <span class="text-secondary">
@@ -110,8 +88,8 @@
 
         <hr class="mt-4">
         <% if @booking.pending? %>
-        <%= link_to t("bookings.cancel_booking"), cancel_user_booking_path(@booking.user, @booking),
-            data: {turbo_method: :patch, turbo_confirm: t("confirm.cancel_confirmation")}, class: "btn btn-danger" %>
+          <%= link_to t("bookings.cancel_booking"), cancel_user_booking_path(@booking.user, @booking),
+              data: {turbo_method: :patch, turbo_confirm: t("confirm.cancel_confirmation")}, class: "btn btn-danger" %>
 
           <%= link_to "Edit booking", edit_user_booking_path(@booking.user, @booking), class: "btn btn-warning" %>
         <% end %>

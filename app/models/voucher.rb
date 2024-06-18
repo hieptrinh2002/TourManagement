@@ -49,14 +49,17 @@ class Voucher < ApplicationRecord
     Settings.voucher.search.min_total_price)
   end)
   scope :with_code, ->(code){where(code:)}
-  scope :valid, ->{where(is_used: false)}
+  scope :can_use, ->{where("used < max_uses")}
+  scope :not_used, (lambda do |ids|
+    where.not(id: ids)
+  end)
 
   def is_expired?
     expiry_date < Time.zone.now
   end
 
   def is_available? price
-    expiry_date >= Time.zone.now && !is_used && price >= min_total_price
+    expiry_date >= Time.zone.now && used < max_uses && price >= min_total_price
   end
 
   private

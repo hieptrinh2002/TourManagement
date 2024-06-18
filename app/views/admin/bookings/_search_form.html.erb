@@ -32,6 +32,10 @@
         <%= check_box_tag "status[]", 2, params[:status]&.include?("2"), class: "form-check-input" %>
         <%= label_tag "status_2", t("bookings.cancelled"), class: "form-check-label" %>
       </div>
+      <div class="form-check form-check-inline">
+        <%= check_box_tag "status[]", "cancelled_by_user", params[:status]&.include?("cancelled_by_user"), class: "form-check-input" %>
+        <%= label_tag "status_cancelled", t("bookings.cancelled_by_user"), class: "form-check-label" %>
+      </div>
     </div>
     <div class="col-md-2 mt-5">
       <%= submit_tag t("bookings.search"), class: "btn btn-primary w-100" %>
