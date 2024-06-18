@@ -11,7 +11,8 @@ class Admin::ToursController < Admin::AdminController
             else
               Tour.all
             end
-    @pagy, @tours = pagy(tours.upcoming, items: Settings.tour.items_per_page)
+    @pagy, @tours = pagy(tours.order_by_status,
+                         items: Settings.tour.items_per_page)
   end
 
   def show
@@ -39,23 +40,23 @@ class Admin::ToursController < Admin::AdminController
   end
 
   def update
-    if @tour.update(tour_params) && check_image_limits(@tour, @uploaded_images)
-      @tour.images.attach(@uploaded_images) if @uploaded_images.present?
-      flash[:success] = t "flash.tour.update_success"
-      redirect_to admin_tours_path, status: :see_other
+    if can_edit_tour(@tour)
+      if @tour.update(tour_params) &&
+         check_image_limits(@tour, @uploaded_images)
+
+        @tour.images.attach(@uploaded_images) if @uploaded_images.present?
+        flash[:success] = t "flash.tour.update_success"
+        redirect_to admin_tours_path, status: :see_other
+      else
+        render :edit, status: :unprocessable_entity
+      end
     else
+      flash.now[:danger] = t "flash.tour.invalid_update"
       render :edit, status: :unprocessable_entity
     end
   end
 
-  def destroy
-    if @tour.destroy
-      flash[:success] = t "flash.tour.delete_success"
-    else
-      flash[:danger] = t "flash.tour.delete_failure"
-    end
-    redirect_to admin_tours_path
-  end
+  def destroy; end
 
   def remove_image
     image = @tour.images.find(params[:image_id])

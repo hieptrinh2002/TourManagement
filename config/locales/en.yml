@@ -91,6 +91,12 @@ en:
   selected_flight: "Selected flight"
   available_flight: "Available flights"
   per_one_ticket: "/ 1 ticket"
+  day_duration: "Day duration"
+  Deposit: "Deposit"
+  min_guest: "Min guests"
+  max_guest: "Max guests"
+  deposit_percent: "Deposit percent"
+
 
   confirm:
     delete_confirmation: "Are you sure you want to delete this item?"
@@ -195,6 +201,17 @@ en:
     images_limit: "You can only upload a maximum of %{limit} photos"
     min_guest_greater_max_guest: "must be greater than or equal to min_guests"
 
+  statuses:
+    pending: "pending"
+    payment_pending: "payment pending"
+    confirmed: "confirmed"
+    paid: "paid"
+    cancelled: "cancelled"
+    refunded: "refunded"
+    not_yet_active: "Not yet active"
+    active: "Active"
+    removed: "Removed"
+
   flash:
     user:
       signup_success: "User created successfully !"
@@ -221,6 +238,7 @@ en:
       delete_failure: "Tour was not deleted !"
       invalid_image: "Error with %{image_name} file!"
       find_tour_failed: "Cannot find tour!"
+      invalid_update: "You can't update this tour at this time because the booking is pending or previously confirmed !"
     voucher:
       create_success: "Voucher was successfully created!"
       wrong_expiry_date: "must be after today!"

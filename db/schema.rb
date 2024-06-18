@@ -121,7 +121,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_084331) do
     t.integer "min_guests"
     t.integer "max_guests"
     t.decimal "deposit_percent", precision: 10
-    t.integer "status"
+    t.integer "status", default: 0
     t.bigint "tour_type_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

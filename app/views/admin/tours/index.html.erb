@@ -19,9 +19,9 @@
                     <th scope="col"><%= t "city" %></th>
                     <th scope="col"><%= t "tour_destination" %></th>
                     <th scope="col"><%= t "price" %></th>
-                    <th scope="col"><%= t "start_day" %></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
+                    <th scope="col"><%= t "day_duration" %></th>
+                    <th scope="col"><%= t "deposit" %>(%)</th>
+                    <th scope="px-5"><%= t "status" %></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -30,15 +30,12 @@
                       <td><%= index+1 %></td>
                       <td scope="row" class="fst-italic"><%= tour.tour_name %></td>
                       <td><%= tour.city %></td>
-                      <td><%= truncate(tour.tour_destination, length: 28, omission: "....") %></td>
+                      <td><%= truncate(tour.tour_destination, length: Settings.digit_30, omission: "....") %></td>
                       <td><%= number_to_currency(tour.price) %></td>
-                      <td><%= tour.start_date.strftime(Settings.dd_mm_yyyy) %></td>
+                      <td class="text-center"><%= tour.day_duration %></td>
+                      <td class="text-center"><%= tour.deposit_percent %>%</td>
+                      <td class="text-center"><%= status_badge(tour.status) %></td>
                       <td><%= link_to t("view"), admin_tour_path(tour), class: "btn text-primary" %></td>
-                      <td>
-                          <%= button_to t("delete"), admin_tour_path(tour), method: :delete,
-                              class:"btn btn-danger",
-                              form: {data: {turbo_confirm: t("confirm.delete_confirmation")}} %>
-                      </td>
                     </tr>
                   <% end %>
                 </tbody>

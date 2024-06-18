@@ -12,7 +12,7 @@ class CreateTours < ActiveRecord::Migration[7.0]
       t.integer :min_guests
       t.integer :max_guests
       t.decimal :deposit_percent
-      t.integer :status
+      t.integer :status, default: 0
       t.references :tour_type, null: false, foreign_key: true
       t.timestamps
     end
