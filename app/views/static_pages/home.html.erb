@@ -11,7 +11,7 @@
         <% end %>
       </div>
       <div class="home-section-right col-6 text-center">
-        <%= link_to tours_path do %>
+        <%= link_to current_user do %>
           <div class="home-section-item d-flex flex-column align-items-center justify-content-center">
             <h4 class="text-bold"><%= t "booked" %></h4>
             <p><%= t "booked_description" %></p>

@@ -138,6 +138,7 @@ en:
       discount: "↓"
       min: "Min. Spend $"
       expired: "Valid till "
+      used: "Used"
 
   tours:
     title: "All Available Tours Now"
@@ -257,6 +258,7 @@ en:
       delete_success: "Delete voucher successfully!"
       find_voucher_failed: "Cannot find voucher!"
       find_tour_failed: "Cannot find tour!"
+      used: "You used this voucher!"
     booking:
       create_success: "Booking was successfully created !"
       create_failed: "Creating a tour booking failed !"
@@ -268,6 +270,8 @@ en:
       not_allowed: "You are not allowed to booking, please login !"
       is_used: "Voucher is used!"
       access_denied: "You cannot access edit or update your booking because the status is confirmed/cancelled !"
+      cancel_success: "Booking was successfully cancelled!"
+      cancel_failed: "Booking was successfully failed!"
     review:
       create_failed: "Create review failed !"
       update_failed: "Review was updated failed !"

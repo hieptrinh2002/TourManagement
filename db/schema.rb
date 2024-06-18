@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_24_084331) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_18_062828) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -128,6 +128,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_084331) do
     t.index ["tour_type_id"], name: "index_tours_on_tour_type_id"
   end
 
+  create_table "user_vouchers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "voucher_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -153,7 +160,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_084331) do
     t.string "code"
     t.decimal "percent_discount", precision: 10
     t.decimal "min_total_price", precision: 10
-    t.boolean "is_used"
+    t.integer "used"
     t.integer "max_uses"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

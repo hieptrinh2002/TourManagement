@@ -11,6 +11,12 @@
         </span><%= t "%" %></span>
     </div>
     <span class="pt-2 choose-voucher-item-min"><%= t "bookings.new.min" %><%= voucher.min_total_price %></span>
+    <span class="pt-2 choose-voucher-item-min">
+      <%= t "bookings.new.used" %>
+      <%= voucher.used %>
+      <%= t "/" %>
+      <%= voucher.max_uses %>
+    </span>
     <span class="pt-2 choose-voucher-item-expiry"><%= t "bookings.new.expired" %><%= voucher.expiry_date %></span>
   </div>
 </div>

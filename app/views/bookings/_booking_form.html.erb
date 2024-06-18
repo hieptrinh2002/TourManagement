@@ -26,36 +26,6 @@
     </div>
   </div>
 
-  <hr>
-
-  <h4><%= t "flight_tickets" %></h4>
-
-  <div class="dropdown">
-    <button class="btn btn-outline-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      <%= t "filter_airlines" %>
-    </button>
-
-    <ul class="dropdown-menu">
-     <li class="px-2">
-        <%= link_to t("all"), new_tour_booking_path, data: { turbo_method: :get }, class: "dropdown-item" %>
-      </li>
-      <% get_all_airline_brand.each do |airline_brand| %>
-        <li><hr class="dropdown-divider"></li>
-
-        <li class="px-2">
-            <%= link_to airline_brand,
-                        new_tour_booking_path(airline_brand: airline_brand),
-                        class: "dropdown-item"
-            %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-
-  <%= render "available_flight", flights: @available_flights %>
-
-  <%== pagy_nav(@pagy) %>
-
   <hr class="mt-4">
 
   <h4 class="mt-4"><%= t "choose_voucher" %></h4>

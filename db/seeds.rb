@@ -82,8 +82,8 @@ User.create!(role: 0, first_name:"User", last_name:"Trinh",
     code:  Faker::Alphanumeric.alpha(number: 6),
     min_total_price: Faker::Number.decimal(l_digits: 3, r_digits: 3),
     percent_discount: Faker::Number.decimal(l_digits: 2, r_digits: 2),
-    max_uses: Faker::Number.between(from: 10, to: 300),
-    is_used: [true, false].sample
+    max_uses: Faker::Number.between(from: 50, to: 100),
+    used: Faker::Number.between(from: 4, to: 40)
   )
 end
 
