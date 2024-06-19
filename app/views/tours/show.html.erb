@@ -20,6 +20,16 @@
       <%= @tour.price %>
     </span>
     <span>
+      <b><%= t "tours.details.deposit_percent" %></b>
+      <%= t "tours.details.deposit_percent_value", value: @tour.deposit_percent %>
+    </span>
+    <span>
+      <b><%= t "tours.details.min_guests" %></b>
+      <%= @tour.min_guests %>
+      <b><%= t "tours.details.max_guests" %></b>
+      <%= pluralize @tour.max_guests, t("tours.guest", count: @tour.max_guests) %>
+    </span>
+    <span>
       <b><%= t "tours.details.duration" %></b>
       <%= pluralize @tour.day_duration, t("tours.day", count: @tour.day_duration) %>
     </span>

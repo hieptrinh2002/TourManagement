@@ -14,18 +14,18 @@
         <p>$<span class="text-muted" id="tour-price-id"><%= @tour.price %></span></p>
       </li>
 
-     <div>
-        <li class="py-2 list-group-item d-flex justify-content-between bg-light">
-          <div class="text-success">
-            <h6 class="my-0"><%= t "flight_tickets" %></h6>
-            <small class="checkout-total-guest">
-              <%= t "number" %> <small id="number-ticket-id"><%= Settings.digit_0 %></small>
-            </small>
-          </div>
-          <p>$<span class="text-success" id="total-ticket-price-id"><%= Settings.digit_0 %></span>
-          </p>
-        </li>
-      </div>
+      <li class="py-2 list-group-item d-flex justify-content-between lh-condensed bg-light">
+        <div>
+          <h6 class="my-0"><%= t "bookings.deposit" %></h6>
+          <span class="deposit-percent d-none">
+            <%= @tour.deposit_percent %>
+          </span>
+          <small class="text-muted">
+            <%= t "tours.details.deposit_percent_value", value: @tour.deposit_percent %>
+          </small>
+        </div>
+        <p>$<span class="text-muted deposit" id="tour-price-id"></span></p>
+      </li>
 
       <li class="pt-2 list-group-item d-flex justify-content-between bg-light">
         <div class="text-success">
