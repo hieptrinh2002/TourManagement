@@ -21,11 +21,9 @@ class Tour < ApplicationRecord
     max_duration
     min_price
     max_price
-  ).freeze
-
-  OPTION_ATTRIBUTES = %i(
-    tour_type_id
     city
+    tour_type_id
+    status
   ).freeze
 
   enum status: {not_yet_active: 0, active: 1, removed: 2}
@@ -96,8 +94,13 @@ class Tour < ApplicationRecord
     Settings.tour.search.start_date)
   }
   scope :by_tour_type_id, lambda {|tour_type_id|
-    where("tour_type_id = ?", tour_type_id) if tour_type_id.present?
+    return if tour_type_id.to_i == 1 || tour_type_id.blank?
+
+    where("tour_type_id = ?", tour_type_id)
   }
+  scope :by_status, (lambda do |statuses|
+    where(status: statuses) if statuses.present?
+  end)
 
   private
 

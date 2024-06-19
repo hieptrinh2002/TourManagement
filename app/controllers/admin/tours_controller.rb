@@ -1,7 +1,7 @@
 class Admin::ToursController < Admin::AdminController
   include Admin::ToursHelper
   before_action :set_breadcrumbs
-  before_action :set_tour, only: %i(show edit update destroy remove_image)
+  before_action :set_tour, only: %i(show edit update remove_image)
   before_action :set_uploaded_images, only: %i(create update resize_before_save)
   before_action :resize_before_save, only: %i(create update)
 
@@ -55,8 +55,6 @@ class Admin::ToursController < Admin::AdminController
       render :edit, status: :unprocessable_entity
     end
   end
-
-  def destroy; end
 
   def remove_image
     image = @tour.images.find(params[:image_id])

@@ -155,6 +155,7 @@ vi:
     tour_type: "Loại tour"
     guest: "khách"
     status: "Trạng thái"
+    choose_status: "Trạng thái tour"
     created_at: "Tạo lúc"
     start: "Bắt đầu"
     description: "Môn tả"
@@ -187,8 +188,13 @@ vi:
       tag: "#"
       back: "<< Quay về trang tours"
       relevant: "Các tour liên quan"
+      status_noti: "Hiện tour này"
     carousel_next: "Sau >>"
     carousel_prev: "<< Trước"
+    status:
+      not_yet_active: "Chưa sẵn sàng"
+      active: "Sẵn sàng"
+      removed: "Đã bị gỡ"
 
   errors:
     end_day_start_date: "Ngày kết thúc phải lơn hơn ngày bắt đầu"
@@ -250,6 +256,7 @@ vi:
       invalid_image: "Đã có lỗi với file ảnh %{image_name} !"
       find_tour_failed: "Không thể tìm được tour!"
       invalid_update: "Bạn không thể cập nhật tour này ở thời điểm hiện tại vì đang có đặt tour !"
+      cannot_book: "Không thể book tour đó vào thời điểm hiện tại!"
     booking:
       create_success: "Booking đã được tạo thành công !"
       create_failed: "Tạo booking không thành công !"

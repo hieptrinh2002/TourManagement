@@ -30,7 +30,5 @@ class ToursController < ApplicationController
     Tour::SEARCH_ATTRIBUTES.each do |field|
       @tours = @tours.public_send "by_#{field}", params[field]
     end
-    @tours = @tours.by_city(params[:city])
-                   .or(@tours.by_tour_type_id(params[:tour_type_id]))
   end
 end

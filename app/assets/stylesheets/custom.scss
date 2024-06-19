@@ -385,6 +385,13 @@ a {
     padding: 4px;
     width: fit-content;
   }
+
+  &-status {
+    width: fit-content;
+    background-color: #ddd;
+    font-weight: bold;
+    border-radius: 10px;
+  }
 }
 
 .rev {

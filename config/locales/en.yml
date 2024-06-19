@@ -151,6 +151,7 @@ en:
     city: "City"
     tour_destination: "Destination"
     price: "Price"
+    choose_status: "Tours' Statuses"
     start_date: "Start date"
     guest: "guest"
     end_date: "End date"
@@ -188,8 +189,13 @@ en:
       status: "Status:"
       min_guests: "Tour is for between "
       max_guests: " and "
+      status_noti: "This tour now is "
     carousel_next: "Next >>"
     carousel_prev: "<< Prev"
+    status:
+      not_yet_active: "Not yet active"
+      active: "Active"
+      removed: "Removed"
 
   vouchers:
     details: "Voucher Details"
@@ -247,6 +253,7 @@ en:
       invalid_image: "Error with %{image_name} file!"
       find_tour_failed: "Cannot find tour!"
       invalid_update: "You can't update this tour at this time because the booking is pending or previously confirmed !"
+      cannot_book: "Cannot book this tour now!"
     voucher:
       create_success: "Voucher was successfully created!"
       wrong_expiry_date: "must be after today!"
