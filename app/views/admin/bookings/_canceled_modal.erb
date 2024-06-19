@@ -1,0 +1,26 @@
+<div class="modal fade" id="modal-dialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="exampleModalLabel"><%= t "confirm_info" %></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <%= form_with(model: @booking, url: admin_booking_path, method: :patch) do |form| %>
+        <div class="modal-body">
+          <%= form.hidden_field :status, value: :cancelled %>
+          <%= form.label :canceled_reason, class:"fw-bold mb-3" %>
+          <small class="text-danger fw-bold">*</small>
+          <%= form.text_area :canceled_reason, class: "form-control py-3", required: true %>
+          <p class="text-danger my-3"><%= t("bookings.cancel_confirmation") %></p>
+          <%= form.hidden_field :cancellation_date, value: Time.zone.now %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            <%= t "close" %>
+          </button>
+          <%= form.submit t("confirm_btn"), class: "btn btn-danger" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -78,9 +78,14 @@
 
 <div class="container my-5">
   <h5><%= t "review" %></h5>
-  <%= render "reviews/form", review: @tour.reviews.build, tour: @tour %>
+  <div class="card col-10 my-4" style="background-color: #fffbf8">
+    <%= render "total_rating" , tour: @tour %>
+  </div>
+  <% if logged_in? %>
+    <%= render "reviews/form", review: @tour.reviews.build, tour: @tour %>
+  <% end %>
 </div>
 
-<div id="reviews" class="my-5">
+<div id="reviews" class="my-3">
   <%= render partial: "reviews/review", collection: @reviews %>
 </div>

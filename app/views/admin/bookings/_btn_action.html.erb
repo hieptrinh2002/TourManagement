@@ -1,0 +1,9 @@
+<% if @booking.pending? %>
+  <%= form_with(model: @booking, url: admin_booking_path, method: :patch,
+                data: { turbo_confirm: t("confirm.confirm_mess") }) do |form| %>
+    <%= form.hidden_field :status, value: :confirmed %>
+    <%= form.hidden_field :confirmed_date, value: Time.zone.now %>
+    <%= form.submit t("bookings.confirm_booking_btn"), class: "btn btn-success me-3" %>
+  <% end %>
+  <button id="showModalButton" class="btn btn-danger"><%= t "bookings.cancel_booking_btn" %></button>
+<% end %>

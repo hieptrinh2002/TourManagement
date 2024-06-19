@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   include SessionsHelper
   include VouchersHelper
+  include BookingsHelper
+
   before_action :set_locale
   helper_method :breadcrumbs
 

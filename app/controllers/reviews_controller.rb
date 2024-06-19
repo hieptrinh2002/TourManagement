@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    if booking_exists_for_user_and_tour?
+    if booking_exists_for_user_and_tour? current_user, @tour
       if @review.save
         redirect_to tour_path(@tour)
       else
@@ -58,16 +58,5 @@ class ReviewsController < ApplicationController
 
     flash[:danger] = t "flash.tour.find_tour_failed"
     redirect_to tours_path
-  end
-
-  def booking_exists_for_user_and_tour?
-    bookings = Booking.for_tour(@tour.id)
-                      .belongs_to_user(current_user.id)
-    return false if bookings.blank?
-
-    bookings.any? do |booking|
-      booking.confirmed? &&
-        booking.started_date < Time.zone.now
-    end
   end
 end

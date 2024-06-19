@@ -11,6 +11,13 @@ class Booking < ApplicationRecord
     deposit
   ).freeze
 
+  UPDATE_ATTRIBUTES = %i(
+    status
+    canceled_reason
+    cancellation_date
+    confirmed_date
+  ).freeze
+
   scope :ordered_by_status, ->{order(status: :asc)}
   scope :ordered_by_created_at, ->{order(created_at: :desc)}
   enum status: {pending: 0, confirmed: 1, cancelled: 2, cancelled_by_user: 3}
@@ -55,6 +62,13 @@ class Booking < ApplicationRecord
 
   scope :for_tour, (lambda do |tour_id|
     where(tour_id:) if tour_id.present?
+  end)
+
+  scope :confirmed, (lambda do
+    where(status: "confirmed")
+  end)
+  scope :started_before_now, (lambda do
+    where("started_date < ?", Time.zone.now)
   end)
 
   accepts_nested_attributes_for :flight_ticket

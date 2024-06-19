@@ -5,7 +5,9 @@ digit_3: 3
 digit_5: 5
 digit_6: 6
 digit_1: 1
+digit_2: 2
 digit_100: 100
+invalid_star_num: 0
 
 star_range: 1..5
 confirmed_status: "confirmed"

@@ -1,32 +1,30 @@
-<% if logged_in? %>
-  <div class="col-10">
-    <div class="d-flex flex-start w-100">
-      <div class="w-100">
-        <%= form_with(model: [tour, review]) do |f| %>
-          <div class="d-flex align-items-center">
-            <div class="star-rating">
-              <%= f.hidden_field :rating, value: Settings.digit_5, id: "rating-field" %>
-              <% for i in eval(Settings.star_range) %>
-                <span class="star text-warning" data-value="<%= i %>">
-                  <i class="fa fa-star"></i>
-                </span>
-              <% end %>
-            </div>
+<div class="col-10">
+  <div class="d-flex flex-start w-100">
+    <div class="w-100">
+      <%= form_with(model: [tour, review]) do |f| %>
+        <div class="d-flex align-items-center">
+          <div class="star-rating">
+            <%= f.hidden_field :rating, value: Settings.digit_5, id: "rating-field" %>
+            <% for i in eval(Settings.star_range) %>
+              <span class="star text-warning" data-value="<%= i %>">
+                <i class="fa fa-star"></i>
+              </span>
+            <% end %>
           </div>
-          <div data-mdb-input-init class="form-outline">
-            <%= f.text_area :comment, class: "form-control", id: "textAreaExample",
-                rows: Settings.digit_3, placeholder: t("review_placeholder") %>
-          </div>
-
-          <%= f.hidden_field :tour_id %>
-          <%= f.hidden_field :user_id, value: current_user&.id %>
-
-          <div class="d-flex justify-content-end my-2">
-            <%= f.submit t("review"), class: "btn btn-primary" %>
-          </div>
-        <% end %>
         </div>
+        <div data-mdb-input-init class="form-outline">
+          <%= f.text_area :comment, class: "form-control", id: "textAreaExample",
+              rows: Settings.digit_3, placeholder: t("review_placeholder") %>
+        </div>
+
+        <%= f.hidden_field :tour_id %>
+        <%= f.hidden_field :user_id, value: current_user&.id %>
+
+        <div class="d-flex justify-content-end my-2">
+          <%= f.submit t("review"), class: "btn btn-primary" %>
+        </div>
+      <% end %>
       </div>
     </div>
   </div>
-<% end %>
+</div>
