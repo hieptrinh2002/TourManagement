@@ -1,12 +1,9 @@
 all_tour = TourType.create(type_name: "All Tour", ancestry: nil)
 
-beach_tour = TourType.create(type_name: "Beach Tour", ancestry: all_tour.id)
-mountain_tour = TourType.create(type_name: "Mountain Tour", ancestry: all_tour.id)
-
-TourType.create(type_name: "North Beach", ancestry: beach_tour.id)
-TourType.create(type_name: "South Beach", ancestry: beach_tour.id)
-TourType.create(type_name: "Lowland Mountain", ancestry: mountain_tour.id)
-TourType.create(type_name: "Highland Mountain", ancestry: mountain_tour.id)
+TourType.create(type_name: "North Beach", ancestry: all_tour.id)
+TourType.create(type_name: "South Beach", ancestry: all_tour.id)
+TourType.create(type_name: "Lowland Mountain", ancestry: all_tour.id)
+TourType.create(type_name: "Highland Mountain", ancestry: all_tour.id)
 
 30.times do |n|
 	tour_name = Faker::Address.state
@@ -17,7 +14,7 @@ TourType.create(type_name: "Highland Mountain", ancestry: mountain_tour.id)
   day_duration = Faker::Number.within(range: 1..29)
   start_date = Faker::Date.between(from: "2024-09-23", to: "2025-09-23")
   end_date = start_date + day_duration.days
-  tour_type_id = Faker::Number.within(range: 3..6)
+  tour_type_id = Faker::Number.within(range: 2..5)
   min_guests = 5
   max_guests = Faker::Number.within(range: 11..50)
   deposit_percent = Faker::Number.between(from: 1.0, to: 99.9)

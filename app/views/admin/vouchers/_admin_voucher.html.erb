@@ -10,9 +10,7 @@
     form: {data: {turbo_confirm: t("confirm.delete_confirmation")}} %>
   </td>
   <td>
-    <% if voucher.is_used %>
-      <%= t "vouchers.is_used" %>
-    <% elsif voucher.is_expired? %>
+    <% if voucher.is_expired? %>
       <%= t "vouchers.expired" %>
     <% end %>
   </td>

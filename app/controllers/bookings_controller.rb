@@ -6,18 +6,12 @@ class BookingsController < ApplicationController
   before_action :get_current_user_used_voucher_ids, only: %i(new create)
 
   def new
-    @booking = current_user.bookings.build tour_id: @tour.id
+    redirect_to tours_path unless booking_active?
 
-    flights_scope = Flight.departing_on(@tour.start_date)
-                          .arriving_at(@tour.city)
-                          .order_by_brand
-
-    if params[:airline_brand].present?
-      flights_scope = flights_scope.airline_brand(params[:airline_brand])
-    end
-
-    @pagy, @available_flights = pagy(flights_scope, items: Settings.digit_4)
-    @available_vouchers = get_available_vouchers @tour.price
+    @booking = current_user.bookings.build(tour_id: @tour.id)
+    @available_flights, @pagy = pagy(fetch_available_flights,
+                                     items: Settings.digit_4)
+    @available_vouchers = get_available_vouchers(@tour.price)
   end
 
   def create
@@ -64,6 +58,27 @@ class BookingsController < ApplicationController
   end
 
   private
+
+  def booking_active?
+    unless @tour.active?
+      flash[:danger] = t "flash.tour.cannot_book"
+      return false
+    end
+
+    true
+  end
+
+  def fetch_available_flights
+    flights_scope = Flight.departing_on(@tour.start_date)
+                          .arriving_at(@tour.city)
+                          .order_by_brand
+
+    if params[:airline_brand].present?
+      flights_scope = flights_scope.airline_brand params[:airline_brand]
+    end
+
+    flights_scope
+  end
 
   def check_status
     return if @booking.pending?

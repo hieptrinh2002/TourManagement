@@ -45,7 +45,14 @@
         <%= @tour.tour_type.type_name %>
       </span>
     </div>
-    <%= link_to t("book_tour_icon"), new_tour_booking_path(@tour), class: "btn btn-primary" %>
+    <% if @tour.active? %>
+      <%= link_to t("book_tour_icon"), new_tour_booking_path(@tour), class: "btn btn-primary" %>
+    <% else %>
+      <div class="p-2 tour-status">
+        <%= t "tours.details.status_noti" %>
+        <%= t "tours.status.#{@tour.status}" %>
+      </div>
+    <% end %>
   </div>
   <div class="col-4 col-lg-12 image-box">
     <% if @tour.images.present? %>
