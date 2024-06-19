@@ -6,12 +6,8 @@ class Admin::ToursController < Admin::AdminController
   before_action :resize_before_save, only: %i(create update)
 
   def index
-    tours = if params[:search].present?
-              search_tours(params[:search])
-            else
-              Tour.all
-            end
-    @pagy, @tours = pagy(tours.order_by_status,
+    tours = search_tours(params).order_by_status
+    @pagy, @tours = pagy(tours,
                          items: Settings.tour.items_per_page)
   end
 
@@ -128,9 +124,10 @@ class Admin::ToursController < Admin::AdminController
     end
   end
 
-  def search_tours search_term
-    Tour.by_name(search_term)
-        .or(Tour.by_city(search_term))
-        .or(Tour.by_destination(search_term))
+  def search_tours params
+    Tour.by_name(params[:keyword])
+        .or(Tour.by_city(params[:keyword]))
+        .or(Tour.by_destination(params[:keyword]))
+        .by_status(params[:status])
   end
 end

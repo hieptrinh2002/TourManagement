@@ -21,20 +21,20 @@
     <div class="col-md-4 py-2">
       <label class="form-label fw-bold d-block"><%= t "bookings.status" %></label>
       <div class="form-check form-check-inline">
-        <%= check_box_tag "status[]", 0, params[:status]&.include?("0"), class: "form-check-input" %>
+        <%= check_box_tag "status[]", "pending", params[:status]&.include?("pending"), class: "form-check-input" %>
         <%= label_tag "status_0", t("bookings.pending"), class: "form-check-label" %>
       </div>
       <div class="form-check form-check-inline">
-        <%= check_box_tag "status[]", 1, params[:status]&.include?("1"), class: "form-check-input" %>
+        <%= check_box_tag "status[]", "confirmed", params[:status]&.include?("confirmed"), class: "form-check-input" %>
         <%= label_tag "status_1", t("bookings.confirmed"), class: "form-check-label" %>
       </div>
       <div class="form-check form-check-inline">
-        <%= check_box_tag "status[]", 2, params[:status]&.include?("2"), class: "form-check-input" %>
+        <%= check_box_tag "status[]", "cancelled", params[:status]&.include?("cancelled"), class: "form-check-input" %>
         <%= label_tag "status_2", t("bookings.cancelled"), class: "form-check-label" %>
       </div>
-      <div class="form-check form-check-inline">
+       <div class="form-check form-check-inline mt-2">
         <%= check_box_tag "status[]", "cancelled_by_user", params[:status]&.include?("cancelled_by_user"), class: "form-check-input" %>
-        <%= label_tag "status_cancelled", t("bookings.cancelled_by_user"), class: "form-check-label" %>
+        <%= label_tag "status_3", t("bookings.cancelled_by_user"), class: "form-check-label" %>
       </div>
     </div>
     <div class="col-md-2 mt-5">

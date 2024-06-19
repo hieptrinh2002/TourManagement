@@ -17,4 +17,15 @@ module BookingsHelper
   def get_all_airline_brand
     Flight.distinct.pluck(:airline_brand)
   end
+
+  def booking_exists_for_user_and_tour? user, tour
+    return false if user.blank? || tour.blank?
+
+    bookings = Booking.for_tour(tour.id)
+                      .belongs_to_user(user.id)
+                      .confirmed
+                      .started_before_now
+
+    bookings.any?
+  end
 end

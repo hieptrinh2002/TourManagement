@@ -96,8 +96,8 @@ vi:
   Deposit: "Đặt cọc"
   min_guest: "Sô khách tối thiểu"
   max_guest: "Số khác tối đa"
-  deposit_percent: "Phần trăm đặc cọc" 
-  
+  deposit_percent: "Phần trăm đặc cọc"
+
   confirm:
     delete_confirmation: "Bạn có chắc chắn muốn xóa ?"
     confirm_mess: "Bạn có chắc chắn muốn xác nhận ?"
@@ -134,8 +134,6 @@ vi:
     confirmed: "Đã xác nhận"
     cancelled: "Đã bị hủy"
     cancelled_by_user: "Đã hủy"
-    deposit: "Đặt cọc"
-    deposit_percent_value: "(%{value}%)"
     new:
       discount: "↓"
       min: "Ít nhất $"
@@ -223,6 +221,11 @@ vi:
         available: "Còn hạn"
         expired: "Hết hạn"
 
+  reviews:
+    all: "Tất Cả (%{count})"
+    stars: "%{stars} Sao (%{count})"
+    star: "%{stars} Sao (%{count})"
+
   flash:
     user:
       signup_success: "Tạo người dùng thành công !"
@@ -262,6 +265,8 @@ vi:
       access_denied: "Bạn không thể chỉnh sửa hoặc cập nhật đặt booking của mình vì trạng thái đã được xác nhận/hủy !"
       cancel_success: "Booking được hủy thành công!"
       cancel_failed: "Booking hủy thật bại!"
+      invalid_update: "Không thể cập nhật booking vì trạng thái đã được xác định !"
+
     voucher:
       create_success: "Tạo voucher thành công!"
       wrong_expiry_date: "phải sau ngày hôm nay!"

@@ -1,5 +1,4 @@
 class BookingsController < ApplicationController
-  include BookingsHelper
   before_action :authenticate_user!
   before_action :set_tour, only: %i(new create)
   before_action :get_booking, only: %i(show cancel edit update check_status)

@@ -63,6 +63,10 @@ class Tour < ApplicationRecord
 
   scope :order_by_status, ->{order status: :asc}
 
+  scope :by_status, (lambda do |statuses|
+    where(status: statuses) if statuses.present?
+  end)
+
   scope :by_name, lambda {|name|
     where("tour_name LIKE ?", "%#{sanitize_sql_like(name)}%") if name.present?
   }

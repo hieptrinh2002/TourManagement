@@ -57,8 +57,13 @@
                       <%= status_badge(@booking.status) %>
               </button>
             </div>
-
           </div>
+          <% if @booking.cancelled? %>
+            <div class="row mb-4">
+              <div class="col-md-5 fw-bold"><%= t "cancel_reason" %> :</div>
+              <div class="col-md-7 text-danger"><%= @booking.canceled_reason %></div>
+            </div>
+          <% end %>
           <div class="row mb-4">
             <div class="col-md-5 fw-bold"><%= t "bookings.created_at" %>:</div>
             <div class="col-md-7"><%= @booking.created_at.strftime(Settings.datime_format) %></div>
@@ -76,12 +81,8 @@
   </div>
   <div class="container">
     <div class="d-flex justify-content-end py-4">
-      <% if !@booking.confirmed? %>
-        <%= booking_button(t("confirm_btn"), t("confirm.confirm_mess"), :confirmed, "btn btn-success me-3") %>
-      <%end%>
-      <% if !@booking.cancelled? %>
-        <%= booking_button(t("cancel_btn"), t("confirm.cancel_confirmation"), :cancelled, "btn btn-danger") %>
-      <%end%>
+      <%= render "btn_action" %>
     </div>
   </div>
 </div>
+<%= render "canceled_modal" %>

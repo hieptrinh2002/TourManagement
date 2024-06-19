@@ -7,6 +7,9 @@ class ToursController < ApplicationController
                            items: Settings.tour.rev_tours_per_page)
 
     @reviews = @tour.reviews.order_by_create_at
+    return if params[:star].blank?
+
+    @reviews = @reviews.by_rating(params[:star])
   end
 
   def index

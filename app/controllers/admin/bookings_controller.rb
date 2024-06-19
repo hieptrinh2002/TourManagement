@@ -14,20 +14,25 @@ class Admin::BookingsController < Admin::AdminController
   def edit; end
 
   def update
-    new_status = params[:status]
-    if new_status.to_sym == :confirmed
-      @booking.update status: new_status,
-                      confirmed_date: current_time_formatted
-
-    elsif new_status.to_sym == :cancelled
-      @booking.update status: new_status,
-                      cancellation_date: current_time_formatted
+    if @booking.pending?
+      if @booking.update(booking_update_params)
+        flash[:success] = t "flash.booking.update_success"
+        redirect_to admin_bookings_path, status: :see_other
+      else
+        flash.now[:danger] = t "flash.booking.update_failed"
+        render :show, status: :unprocessable_entity
+      end
+    else
+      flash.now[:danger] = t "flash.booking.invalid_update"
+      render :show, status: :unprocessable_entity
     end
-    redirect_to admin_bookings_path
-    flash[:success] = t "flash.booking.update_success"
   end
 
   private
+
+  def booking_update_params
+    params.require(:booking).permit Booking::UPDATE_ATTRIBUTES
+  end
 
   def set_breadcrumbs
     add_breadcrumb(t("breadcrumb.home"), admin_path)
