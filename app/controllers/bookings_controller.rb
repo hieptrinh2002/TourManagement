@@ -54,7 +54,7 @@ class BookingsController < ApplicationController
 
   def cancel
     voucher = Voucher.find_by(code: @booking.voucher_code)
-    delete_user_voucher voucher
+    delete_user_voucher voucher if voucher.present?
     if @booking.update(status: :cancelled_by_user)
       flash[:success] = t "flash.booking.cancel_success"
       redirect_to root_path, status: :see_other
@@ -80,6 +80,23 @@ class BookingsController < ApplicationController
     return if @booking.voucher_code.blank?
 
     @voucher = Voucher.find_by(code: @booking.voucher_code)
+  end
+
+  def validate_guests_number
+    if @booking.number_of_guests < @tour.min_guests ||
+       @booking.number_of_guests > @tour.max_guests
+      flash[:danger] = t "flash.booking.invalid_guests"
+      return false
+    end
+
+    true
+  end
+
+  def validate_booking_date
+    return true if @booking.started_date >= Time.zone.now
+
+    flash[:danger] = t "flash.booking.invalid_start_date"
+    false
   end
 
   def validate_voucher code
@@ -120,14 +137,13 @@ class BookingsController < ApplicationController
   end
 
   def delete_user_voucher voucher
+    return if voucher.code.blank?
+
     voucher.update(used: voucher.used - 1) if voucher.present?
     user_voucher = UserVoucher.find_by(user: current_user, voucher:)
-    unless user_voucher.destroy
-      flash[:danger] = t "flash.voucher.delete_failed"
-      return false
-    end
+    return if user_voucher.destroy
 
-    true
+    flash[:danger] = t "flash.voucher.delete_failed"
   end
 
   def create_user_voucher voucher
@@ -135,6 +151,8 @@ class BookingsController < ApplicationController
   end
 
   def handle_booking
+    return false unless validate_guests_number && validate_booking_date
+
     if @booking.save
       flash[:success] = t "flash.booking.create_success"
       redirect_to user_booking_path(@booking.user, @booking)

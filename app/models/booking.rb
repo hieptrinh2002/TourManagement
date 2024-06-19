@@ -8,6 +8,7 @@ class Booking < ApplicationRecord
     started_date
     voucher_code
     total_price
+    deposit
   ).freeze
 
   scope :ordered_by_status, ->{order(status: :asc)}
@@ -74,6 +75,7 @@ class Booking < ApplicationRecord
   def calculate_total_price
     calculate_tour_price
     calculate_flight_ticket_price
+    calculate_deposit
     apply_voucher_discount
   end
 
@@ -95,5 +97,10 @@ class Booking < ApplicationRecord
 
     discount = 1 - voucher.percent_discount.to_f / 100
     self.total_price *= discount
+    self.deposit = [deposit, self.total_price].min
+  end
+
+  def calculate_deposit
+    self.deposit = self.total_price.to_f * (tour.deposit_percent.to_f / 100)
   end
 end

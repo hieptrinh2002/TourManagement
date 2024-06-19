@@ -18,6 +18,12 @@
             min: Settings.min_number_of_guests,
             max: Settings.max_number_of_guests
       %>
+      <small class="text-danger">
+        <%= t "tours.details.min_guests" %>
+        <%= @tour.min_guests %>
+        <%= t "tours.details.max_guests" %>
+        <%= pluralize @tour.max_guests, t("tours.guest", count: @tour.max_guests) %>
+    </small>
     </div>
 
     <div class="col mb-4">

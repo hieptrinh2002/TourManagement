@@ -12,6 +12,7 @@ en:
   account: "Account"
   profile: "Profile"
   logout: "Logout"
+  logo: "Logo"
   booked: "Booked Tours"
   view_tour_description: "You can see all available tours now!"
   booked_description: "Or you can review all tours you booked!"
@@ -134,6 +135,8 @@ en:
     confirmed: "Confirmed"
     cancelled: "Cancelled"
     cancelled_by_user: "Cancelled by user"
+    deposit: "Deposit"
+    deposit_percent_value: "(%{value}%)"
     new:
       discount: "↓"
       min: "Min. Spend $"
@@ -171,6 +174,7 @@ en:
       or: "Search by OR condition"
     details:
       self: "View"
+      deposit_percent: "Deposit percent: "
       address: "Address: "
       description: "Description: "
       price: "Price: $"
@@ -180,7 +184,10 @@ en:
       tag: "#"
       back: "<< Back to Tours Page"
       relevant: "Related Tours"
+      deposit_percent_value: "%{value}%"
       status: "Status:"
+      min_guests: "Tour is for between "
+      max_guests: " and "
     carousel_next: "Next >>"
     carousel_prev: "<< Prev"
 

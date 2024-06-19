@@ -12,6 +12,7 @@ vi:
   account: "Tài khoản"
   profile: "Hồ sơ"
   logout: "Đăng xuất"
+  logo: "Logo"
   booked: "Tour đã đặt"
   view_tour_description: "Bạn có thể xem tất cả các tour hiện tại"
   booked_description: "Hoặc bạn cũng có thể xem các tour đã đặt!"
@@ -95,9 +96,8 @@ vi:
   Deposit: "Đặt cọc"
   min_guest: "Sô khách tối thiểu"
   max_guest: "Số khác tối đa"
-  deposit_percent: "Phần trăm đặc cọc"
-
-
+  deposit_percent: "Phần trăm đặc cọc" 
+  
   confirm:
     delete_confirmation: "Bạn có chắc chắn muốn xóa ?"
     confirm_mess: "Bạn có chắc chắn muốn xác nhận ?"
@@ -134,6 +134,8 @@ vi:
     confirmed: "Đã xác nhận"
     cancelled: "Đã bị hủy"
     cancelled_by_user: "Đã hủy"
+    deposit: "Đặt cọc"
+    deposit_percent_value: "(%{value}%)"
     new:
       discount: "↓"
       min: "Ít nhất $"
@@ -174,11 +176,13 @@ vi:
       or: "Tìm kiếm các tour thỏa mãn ít nhất 1 điều kiện"
     details:
       self: "Xem"
+      deposit_percent: "Phần trăm đặt cọc: "
       address: "Địa chỉ: "
       description: "Mô tả: "
       price: "Chi phí: $"
       duration: "Thời lượng: "
       from: "Từ: "
+      deposit_percent_value: "%{value}%"
       to: "Đến: "
       tag: "#"
       back: "<< Quay về trang tours"

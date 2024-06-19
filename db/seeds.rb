@@ -81,7 +81,7 @@ User.create!(role: 0, first_name:"User", last_name:"Trinh",
     expiry_date: Faker::Date.between(from: "2024-07-23", to: "2025-09-23"),
     code:  Faker::Alphanumeric.alpha(number: 6),
     min_total_price: Faker::Number.decimal(l_digits: 3, r_digits: 3),
-    percent_discount: Faker::Number.decimal(l_digits: 2, r_digits: 2),
+    percent_discount: Faker::Number.between(from: 10, to: 30),
     max_uses: Faker::Number.between(from: 50, to: 100),
     used: Faker::Number.between(from: 4, to: 40)
   )

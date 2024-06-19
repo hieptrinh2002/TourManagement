@@ -52,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_18_062828) do
     t.string "voucher_code"
     t.datetime "cancellation_date"
     t.integer "status", default: 0
+    t.integer "deposit", default: 0
     t.string "canceled_reason"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
