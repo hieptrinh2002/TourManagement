@@ -1,0 +1,13 @@
+<h2><%= t "user_mailer.confirmation_instructions.subjec" %></h2>
+
+<p><%= t("user_mailer.confirmation_instructions.greeting", email: @email) %></p>
+
+<p><%= t "user_mailer.confirmation_instructions.instruction" %></p>
+
+<p><%= link_to t "user_mailer.confirmation_instructions.confirm_accoun", confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p><%= t "user_mailer.confirmation_instructions.ignor" %></p>
+
+<p><%= t "user_mailer.confirmation_instructions.closin" %></p>
+
+<p><%= t "user_mailer.confirmation_instructions.signature" %></p>

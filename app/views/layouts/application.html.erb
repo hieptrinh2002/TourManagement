@@ -43,13 +43,13 @@
                     <%= link_to t("booked"), current_user, class: "dropdown-item" %>
                   </li>
                   <li>
-                    <li><%= button_to t("logout"), logout_path, method: :delete, class: "dropdown-item" %></li>
+                   <li><%= button_to t("logout"), destroy_user_session_path, method: :delete ,class:"dropdown-item" %></li>
                   </li>
                 </ul>
               </div>
             <% else %>
-              <%= link_to t("register"), signup_path, class: "navbar-btn" %>
-              <%= link_to t("login"), login_path, class: "navbar-btn" %>
+              <%= link_to t("register"), new_user_registration_path, class: "navbar-btn" %>
+              <%= link_to t("login"), new_user_session_path, class: "navbar-btn" %>
             <% end %>
           </div>
         </div>

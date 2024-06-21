@@ -88,7 +88,7 @@
   <div class="card col-10 my-4" style="background-color: #fffbf8">
     <%= render "total_rating" , tour: @tour %>
   </div>
-  <% if logged_in? %>
+  <% if user_signed_in? %>
     <%= render "reviews/form", review: @tour.reviews.build, tour: @tour %>
   <% end %>
 </div>

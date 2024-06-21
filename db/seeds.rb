@@ -62,16 +62,14 @@ User.create!(role: 1, first_name:"Admin", last_name:"Trinh",
             date_of_birth: "2003-01-01",
             password: "123456",
             password_confirmation:"123456",
-            activated: true,
-            activated_at: Time.zone.now)
+            confirmed_at: Time.now)
 
 User.create!(role: 0, first_name:"User", last_name:"Trinh",
             email:"User@railstutorial.org", phone:"083504567", address:"HN",
             date_of_birth: "2003-01-01",
             password: "123456",
             password_confirmation:"123456",
-            activated: true,
-            activated_at: Time.zone.now)
+            confirmed_at: Time.now) # Để bỏ qua xác nhận email nếu sử dụng confirmable
 
 100.times do |n|
   Voucher.create!(
@@ -96,8 +94,7 @@ end
     date_of_birth: Faker::Date.between(from: '1980-01-01', to: '2003-12-31'),
     password: '123456',
     password_confirmation: '123456',
-    activated: true,
-    activated_at: Time.zone.now
+    confirmed_at: Time.now
   )
 end
 

@@ -1,19 +1,16 @@
 Rails.application.routes.draw do
-  get "sessions/new"
-  get "sessions/create"
-  get "sessions/destroy"
-  get "/login", to: "sessions#new"
-  post "/login", to: "sessions#create"
-  delete "/logout", to: "sessions#destroy"
-  get "/signup", to: "users#new"
-  post "/signup", to: "users#create"
+  devise_for :users, controllers:
+    {registrations: "users/registrations",
+      confirmations: "users/confirmations",
+      sessions: "users/sessions",
+      passwords: "users/passwords"}
 
   resources :users, only: %i(new create show) do
     resources :bookings do
       member do
         patch :cancel
       end
-    end    
+    end
   end
   resources :account_activations, only: :edit
 
