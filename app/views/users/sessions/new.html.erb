@@ -14,15 +14,17 @@
                 </div>
               </div>
             </div>
-            <%= form_with(url: login_path, scope: :session) do |f| %>
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
               <div class="row gy-3 gy-md-4 overflow-hidden">
                 <div class="col-12">
                   <%= f.label :email, "Email <span class='text-danger'>*</span>".html_safe, class: "form-label" %>
-                  <%= f.email_field :email, class: "form-control", id: "email", placeholder: "name@example.com", required: true %>
+                  <%= f.email_field :email, class: "form-control", id: "email", placeholder: "name@example.com",
+                      autofocus: true, autocomplete: "email", required: true %>
+
                 </div>
                 <div class="col-12">
                   <%= f.label :password, "Password <span class='text-danger'>*</span>".html_safe, class: "form-label" %>
-                  <%= f.password_field :password, class: "form-control", id: "password", required: true %>
+                  <%= f.password_field :password, class: "form-control", autocomplete: "current-password", required: true %>
                 </div>
                 <div class="col-12">
                   <div class="form-check">
@@ -32,20 +34,13 @@
                 </div>
                 <div class="col-12">
                   <div class="d-grid">
-                    <%= f.submit "Log in now", class: "btn bsb-btn-xl btn-primary" %>
+                    <%= f.submit t("log_in_now"), class: "btn bsb-btn-xl btn-primary" %>
                   </div>
                 </div>
               </div>
             <% end %>
-
-            <div class="row">
-              <div class="col-12">
-                <hr class="mt-5 mb-4 border-secondary-subtle">
-                <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-end">
-                  <%= link_to t("create_new_account"), signup_path, class: "link-secondary text-decoration-none" %>
-                  <a href="#!" class="link-secondary text-decoration-none"><%= t "forgot_password" %></a>
-                </div>
-              </div>
+            <div class="mt-2">
+              <%= render "users/shared/links" %>
             </div>
             <div class="row">
               <div class="col-12">

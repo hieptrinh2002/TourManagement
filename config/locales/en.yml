@@ -102,6 +102,20 @@ en:
   confirm_info: "Confirm information"
   cancel_reason: "Cancel reason"
 
+  resend_confirmation_instructions: "Resend confirmation instructions"
+  change_your_password: "Change your password"
+  change_my_password: "Change my password"
+  minimum_password_length: "(%{count} characters minimum)"
+  new_password: "New password"
+  confirm_new_password: "Confirm new password"
+  forgot_your_password: "Forgot your password ?"
+  send_me_reset_password_instructions: "Send me reset password instructions"
+  Log_in: "Log in"
+  dont_receive_confirmation_instructions_questions: "Didn't receive confirmation instructions?"
+  dont_receive_unlock_instructions: "Didn't receive unlocked instructions?"
+  sign_in_with: "Sign in with %{provider}"
+  log_in_now: "Log in now"
+
   confirm:
     delete_confirmation: "Are you sure you want to delete this item?"
     confirm_mess: "Are you sure you want to confirm?"
@@ -311,3 +325,30 @@ en:
     bookings: "Tour order"
     create_new: "Create new"
     vouchers: "Vouchers"
+
+
+  user_mailer:
+    confirmation_instructions:
+      subject: "Confirm your account"
+      greeting: "Hello %{email}!"
+      instructions: "Please click the link below to confirm your account:"
+      confirm_account: "Confirm account"
+      ignore: "If you did not request this confirmation, please ignore this email."
+      closing: "Best regards,"
+      signature: "Admin"
+
+    email_change:
+      greeting: "Hello %{email}!"
+      email_changed: "We're contacting you to notify you that your email has been changed to %{email}."
+      email_changing: "We're contacting you to notify you that your email is being changed to %{unconfirmed_email}."
+
+    password_change:
+      greeting: "Hello %{email}!"
+      password_changed: "We're contacting you to notify you that your password has been changed."
+
+    reset_password_instructions:
+      greeting: "Hello %{email}!"
+      instruction: "Someone has requested a link to change your password. You can do this through the link below."
+      change_password: "Change my password"
+      ignore_request: "If you didn't request this, please ignore this email."
+      note_password_change: "Your password won't change until you access the link above and create a new one."

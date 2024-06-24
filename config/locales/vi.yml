@@ -98,6 +98,21 @@ vi:
   max_guest: "Số khác tối đa"
   deposit_percent: "Phần trăm đặc cọc"
 
+  resend_confirmation_instructions: "Gửi lại hướng dẫn xác nhận"
+  change_your_password: "Thay đổi mật khẩu của bạn"
+  change_my_password: "Thay đổi mật khẩu của tôi"
+  minimum_password_length: "(ngắn nhất %{count} kí tự)"
+  new_password: "Password mới"
+  confirm_new_password: "Xác nhận mật khẩu mới"
+  forgot_your_password: "Quên mật khẩu của bạn"
+  send_me_reset_password_instructions: "Gửi tôi hướng dẫn đặt lại mật khẩu"
+  log_in: "Đăng nhập"
+  dont_receive_confirmation_instructions_questions: "Không nhận được hướng dẫn xác nhận?"
+  dont_receive_unlock_instructions: "Không nhận được hướng dẫn mở khóa?"
+  sign_in_with: "Đăng nhập bằng %{provider}"
+  log_in_now: "Đăng nhập ngay"
+
+
   confirm:
     delete_confirmation: "Bạn có chắc chắn muốn xóa ?"
     confirm_mess: "Bạn có chắc chắn muốn xác nhận ?"
@@ -297,3 +312,47 @@ vi:
     bookings: "Danh sách đặt tour"
     create_new: "Create new"
     vouchers: "khuyến mãi"
+
+
+  user_mailer:
+    confirmation_instructions:
+      subject: "Xác nhận tài khoản của bạn"
+      greeting: "Xin chào %{email}!"
+      instructions: "Bạn vui lòng nhấn vào đường dẫn dưới đây để xác nhận tài khoản của mình:"
+      confirm_account: "Xác nhận tài khoản"
+      ignore: "Nếu bạn không yêu cầu xác nhận tài khoản này, xin vui lòng bỏ qua email này."
+      closing: "Trân trọng,"
+      signature: "Admin"
+
+    email_change:
+      greeting: "Xin chào %{email}!"
+      email_changed: "Chúng tôi liên hệ để thông báo rằng email của bạn đã được thay đổi thành %{email}."
+      email_changing: "Chúng tôi liên hệ để thông báo rằng email của bạn đang được thay đổi thành %{unconfirmed_email}."
+    password_change:
+      greeting: "Xin chào %{email}!"
+      password_changed: "Chúng tôi liên hệ để thông báo rằng mật khẩu của bạn đã được thay đổi."
+
+    reset_password_instructions:
+      greeting: "Xin chào %{email}!"
+      instruction: "Bạn đã yêu cầu một liên kết để thay đổi mật khẩu của bạn. Bạn có thể thực hiện điều này thông qua liên kết dưới đây."
+      change_password: "Thay đổi mật khẩu của tôi"
+      ignore_request: "Nếu bạn không yêu cầu điều này, xin vui lòng bỏ qua email này."
+      note_password_change: "Mật khẩu của bạn sẽ không thay đổi cho đến khi bạn truy cập vào liên kết trên và tạo mật khẩu mới."
+
+
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "không được để trống"
+              too_short: "quá ngắn"
+              invalid: "không hợp lệ"
+            password:
+              blank: "Mật khẩu không được để trống"
+              too_short: "Mật khẩu quá ngắn"
+            first_name:
+              blank: "Không được để trống"
+            last_name:
+              blank: "Không được để trống"
