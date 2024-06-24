@@ -1,9 +1,9 @@
 class BookingsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_tour, only: %i(new create)
   before_action :get_booking, only: %i(show cancel edit update check_status)
   before_action :check_status, only: %i(edit update)
   before_action :get_current_user_used_voucher_ids, only: %i(new create)
+  load_and_authorize_resource
 
   def new
     redirect_to tours_path unless booking_active?
@@ -12,6 +12,7 @@ class BookingsController < ApplicationController
     @available_flights, @pagy = pagy(fetch_available_flights,
                                      items: Settings.digit_4)
     @available_vouchers = get_available_vouchers(@tour.price)
+    redirect_to tours_path unless booking_active?
   end
 
   def create
@@ -60,24 +61,17 @@ class BookingsController < ApplicationController
   private
 
   def booking_active?
-    unless @tour.active?
-      flash[:danger] = t "flash.tour.cannot_book"
-      return false
-    end
+    return true if @tour.active?
 
-    true
+    flash[:danger] = t "flash.tour.cannot_book"
+    false
   end
 
   def fetch_available_flights
-    flights_scope = Flight.departing_on(@tour.start_date)
-                          .arriving_at(@tour.city)
-                          .order_by_brand
-
-    if params[:airline_brand].present?
-      flights_scope = flights_scope.airline_brand params[:airline_brand]
-    end
-
-    flights_scope
+    Flight.departing_on(@tour.start_date)
+          .arriving_at(@tour.city)
+          .order_by_brand
+          .airline_brand(params[:airline_brand])
   end
 
   def check_status
@@ -97,13 +91,11 @@ class BookingsController < ApplicationController
   end
 
   def validate_guests_number
-    if @booking.number_of_guests < @tour.min_guests ||
-       @booking.number_of_guests > @tour.max_guests
-      flash[:danger] = t "flash.booking.invalid_guests"
-      return false
-    end
+    return true if @booking.number_of_guests >= @tour.min_guests &&
+                   @booking.number_of_guests > @tour.max_guests
 
-    true
+    flash[:danger] = t "flash.booking.invalid_guests"
+    false
   end
 
   def validate_booking_date
@@ -115,14 +107,11 @@ class BookingsController < ApplicationController
 
   def validate_voucher code
     voucher = Voucher.find_by(code:)
-    return true if voucher.blank?
+    return true if voucher.blank? ||
+                   voucher.is_available?(@tour.price)
 
-    unless voucher.is_available? @tour.price
-      flash[:danger] = t("flash.booking.voucher_unavailable")
-      return false
-    end
-
-    true
+    flash[:danger] = t("flash.booking.voucher_unavailable")
+    false
   end
 
   def update_voucher_usage voucher

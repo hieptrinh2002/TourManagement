@@ -53,11 +53,4 @@ module SessionsHelper
   def can_destroy_user? user
     current_user.role == Settings.ADMIN && !current_user?(user)
   end
-
-  def authenticate_user!
-    return if logged_in?
-
-    flash[:danger] = t "flash.booking.not_allowed"
-    redirect_to login_path
-  end
 end

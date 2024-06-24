@@ -1,7 +1,8 @@
 class ReviewsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_tour, only: %i(create update destroy)
   before_action :set_review, only: %i(update destroy)
+  load_and_authorize_resource
+
   def new; end
 
   def edit; end

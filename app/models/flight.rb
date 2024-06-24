@@ -18,7 +18,9 @@ class Flight < ApplicationRecord
   # Scope to retrieve flights to a city destination
   scope :arriving_at, ->(city){where(destination: city)}
 
-  scope :airline_brand, ->(brand){where(airline_brand: brand)}
+  scope :airline_brand, (lambda do |brand|
+    where(airline_brand: brand) if airline_brand.present?
+  end)
 
   scope :order_by_brand, ->{order(airline_brand: :asc)}
 end

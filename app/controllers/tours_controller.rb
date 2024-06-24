@@ -1,5 +1,6 @@
 class ToursController < ApplicationController
   before_action :tour, only: :show
+  load_and_authorize_resource
 
   def show
     @relevant_pagy,
