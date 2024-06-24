@@ -61,6 +61,12 @@ gem "ransack"
 
 gem "devise"
 
+gem "omniauth"
+
+gem "omniauth-google-oauth2"
+
+gem "omniauth-rails_csrf_protection", "~> 1.0"
+
 group :development, :test do
   gem "debug", platforms: %i(mri mingw x64_mingw)
   gem "pry-rails"

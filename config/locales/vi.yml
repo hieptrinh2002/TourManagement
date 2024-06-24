@@ -111,6 +111,9 @@ vi:
   dont_receive_unlock_instructions: "Không nhận được hướng dẫn mở khóa?"
   sign_in_with: "Đăng nhập bằng %{provider}"
   log_in_now: "Đăng nhập ngay"
+  login_with_google: "Đăng nhập với google"
+  resend_unlock_instructions: "Gửi lại hướng dẫn mở khóa tài khoản"
+
 
 
   confirm:
@@ -339,8 +342,37 @@ vi:
       ignore_request: "Nếu bạn không yêu cầu điều này, xin vui lòng bỏ qua email này."
       note_password_change: "Mật khẩu của bạn sẽ không thay đổi cho đến khi bạn truy cập vào liên kết trên và tạo mật khẩu mới."
 
+    account_locked:
+      greeting: "Xin chào %{email}!"
+      message: "Tài khoản của bạn đã bị khóa do số lần đăng nhập không thành công quá nhiều."
+      instructions: "Nhấp vào liên kết bên dưới để mở khóa tài khoản của bạn:"
+      unlock_link: "Mở khóa tài khoản của tôi"
 
   activerecord:
+    models:
+      user: "Người dùng"
+    attributes:
+      user:
+        first_name: "Tên"
+        last_name: "Họ"
+        email: "Email"
+        phone: "Số điện thoại"
+        address: "Địa chỉ"
+        date_of_birth: "Ngày sinh"
+        role: "Vai trò"
+        created_at: "Ngày tạo"
+        updated_at: "Ngày cập nhật"
+        encrypted_password: "Mật khẩu mã hóa"
+        reset_password_token: "Mã đặt lại mật khẩu"
+        reset_password_sent_at: "Thời gian gửi mã đặt lại mật khẩu"
+        remember_created_at: "Thời gian nhớ đăng nhập"
+        confirmation_token: "Mã xác nhận"
+        confirmed_at: "Thời gian xác nhận"
+        confirmation_sent_at: "Thời gian gửi mã xác nhận"
+        unconfirmed_email: "Email chưa xác nhận"
+        failed_attempts: "Số lần đăng nhập thất bại"
+        unlock_token: "Mã mở khóa"
+        locked_at: "Thời gian khóa"
     errors:
       models:
         user:
@@ -349,10 +381,21 @@ vi:
               blank: "không được để trống"
               too_short: "quá ngắn"
               invalid: "không hợp lệ"
+            phone:
+              blank: "Số điện thoại không được để trống"
+              invalid: "Số điện thoại không hợp lệ"
             password:
               blank: "Mật khẩu không được để trống"
               too_short: "Mật khẩu quá ngắn"
+              blank: "Không thể để trống mật khẩu"
+              confirmation: "Mật khẩu không khớp"
             first_name:
               blank: "Không được để trống"
             last_name:
               blank: "Không được để trống"
+            unlock_token:
+              blank: "Không thể để trống mã mở khóa"
+            reset_password_token:
+              blank: "Mã đặt lại mật khẩu không được để trống"
+            confirmation_token:
+              blank: "Mã xác nhận không được để trống"

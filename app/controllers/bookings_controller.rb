@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_tour, only: %i(new create)
   before_action :get_booking, only: %i(show cancel edit update check_status)
   before_action :check_status, only: %i(edit update)
@@ -69,7 +70,6 @@ class BookingsController < ApplicationController
     Flight.departing_on(@tour.start_date)
           .arriving_at(@tour.city)
           .order_by_brand
-          .airline_brand(params[:airline_brand])
   end
 
   def check_status
