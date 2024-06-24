@@ -1,43 +1,33 @@
 <div class="booking-form">
-  <%= form_tag(user_path(@user), method: :get) do |f| %>
+  <%= search_form_for @q, url: user_path(@user), method: :get do |f| %>
     <div class="row">
       <div class="col-12 col-lg-6 mt-2">
-        <%= text_field_tag :tour_name, params[:tour_name], class: "form-control", placeholder: t("bookings.tour_name") %>
+        <%= f.search_field :tour_tour_name_cont, class: "form-control", placeholder: t("bookings.tour_name") %>
       </div>
       <div class="col-12 col-md-4 col-lg-2 mt-2">
-        <%= number_field_tag :guests, params[:guests], class: "form-control", placeholder: t("bookings.number_of_guests") %>
+        <%= f.number_field :number_of_guests_gteq, class: "form-control", placeholder: t("bookings.number_of_guests") %>
       </div>
       <div class="col-12 col-md-4 col-lg-2 mt-2">
-        <%= number_field_tag :total_price, params[:total_price], class: "form-control", placeholder: t("bookings.total_price") %>
+        <%= f.number_field :total_price_gteq, class: "form-control", placeholder: t("bookings.total_price") %>
       </div>
       <div class="col-12 col-md-4 col-lg-2 mt-2">
-        <%= date_field_tag :started_date, params[:started_date], class: "form-control", placeholder: t("bookings.started_date") %>
+        <%= f.date_field :started_date_gteq, class: "form-control", placeholder: t("bookings.started_date") %>
       </div>
     </div>
     <div class="row mt-4 mb-2">
       <div class="d-flex gap-4 booking-status justify-content-center align-items-center">
         <%= t "bookings.choose_status" %>
-        <div class="d-flex gap-2">
-          <%= check_box_tag "status[]", "pending", params[:status]&.include?("pending") %>
-          <%= label_tag "status_pending", t("bookings.pending") %>
-        </div>
-        <div class="d-flex gap-2">
-          <%= check_box_tag "status[]", "confirmed", params[:status]&.include?("confirmed") %>
-          <%= label_tag "status_confirmed", t("bookings.confirmed") %>
-        </div>
-        <div class="d-flex gap-2">
-          <%= check_box_tag "status[]", "cancelled", params[:status]&.include?("cancelled") %>
-          <%= label_tag "status_cancelled", t("bookings.cancelled") %>
-        </div>
-        <div class="d-flex gap-2">
-          <%= check_box_tag "status[]", "cancelled_by_user", params[:status]&.include?("cancelled_by_user") %>
-          <%= label_tag "status_cancelled", t("bookings.cancelled_by_user") %>
-        </div> 
+        <% Booking.statuses.each do |status, _value| %>
+          <div class="d-flex gap-2">
+            <%= f.check_box :status_in, { multiple: true }, status, nil %>
+            <%= f.label :status_in, t("bookings.#{status}"), value: status %>
+          </div>
+        <% end %>
       </div>      
     </div>
     <div class="row mb-4 mt-2">
       <div class="col-12 d-flex justify-content-center">
-        <%= submit_tag t("bookings.search"), class: "btn btn-submit" %>
+        <%= f.submit t("bookings.search"), class: "btn btn-submit" %>
       </div>
     </div>
   <% end %>

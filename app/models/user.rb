@@ -28,11 +28,6 @@ class User < ApplicationRecord
                     format: {with: Regexp.new(Settings.VALID_EMAIL_REGEX)},
                     uniqueness: {case_sensitive: false}
 
-  validates :phone, format: {with: Regexp.new(Settings.VALID_PHONE_REGEX)},
-                    allow_nil: true,
-                    length: {minimum: Settings.user.min_len_phone,
-                             maximum: Settings.user.max_len_phone}
-
   validates :address, length: {maximum: Settings.user.max_len_address}
 
   validates :password, presence: true,

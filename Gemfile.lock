@@ -236,6 +236,10 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.0.6)
+    ransack (4.1.1)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
     regexp_parser (2.8.1)
     reline (0.3.7)
       io-console (~> 0.5)
@@ -348,6 +352,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 5.0)
   rails (~> 7.0.5)
+  ransack
   rubocop (~> 1.26)
   rubocop-checkstyle_formatter
   rubocop-rails (~> 2.14.0)

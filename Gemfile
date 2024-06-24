@@ -57,6 +57,8 @@ gem "font-awesome-rails"
 
 gem "cancancan"
 
+gem "ransack"
+
 gem "devise"
 
 group :development, :test do
