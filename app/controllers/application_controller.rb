@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   helper_method :breadcrumbs
 
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:danger] = exception.message
+    redirect_to root_path
+  end
+
   private
 
   def set_locale

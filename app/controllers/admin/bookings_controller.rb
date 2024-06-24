@@ -2,6 +2,8 @@ class Admin::BookingsController < Admin::AdminController
   include Admin::BookingsHelper
   before_action :set_breadcrumbs
   before_action :set_booking, only: %i(show edit update)
+  load_and_authorize_resource
+
   def index
     @pagy, @bookings = pagy(search_bookings,
                             items: Settings.tour.items_per_page)

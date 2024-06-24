@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :load_user, only: :show
+  load_and_authorize_resource
+
   def show
     @pagy, @bookings = pagy(search_bookings,
                             items: Settings.booking.items_per_page)

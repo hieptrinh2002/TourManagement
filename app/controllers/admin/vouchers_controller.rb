@@ -1,6 +1,7 @@
 class Admin::VouchersController < Admin::AdminController
   before_action :voucher, only: %i(edit update destroy show)
   before_action :set_breadcrumbs
+  load_and_authorize_resource
 
   def index
     @pagy, @vouchers = pagy(Voucher.by_status(params[:status])

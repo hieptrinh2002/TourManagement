@@ -4,6 +4,7 @@ class Admin::ToursController < Admin::AdminController
   before_action :set_tour, only: %i(show edit update remove_image)
   before_action :set_uploaded_images, only: %i(create update resize_before_save)
   before_action :resize_before_save, only: %i(create update)
+  load_and_authorize_resource
 
   def index
     tours = search_tours(params).order_by_status
