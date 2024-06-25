@@ -14,9 +14,8 @@ class ToursController < ApplicationController
   end
 
   def index
-    @tours = Tour.all
-    @tour_types = TourType.all
-    search
+    @q = Tour.ransack(params[:q])
+    @tours = @q.result.by_status(params[:statuses])
     @pagy, @tours = pagy(@tours, items: Settings.tour.items_per_page)
   end
 

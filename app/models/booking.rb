@@ -84,6 +84,18 @@ class Booking < ApplicationRecord
 
   before_validation :calculate_total_price
 
+  def self.ransackable_attributes _auth_object = nil
+    %w(tour_name number_of_guests total_price started_date status)
+  end
+
+  def self.ransackable_associations _auth_object = nil
+    %w(tour)
+  end
+
+  ransacker :created_at, type: :date do
+    Arel.sql("date(created_at)")
+  end
+
   private
 
   def calculate_total_price

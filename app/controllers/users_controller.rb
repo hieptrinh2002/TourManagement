@@ -3,7 +3,9 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def show
-    @pagy, @bookings = pagy(search_bookings,
+    @q = @user.bookings.ransack(params[:q])
+    @bookings = @q.result.includes(:tour)
+    @pagy, @bookings = pagy(@bookings,
                             items: Settings.booking.items_per_page)
   end
 
@@ -39,14 +41,5 @@ class UsersController < ApplicationController
   def handle_failed_signup
     flash.now[:danger] = t "flash.user.signup_failure"
     render :new, status: :unprocessable_entity
-  end
-
-  def search_bookings
-    @user.bookings.ordered_by_created_at
-         .by_tour_name(params[:tour_name])
-         .by_min_guests(params[:guests])
-         .by_min_total_price(params[:total_price])
-         .by_started_date(params[:started_date])
-         .by_status(params[:status])
   end
 end

@@ -62,36 +62,15 @@ class Tour < ApplicationRecord
   scope :order_by_status, ->{order status: :asc}
 
   scope :by_status, (lambda do |statuses|
-    where(status: statuses) if statuses.present?
-  end)
+    return if statuses.blank?
 
-  scope :by_name, lambda {|name|
-    where("tour_name LIKE ?", "%#{sanitize_sql_like(name)}%") if name.present?
-  }
-  scope :by_min_duration, lambda {|min_duration|
-    where("day_duration >= ?", min_duration.presence ||
-    Settings.tour.search.min_duration)
-  }
-  scope :by_max_duration, lambda {|max_duration|
-    where("day_duration <= ?", max_duration.presence ||
-    Settings.tour.search.max_duration)
-  }
-  scope :by_city, lambda {|city|
-    where("city LIKE ?", "%#{sanitize_sql_like(city)}%") if city.present?
-  }
+    ransack(status_in: statuses).result
+  end)
   scope :by_destination, lambda {|tour_destination|
     if tour_destination.present?
       sanitized_destination = sanitize_sql_like(tour_destination)
       where("tour_destination LIKE ?", "%#{sanitized_destination}%")
     end
-  }
-  scope :by_min_price, lambda {|min_price|
-    where("price >= ?", min_price.presence ||
-    Settings.tour.search.min_price)
-  }
-  scope :by_max_price, lambda {|max_price|
-    where("price <= ?", max_price.presence ||
-    Settings.tour.search.max_price)
   }
   scope :by_start_date, lambda {|start_date|
     where("start_date >= ?", start_date.presence ||
@@ -102,9 +81,20 @@ class Tour < ApplicationRecord
 
     where("tour_type_id = ?", tour_type_id)
   }
-  scope :by_status, (lambda do |statuses|
-    where(status: statuses) if statuses.present?
-  end)
+
+  def self.ransackable_attributes _auth_object = nil
+    %w(tour_name day_duration city price status tour_destination address)
+  end
+
+  def self.ransackable_scopes _auth_object = nil
+    %w(by_status by_started_date)
+  end
+
+  def self.ransackable_associations _auth_object = nil
+    %w(bookings)
+  end
+
+  ransack_alias :address, :city_or_tour_destination
 
   private
 

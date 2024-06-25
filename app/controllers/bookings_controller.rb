@@ -9,8 +9,6 @@ class BookingsController < ApplicationController
     redirect_to tours_path unless booking_active?
 
     @booking = current_user.bookings.build(tour_id: @tour.id)
-    @available_flights, @pagy = pagy(fetch_available_flights,
-                                     items: Settings.digit_4)
     @available_vouchers = get_available_vouchers(@tour.price)
     redirect_to tours_path unless booking_active?
   end
@@ -92,7 +90,7 @@ class BookingsController < ApplicationController
 
   def validate_guests_number
     return true if @booking.number_of_guests >= @tour.min_guests &&
-                   @booking.number_of_guests > @tour.max_guests
+                   @booking.number_of_guests < @tour.max_guests
 
     flash[:danger] = t "flash.booking.invalid_guests"
     false
