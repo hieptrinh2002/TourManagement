@@ -36,6 +36,10 @@ class User < ApplicationRecord
                        length: {minimum: Settings.user.min_len_password},
                        if: :password
 
+  def send_devise_notification(notification, *args)
+    DeviseMailerJob.perform_now devise_mailer, notification, id, *args
+  end
+
   def self.from_google user
     create_with(uid: user[:uid], provider: Settings.google,
                 first_name: user[:first_name],

@@ -61,6 +61,8 @@ gem "ransack"
 
 gem "devise"
 
+gem "sidekiq"
+
 gem "omniauth"
 
 gem "omniauth-google-oauth2"
