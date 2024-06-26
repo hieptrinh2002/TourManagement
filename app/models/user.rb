@@ -34,6 +34,10 @@ class User < ApplicationRecord
                        length: {minimum: Settings.user.min_len_password},
                        if: :password
 
+  scope :customer_created_by_month, (lambda do
+    where(role: :customer).group_by_month(:created_at).count
+  end)
+
   def send_devise_notification(notification, *args)
     DeviseMailerJob.perform_now devise_mailer, notification, id, *args
   end

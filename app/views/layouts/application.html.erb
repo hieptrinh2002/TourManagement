@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "custom", media: "all", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
@@ -43,7 +42,7 @@
                     <%= link_to t("booked"), current_user, class: "dropdown-item" %>
                   </li>
                   <li>
-                   <li><%= button_to t("logout"), destroy_user_session_path, method: :delete ,class:"dropdown-item" %></li>
+                   <li><%= button_to t("logout"), destroy_user_session_path, method: :delete, class:"dropdown-item" %></li>
                   </li>
                 </ul>
               </div>

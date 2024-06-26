@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   end
   resources :account_activations, only: :edit
 
-  get "/admin", to: "admin/tours#index"
   namespace :admin do
+    get "/", to: "admin#index"
     resources :tours do
       member do
         #remove_image_admin_tour_path

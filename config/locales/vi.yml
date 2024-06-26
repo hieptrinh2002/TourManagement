@@ -408,3 +408,26 @@ vi:
               blank: "Mã đặt lại mật khẩu không được để trống"
             confirmation_token:
               blank: "Mã xác nhận không được để trống"
+
+  charts:
+    monthly_revenue:
+      title: "Doanh thu theo tháng"
+      xtitle: "Tháng"
+      ytitle: "Doanh thu (VND)"
+      empty: "Không có dữ liệu"
+    cancellation_rate:
+      title: "Tỉ lệ hủy tour"
+      empty: "Không có dữ liệu"
+    user_count:
+      title: "Số lượng user theo tháng"
+      empty: "Không có dữ liệu"
+    average_rating:
+      title: "Thống kê trung bình đánh giá cho mỗi tour"
+      xtitle: "Average Rating ⭐⭐⭐⭐⭐"
+      ytitle: "Tên tour"
+      empty: "Không có dữ liệu"
+    bookings_per_month:
+      title: "Số lượt đặt tour theo tháng"
+      xtitle: "Tháng"
+      ytitle: "Số lượt đặt"
+      empty: "Không có dữ liệu"

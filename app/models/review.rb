@@ -20,7 +20,7 @@ class Review < ApplicationRecord
   }
 
   scope :total_ratings, (lambda do
-    where(rating: Settings.star_range).count
+    where(rating: Settings.digit_1..Settings.digit_5).count
   end)
 
   scope :average_rating, (lambda do
@@ -29,5 +29,9 @@ class Review < ApplicationRecord
 
   scope :by_rating, (lambda do |n|
     where(rating: n.nil? ? Settings.invalid_star_num : n)
+  end)
+
+  scope :average_rating_per_tour, (lambda do
+    joins(:tour).group("tours.tour_name").average(:rating)
   end)
 end

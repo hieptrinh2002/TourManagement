@@ -8,7 +8,8 @@
     <div class="navbar-nav f-flex">
       <div class="nav-item text-nowrap">
         <% if current_user.present? %>
-            <% end%>
+          <%= button_to t("logout"), destroy_user_session_path, method: :delete, class:"nav-link px-3" %>
+        <% end%>
       </div>
     </div>
 </header>

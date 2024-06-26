@@ -10,3 +10,7 @@ import "./custom/rating_comment"
 import "./custom/search_control"
 import "popper"
 import "bootstrap"
+import "chartkick"
+import "Chart.bundle"
+import Highcharts from "highcharts"
+window.Highcharts = Highcharts
