@@ -113,7 +113,15 @@ vi:
   log_in_now: "Đăng nhập ngay"
   login_with_google: "Đăng nhập với google"
   resend_unlock_instructions: "Gửi lại hướng dẫn mở khóa tài khoản"
-
+  max_guest: "SL khách lớn nhất"
+  max_total: "Tổng tiền lớn nhất"
+  max_start_date: "Ngày bắt đầu đến"
+  price_from: "Giá nhỏ nhất"
+  price_to: "Giá lớn nhất"
+  deposit_min: "Đặt cọc (tối thiểu %)"
+  deposit_max: "Đặt cọc (tối đa %)"
+  duration_from: "Số ngày nhỏ nhất"
+  duration_to: "Số ngày lớn nhất"
 
 
   confirm:

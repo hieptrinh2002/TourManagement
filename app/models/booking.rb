@@ -18,7 +18,7 @@ class Booking < ApplicationRecord
     confirmed_date
   ).freeze
 
-  scope :ordered_by_status, ->{order(status: :asc)}
+  scope :order_by_status, ->{order(status: :asc)}
   scope :ordered_by_created_at, ->{order(created_at: :desc)}
   enum status: {pending: 0, confirmed: 1, cancelled: 2, cancelled_by_user: 3}
   enum payment_status: {payment_pending: 0, paid: 1, refunded: 2}

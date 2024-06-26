@@ -93,7 +93,15 @@ class Tour < ApplicationRecord
   }
 
   def self.ransackable_attributes _auth_object = nil
-    %w(tour_name day_duration city price status tour_destination address)
+    %w(
+      tour_name
+      day_duration
+      city price
+      status
+      tour_destination
+      address
+      deposit_percent
+    )
   end
 
   def self.ransackable_scopes _auth_object = nil

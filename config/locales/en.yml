@@ -117,6 +117,15 @@ en:
   log_in_now: "Log in now"
   login_with_google: "Login with google"
   resend_unlock_instructions: "Resend unlock instructions"
+  max_guest: "Max guest"
+  max_total: "Max total"
+  max_start_date: "Max start date"
+  price_from: "Price From"
+  price_to: "Price To"
+  deposit_min: "Deposit(min %)"
+  deposit_max: "Deposit(max %)"
+  duration_from: "Duration From"
+  duration_to: "Duration To"
 
   confirm:
     delete_confirmation: "Are you sure you want to delete this item?"

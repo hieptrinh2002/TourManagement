@@ -16,6 +16,8 @@ class Ability
       can [:read, :create, :update, :remove_image], Tour
       can [:read, :update], Booking
       can :manage, Voucher
+      can :manage, Admin
+
     else
       can [:read, :update, :cancel], Booking, user_id: user.id
       can [:create], Booking

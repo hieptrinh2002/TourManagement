@@ -5,8 +5,9 @@ class Admin::BookingsController < Admin::AdminController
   load_and_authorize_resource
 
   def index
-    @pagy, @bookings = pagy(search_bookings,
-                            items: Settings.tour.items_per_page)
+    @q = Booking.ransack(params[:q])
+    @bookings = @q.result.by_status(params[:statuses]).order_by_status
+    @pagy, @bookings = pagy(@bookings, items: Settings.digit_10)
   end
 
   def show
@@ -55,14 +56,5 @@ class Admin::BookingsController < Admin::AdminController
 
   def current_time_formatted
     Time.current.strftime(Settings.datime_format)
-  end
-
-  def search_bookings
-    Booking.ordered_by_status
-           .by_tour_name(params[:tour_name])
-           .by_min_guests(params[:guests])
-           .by_min_total_price(params[:total_price])
-           .by_started_date(params[:started_date])
-           .by_status(params[:status])
   end
 end
