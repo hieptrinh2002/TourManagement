@@ -3,7 +3,9 @@ Rails.application.routes.draw do
     {registrations: "users/registrations",
       confirmations: "users/confirmations",
       sessions: "users/sessions",
-      passwords: "users/passwords"}
+      passwords: "users/passwords",
+      unlocks: "users/unlocks",
+      omniauth_callbacks: "users/omniauth_callbacks"}
 
   resources :users, only: %i(new create show) do
     resources :bookings do

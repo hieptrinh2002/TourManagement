@@ -53,8 +53,7 @@ TourType.create(type_name: "Highland Mountain", ancestry: all_tour.id)
         price: Faker::Commerce.price(range: 50.0..500.0)
       )
     end
-end
-
+  end
 end
 
 User.create!(role: 1, first_name:"Admin", last_name:"Trinh",

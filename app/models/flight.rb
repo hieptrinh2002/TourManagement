@@ -10,8 +10,6 @@ class Flight < ApplicationRecord
   # Scope to retrieve flights to a city destination
   scope :arriving_at, ->(city){where(destination: city)}
 
-  scope :airline_brand, ->(brand){where(airline_brand: brand) if brand.present?}
-
   # Scope to get flights departing on a specific date
   scope :departing_on, ->(date){where("DATE(departure_time) = ?", date)}
 
