@@ -1,23 +1,24 @@
 <%= form_tag admin_tours_path, method: :get, class: "form-inline row g-5" do %>
   <div class="col-5">
-    <%= text_field_tag :keyword, params[:keyword], class: "form-control border-2", placeholder: t("search_by_keyword") %>
+    <%= text_field_tag :keyword, params[:keyword], class: "form-control border-2" , placeholder: t("search_by_keyword")
+      %>
   </div>
   <div class="col-auto mx-2 py-2">
     <div class="form-check form-check-inline">
-      <%= check_box_tag "status[]", "not_yet_active", params[:status]&.include?("not_yet_active"), class: "form-check-input" %>
-      <%= label_tag "status_0", t("statuses.not_yet_active"), class: "form-check-label" %>
+      <%= check_box_tag "status[]" , "preparing" , params[:status]&.include?("preparing"), class: "form-check-input" %>
+      <%= label_tag "status_0" , t("statuses.preparing"), class: "form-check-label" %>
     </div>
     <div class="form-check form-check-inline">
-      <%= check_box_tag "status[]", "active", params[:status]&.include?("active"), class: "form-check-input" %>
-      <%= label_tag "status_1", t("statuses.active"), class: "form-check-label" %>
+      <%= check_box_tag "status[]" , "active" , params[:status]&.include?("active"), class: "form-check-input" %>
+      <%= label_tag "status_1" , t("statuses.active"), class: "form-check-label" %>
     </div>
     <div class="form-check form-check-inline">
-      <%= check_box_tag "status[]", "removed", params[:status]&.include?("removed"), class: "form-check-input" %>
-      <%= label_tag "status_2", t("statuses.removed"), class: "form-check-label" %>
+      <%= check_box_tag "status[]" , "removed" , params[:status]&.include?("removed"), class: "form-check-input" %>
+      <%= label_tag "status_2" , t("statuses.removed"), class: "form-check-label" %>
     </div>
   </div>
   <div class="col-auto">
-    <%= submit_tag "Search", class: "btn btn-outline-success px-3 mx-3" %>
+    <%= submit_tag "Search" , class: "btn btn-outline-success px-3 mx-3" %>
     <%= link_to t("refresh"), admin_tours_path, class:"btn btn-secondary px-3" %>
   </div>
 <% end %>

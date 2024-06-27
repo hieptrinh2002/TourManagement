@@ -208,7 +208,7 @@ vi:
     carousel_next: "Sau >>"
     carousel_prev: "<< Trước"
     status:
-      not_yet_active: "Chưa sẵn sàng"
+      preparing: "Chưa sẵn sàng"
       active: "Sẵn sàng"
       removed: "Đã bị gỡ"
 
@@ -225,7 +225,7 @@ vi:
     paid: "đã thanh toán"
     cancelled: "đã hủy"
     refunded: "đã hoàn tiền"
-    not_yet_active: "Chưa kích hoạt"
+    preparing: "Chưa kích hoạt"
     active: "Đang hoạt động"
     removed: "Đã loại bỏ"
 

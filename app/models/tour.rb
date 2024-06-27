@@ -26,7 +26,7 @@ class Tour < ApplicationRecord
     status
   ).freeze
 
-  enum status: {not_yet_active: 0, active: 1, removed: 2}
+  enum status: {preparing: 0, active: 1, removed: 2}
   belongs_to :tour_type
   has_many :tour_flights, dependent: :destroy
   has_many :flights, through: :tour_flights
@@ -40,6 +40,8 @@ class Tour < ApplicationRecord
                            numericality: {only_integer: true,
                                           maximum: Settings.tour.max_duration,
                                           greater_than: Settings.digit_0}
+  validates :price, presence: true,
+                    numericality: {greater_than: Settings.digit_0}
 
   validates :min_guests, presence: true,
                          numericality: {only_integer: true,
