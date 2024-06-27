@@ -16,8 +16,8 @@ module Admin::BookingsHelper
     when "refunded"
       content_tag(:span, t("statuses.refunded"),
                   class: "text-secondary fw-bold")
-    when "not_yet_active"
-      content_tag(:span, t("statuses.not_yet_active"),
+    when "preparing"
+      content_tag(:span, t("statuses.preparing"),
                   class: "text-secondary fw-bold")
     when "active"
       content_tag(:span, t("statuses.active"),

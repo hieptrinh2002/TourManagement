@@ -18,7 +18,7 @@ TourType.create(type_name: "Highland Mountain", ancestry: all_tour.id)
   min_guests = 5
   max_guests = Faker::Number.within(range: 11..50)
   deposit_percent = Faker::Number.between(from: 1.0, to: 99.9)
-  status = ['not_yet_active', 'active', 'removed'].sample
+  status = ['preparing', 'active', 'removed'].sample
   Tour.create!(
     tour_name: tour_name,
     city: city,

@@ -215,7 +215,7 @@ en:
     carousel_next: "Next >>"
     carousel_prev: "<< Prev"
     status:
-      not_yet_active: "Not yet active"
+      preparing: "Not yet active"
       active: "Active"
       removed: "Removed"
 
@@ -249,7 +249,7 @@ en:
     paid: "paid"
     cancelled: "cancelled"
     refunded: "refunded"
-    not_yet_active: "Not yet active"
+    preparing: "Not yet active"
     active: "Active"
     removed: "Removed"
 
