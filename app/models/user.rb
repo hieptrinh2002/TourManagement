@@ -30,8 +30,6 @@ class User < ApplicationRecord
                     format: {with: Regexp.new(Settings.VALID_EMAIL_REGEX)},
                     uniqueness: {case_sensitive: false}
 
-  validates :address, length: {maximum: Settings.user.max_len_address}
-
   validates :password, presence: true,
                        length: {minimum: Settings.user.min_len_password},
                        if: :password
@@ -51,5 +49,9 @@ class User < ApplicationRecord
   private
   def downcase_email
     email.downcase!
+  end
+
+  def password_required?
+    true
   end
 end

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
   devise_for :users, controllers:
     {registrations: "users/registrations",
       confirmations: "users/confirmations",
@@ -33,4 +35,12 @@ Rails.application.routes.draw do
     resources :reviews
   end
   root "static_pages#home"
+
+  namespace :api do
+    namespace :v1 do
+      resources :tours
+      resources :users
+      post "/sign_in", to: "users#sign_in"
+    end
+  end
 end

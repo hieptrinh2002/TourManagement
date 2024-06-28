@@ -316,6 +316,15 @@ vi:
     create_new: "Create new"
     vouchers: "khuyến mãi"
 
+  api:
+    unauthorized_action: "Không có quyền truy cập"
+    tours:
+      delete: "Đã xóa!"
+      not_found: "Không tìm thấy!"
+    users:
+      invalid: "Người dùng không hợp lệ!"
+      invalid_credentials: "Thông tin đăng nhập không hợp lệ!"
+
 
   user_mailer:
     confirmation_instructions:

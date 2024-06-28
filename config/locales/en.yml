@@ -328,6 +328,14 @@ en:
     create_new: "Create new"
     vouchers: "Vouchers"
 
+  api:
+    unauthorized_action: "Unauthorized"
+    tours:
+      delete: "Deleted!"
+      not_found: "Not found!"
+    users:
+      invalid: "Invalid users!"
+      invalid_credentials: "Invalid Credentails!"
 
   user_mailer:
     confirmation_instructions:
