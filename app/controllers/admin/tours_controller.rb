@@ -7,9 +7,9 @@ class Admin::ToursController < Admin::AdminController
   load_and_authorize_resource
 
   def index
-    tours = search_tours(params).order_by_status
-    @pagy, @tours = pagy(tours,
-                         items: Settings.tour.items_per_page)
+    @q = Tour.ransack(params[:q])
+    @tours = @q.result.by_status(params[:statuses])
+    @pagy, @tours = pagy(@tours, items: Settings.tour.items_per_page)
   end
 
   def show

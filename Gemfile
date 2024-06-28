@@ -69,6 +69,16 @@ gem "omniauth-google-oauth2"
 
 gem "omniauth-rails_csrf_protection", "~> 1.0"
 
+gem "active_model_serializers"
+
+gem "jwt"
+
+gem "rswag"
+
+gem "rswag-api"
+
+gem "rswag-ui"
+
 group :development, :test do
   gem "debug", platforms: %i(mri mingw x64_mingw)
   gem "factory_bot_rails"

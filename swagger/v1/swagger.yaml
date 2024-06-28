@@ -1,0 +1,279 @@
+openapi: 3.0.1
+info:
+  title: API Documentation
+  version: v1
+paths:
+  /api/v1/users:
+    post:
+      summary: Create a new user
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                    email:
+                      type: string
+                    password:
+                      type: string
+                    password_confirmation:
+                      type: string
+      responses:
+        '200':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+                  token:
+                    type: string
+        '422':
+          description: Invalid user data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /api/v1/users/sign_in:
+    post:
+      summary: Sign in a user
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+      responses:
+        '200':
+          description: User signed in successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+                  token:
+                    type: string
+        '422':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /api/v1/tours:
+    get:
+      summary: Get all tours
+      tags:
+        - Tours
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+        - name: statuses
+          in: query
+          schema:
+            type: string
+        - name: city
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of tours
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tour'
+    post:
+      summary: Create a new tour
+      tags:
+        - Tours
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tour:
+                  $ref: '#/components/schemas/Tour'
+      responses:
+        '201':
+          description: Tour created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tour'
+        '422':
+          description: Invalid tour data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+  /api/v1/tours/{id}:
+    get:
+      summary: Get a tour by ID
+      tags:
+        - Tours
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tour details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tour'
+        '404':
+          description: Tour not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+    put:
+      summary: Update a tour by ID
+      tags:
+        - Tours
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tour:
+                  $ref: '#/components/schemas/Tour'
+      responses:
+        '200':
+          description: Tour updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tour'
+        '422':
+          description: Invalid tour data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+    delete:
+      summary: Delete a tour by ID
+      tags:
+        - Tours
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tour deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+        '422':
+          description: Unable to delete tour
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+    Tour:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        status:
+          type: string
+        city:
+          type: string
+security:
+  - BearerAuth: []

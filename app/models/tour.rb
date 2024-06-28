@@ -63,6 +63,14 @@ class Tour < ApplicationRecord
 
   scope :order_by_status, ->{order status: :asc}
 
+  scope :by_name, lambda {|name|
+    where("tour_name LIKE ?", "%#{sanitize_sql_like(name)}%") if name.present?
+  }
+
+  scope :by_city, lambda {|city|
+    where("city LIKE ?", "%#{sanitize_sql_like(city)}%") if city.present?
+  }
+
   scope :by_status, (lambda do |statuses|
     return if statuses.blank?
 
