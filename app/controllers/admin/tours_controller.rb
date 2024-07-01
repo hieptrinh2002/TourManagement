@@ -8,8 +8,8 @@ class Admin::ToursController < Admin::AdminController
 
   def index
     @q = Tour.ransack(params[:q])
-    @tours = @q.result.by_status(params[:statuses])
-    @pagy, @tours = pagy(@tours, items: Settings.tour.items_per_page)
+    @tours = @q.result.by_status(params[:statuses]).order_by_status
+    @pagy, @tours = pagy(@tours, items: Settings.digit_10)
   end
 
   def show

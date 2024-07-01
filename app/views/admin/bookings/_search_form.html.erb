@@ -1,42 +1,43 @@
-<%= form_tag(admin_bookings_path, method: :get) do %>
+<%= search_form_for @q, url: admin_bookings_path do |f| %>
   <div class="row">
     <div class="col-md-4">
-      <%= label_tag :tour_name, t("bookings.tour_name"), class: "form-label fw-bold" %>
-      <%= text_field_tag :tour_name, params[:tour_name], class: "form-control" %>
+      <%= f.label :tour_tour_name_cont, t("bookings.tour_name"), class: "form-label fw-bold" %>
+      <%= f.search_field :tour_tour_name_cont, class: "form-control" %>
     </div>
     <div class="col-md-2">
-      <%= label_tag :guests, t("min_guest"), class: "form-label fw-bold" %>
-      <%= number_field_tag :guests, params[:guests], class: "form-control" %>
+      <%= f.label :number_of_guests_gteq, t("min_guest"), class: "form-label fw-bold" %>
+      <%= f.number_field :number_of_guests_gteq, class: "form-control" %>
     </div>
     <div class="col-md-2">
-      <%= label_tag :total_price, t("min_total"), class: "form-label fw-bold" %>
-      <%= number_field_tag :total_price, params[:total_price], class: "form-control" %>
+      <%= f.label :number_of_guests_lteq, t("max_guest"), class: "form-label fw-bold" %>
+      <%= f.number_field :number_of_guests_lteq, class: "form-control" %>
     </div>
-    <div class="col-md-3">
-      <%= label_tag :started_date, t("min_start_date"), class: "form-label fw-bold" %>
-      <%= date_field_tag :started_date, params[:started_date], class: "form-control" %>
+    <div class="col-md-2">
+      <%= f.label :total_price_gteq, t("min_total"), class: "form-label fw-bold" %>
+      <%= f.number_field :total_price_gteq, class: "form-control" %>
+    </div>
+     <div class="col-md-2">
+      <%= f.label :total_price_lteq, t("max_total"), class: "form-label fw-bold" %>
+      <%= f.number_field :total_price_lteq, class: "form-control" %>
+    </div>
+    <div class="col-md-4">
+      <%= f.label :started_date, t("min_start_date"), class: "form-label fw-bold" %>
+      <%= f.date_field :started_date_gteq, class: "form-control" %>
+    </div>
+    <div class="col-md-4">
+      <%= f.label :started_date, t("max_start_date"), class: "form-label fw-bold" %>
+      <%= f.date_field :started_date_lteq, class: "form-control" %>
+    </div>
+      <div class="col-md-4 d-flex align-items-end flex-wrap mt-2">
+        <% Booking.statuses.each do |key, value| %>
+          <div class="form-check form-check-inline">
+            <%= check_box_tag "statuses[]", value, params[:statuses].present? && params[:statuses].include?(value), class: "form-check-input" %>
+            <%= label_tag "bookings.status.#{value}", t("bookings.#{key}"), class: "form-check-label" %>
+          </div>
+        <% end %>
     </div>
   </div>
   <div class="row g-3">
-    <div class="col-md-4 py-2">
-      <label class="form-label fw-bold d-block"><%= t "bookings.status" %></label>
-      <div class="form-check form-check-inline">
-        <%= check_box_tag "status[]", "pending", params[:status]&.include?("pending"), class: "form-check-input" %>
-        <%= label_tag "status_0", t("bookings.pending"), class: "form-check-label" %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= check_box_tag "status[]", "confirmed", params[:status]&.include?("confirmed"), class: "form-check-input" %>
-        <%= label_tag "status_1", t("bookings.confirmed"), class: "form-check-label" %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= check_box_tag "status[]", "cancelled", params[:status]&.include?("cancelled"), class: "form-check-input" %>
-        <%= label_tag "status_2", t("bookings.cancelled"), class: "form-check-label" %>
-      </div>
-       <div class="form-check form-check-inline mt-2">
-        <%= check_box_tag "status[]", "cancelled_by_user", params[:status]&.include?("cancelled_by_user"), class: "form-check-input" %>
-        <%= label_tag "status_3", t("bookings.cancelled_by_user"), class: "form-check-label" %>
-      </div>
-    </div>
     <div class="col-md-2 mt-5">
       <%= submit_tag t("bookings.search"), class: "btn btn-primary w-100" %>
     </div>
