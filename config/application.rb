@@ -17,5 +17,7 @@ module RailsTutorial
     config.i18n.default_locale = :en
     config.i18n.available_locales = [:en, :vi]
     config.action_view.embed_authenticity_token_in_remote_forms = true
+    config.active_record.default_timezone = :utc
+    config.time_zone = "UTC"
   end
 end

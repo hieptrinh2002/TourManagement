@@ -35,9 +35,16 @@ class Booking < ApplicationRecord
   end)
 
   scope :pending_or_past_confirmed, (lambda do
-    where("status = ? OR (status = ? AND started_date < ?)",
-          "pending", "confirmed", Time.zone.today ||
-          Settings.booking.search.min_started_date)
+    joins(:tour).where(
+      "bookings.status = :pending OR (
+         bookings.status = :confirmed AND
+         DATE_ADD(bookings.started_date,
+                  INTERVAL tours.day_duration DAY) < :today
+       )",
+      pending: "pending",
+      confirmed: "confirmed",
+      today: Time.zone.today
+    )
   end)
 
   scope :by_min_guests, (lambda do |guests|
@@ -69,6 +76,17 @@ class Booking < ApplicationRecord
   end)
   scope :started_before_now, (lambda do
     where("started_date < ?", Time.zone.now)
+  end)
+
+  scope :monthly_revenue, (lambda do
+    group_by_month(:confirmed_date, format: "%b %Y").sum(:total_price)
+  end)
+  scope :cancellation_rate, (lambda do
+    group(:status).count
+  end)
+
+  scope :bookings_per_month, (lambda do
+    group_by_month(:started_date, format: "%b %Y").count
   end)
 
   accepts_nested_attributes_for :flight_ticket

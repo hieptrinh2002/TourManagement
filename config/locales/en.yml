@@ -368,3 +368,26 @@ en:
       message: "Your account has been locked due to an excessive number of unsuccessful sign in attempts."
       instructions: "Click the link below to unlock your account:"
       unlock_link: "Unlock my account"
+
+  charts:
+    monthly_revenue:
+      title: "Monthly Revenue"
+      xtitle: "Month"
+      ytitle: "Revenue (VND)"
+      empty: "No data available"
+    cancellation_rate:
+      title: "Cancellation Rate"
+      empty: "No data available"
+    user_count:
+      title: "User Count per Month"
+      empty: "No data available"
+    average_rating:
+      title: "Average Rating per Tour"
+      xtitle: "Average Rating ⭐⭐⭐⭐⭐"
+      ytitle: "Tour Name"
+      empty: "No data available"
+    bookings_per_month:
+      title: "Bookings per Month"
+      xtitle: "Month"
+      ytitle: "Bookings"
+      empty: "No data available"
