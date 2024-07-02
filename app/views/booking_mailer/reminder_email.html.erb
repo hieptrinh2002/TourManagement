@@ -1,0 +1,7 @@
+<p><%= t("booking_reminder_mailer.greeting", first_name: @user.first_name) %></p>
+
+<p>
+  <%= t("booking_reminder_mailer.body", tour_name: @booking.tour.tour_name, started_date: @booking.started_date.strftime(Settings.datetime_format)) %>
+</p>
+
+<p><%= t("booking_reminder_mailer.thank_you") %></p>

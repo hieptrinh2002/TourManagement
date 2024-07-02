@@ -439,3 +439,9 @@ vi:
       xtitle: "Tháng"
       ytitle: "Số lượt đặt"
       empty: "Không có dữ liệu"
+
+  booking_reminder_mailer:
+    subject: "Nhắc nhở: Chuyến du lịch của bạn sắp bắt đầu!"
+    greeting: "Kính chào %{first_name},"
+    body: "Đây là một lời nhắc nhở rằng chuyến du lịch \"%{tour_name}\" của bạn sẽ bắt đầu vào %{started_date}."
+    thank_you: "Cảm ơn bạn đã lựa chọn dịch vụ của chúng tôi!"

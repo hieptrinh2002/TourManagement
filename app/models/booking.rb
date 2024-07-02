@@ -47,6 +47,8 @@ class Booking < ApplicationRecord
     )
   end)
 
+  scope :starting_tomorrow, ->{where(started_date: Date.tomorrow)}
+
   scope :by_min_guests, (lambda do |guests|
     where("number_of_guests >= ?", guests.presence ||
     Settings.booking.search.min_guests)

@@ -55,6 +55,6 @@ class Admin::BookingsController < Admin::AdminController
   end
 
   def current_time_formatted
-    Time.current.strftime(Settings.datime_format)
+    Time.current.strftime(Settings.datetime_format)
   end
 end

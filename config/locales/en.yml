@@ -400,3 +400,10 @@ en:
       xtitle: "Month"
       ytitle: "Bookings"
       empty: "No data available"
+
+
+  booking_reminder_mailer:
+    subject: "Reminder: Your tour is starting soon!"
+    greeting: "Dear %{first_name},"
+    body: "This is a reminder that your tour \"%{tour_name}\" is starting on %{started_date}."
+    thank_you: "Thank you for choosing our service!"
