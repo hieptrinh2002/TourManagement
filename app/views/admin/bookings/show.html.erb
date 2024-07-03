@@ -24,7 +24,7 @@
           </div>
           <div class="row mb-4">
             <div class="col-md-5 fw-bold"><%= t "bookings.started_date" %>:</div>
-            <div class="col-md-7"><%= @booking.started_date.strftime(Settings.datime_format) %></div>
+            <div class="col-md-7"><%= @booking.started_date.strftime(Settings.datetime_format) %></div>
           </div>
           <div class="row mb-4">
             <div class="col-md-5 fw-bold"><%= t "bookings.total_price" %>:</div>
@@ -43,11 +43,11 @@
         <div class="col-5">
           <div div class="row mb-4">
             <div class="col-md-5 fw-bold"><%= t "bookings.confirmed_date" %>:</div>
-            <div class="col-md-7"><%= @booking.confirmed_date&.strftime(Settings.datime_format) %></div>
+            <div class="col-md-7"><%= @booking.confirmed_date&.strftime(Settings.datetime_format) %></div>
           </div>
           <div class="row mb-4">
             <div class="col-md-5 fw-bold"><%= t "bookings.cancellation_date" %>:</div>
-            <div class="col-md-7"><%= @booking.cancellation_date&.strftime(Settings.datime_format) %></div>
+            <div class="col-md-7"><%= @booking.cancellation_date&.strftime(Settings.datetime_format) %></div>
           </div>
           <div class="row mb-4">
             <div class="col-md-5 fw-bold"><%= t "bookings.status" %>:</div>
@@ -66,11 +66,11 @@
           <% end %>
           <div class="row mb-4">
             <div class="col-md-5 fw-bold"><%= t "bookings.created_at" %>:</div>
-            <div class="col-md-7"><%= @booking.created_at.strftime(Settings.datime_format) %></div>
+            <div class="col-md-7"><%= @booking.created_at.strftime(Settings.datetime_format) %></div>
           </div>
           <div class="row mb-4">
             <div class="col-md-5 fw-bold"><%= t "bookings.updated_at" %>:</div>
-            <div class="col-md-7"><%= @booking.updated_at.strftime(Settings.datime_format) %></div>
+            <div class="col-md-7"><%= @booking.updated_at.strftime(Settings.datetime_format) %></div>
           </div>
         </div>
       </div>
