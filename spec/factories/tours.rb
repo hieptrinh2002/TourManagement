@@ -7,10 +7,10 @@ FactoryBot.define do
   end
 
   factory :review do
-    rating {Faker::Number.within(range: 1..5)}
-    comment {Faker::Address.state}
-    tour_id {Faker::Number.within(range: 1..2)}
-    user_id {2}
+    rating { Faker::Number.within(range: 1..5) }
+    comment { Faker::Address.state }
+    association :tour
+    association :user
   end
 
   factory :user do
@@ -36,7 +36,6 @@ FactoryBot.define do
     min_guests {5}
     max_guests {Faker::Number.within(range: 11..50)}
     deposit_percent {Faker::Number.between(from: 1.0, to: 30.0)}
-    
     association :tour_type
   end
 end

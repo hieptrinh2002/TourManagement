@@ -126,6 +126,8 @@ class Booking < ApplicationRecord
   end
 
   def calculate_tour_price
+    return if tour.blank?
+
     self.total_price = tour.price
   end
 
