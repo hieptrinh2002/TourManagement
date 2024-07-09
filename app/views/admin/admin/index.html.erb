@@ -1,22 +1,30 @@
 <div class="container">
-  <div class="shadow-sm py-3 mb-5 bg-body rounded">
-    <%= column_chart @monthly_revenue,
-                    prefix: Settings.prefix_VND,
-                    title: t("charts.monthly_revenue.title"),
-                    xtitle: t("charts.monthly_revenue.xtitle"),
-                    ytitle: t("charts.monthly_revenue.ytitle"),
-                    colors: ["#ffc107"],
-                    height: "450px",
-                    messages: {empty: t("charts.monthly_revenue.empty")},
-                    id: "revenue-chart"
-                  %>
-  </div>
-
-  <div class="shadow-sm p-3 mb-5 bg-body rounded">
-    <%= pie_chart @cancellation_rate,
-                  title: t("charts.cancellation_rate.title"),
-                  messages: {empty: t("charts.cancellation_rate.empty")},
-                  height: "450px" %>
+  <h2 class="text-center my-5">Dashboard statistic</h2>
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <div class="shadow-sm py-3 mb-5 bg-body rounded">
+          <%= column_chart @monthly_revenue,
+              prefix: Settings.prefix_VND,
+              title: t("charts.monthly_revenue.title"),
+              xtitle: t("charts.monthly_revenue.xtitle"),
+              ytitle: t("charts.monthly_revenue.ytitle"),
+              colors: ["#ffc107"],
+              height: "450px",
+              messages: {empty: t("charts.monthly_revenue.empty")},
+              id: "revenue-chart"
+          %>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="shadow-sm p-3 mb-5 bg-body rounded">
+          <%= pie_chart @cancellation_rate,
+            title: t("charts.cancellation_rate.title"),
+            messages: {empty: t("charts.cancellation_rate.empty")},
+            height: "450px" %>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="shadow-sm p-3 mb-5 bg-body rounded">

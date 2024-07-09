@@ -34,4 +34,8 @@ class Review < ApplicationRecord
   scope :average_rating_per_tour, (lambda do
     joins(:tour).group("tours.tour_name").average(:rating)
   end)
+
+  scope :sorted_by_created_at, ->{order created_at: :desc}
+
+  scope :sorted_by_rating, ->{order rating: :desc}
 end

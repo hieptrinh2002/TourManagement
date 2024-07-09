@@ -345,6 +345,9 @@ en:
     users:
       invalid: "Invalid users!"
       invalid_credentials: "Invalid Credentails!"
+    reviews:
+      delete: "Review deleted successfully"
+      not_found: "Review not found"
 
   user_mailer:
     confirmation_instructions:

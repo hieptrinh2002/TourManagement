@@ -40,7 +40,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :tours
       resources :users
-      post "/sign_in", to: "users#sign_in"
+      post "users/sign_in", to: "users#sign_in"
+      resources :reviews
     end
   end
 end

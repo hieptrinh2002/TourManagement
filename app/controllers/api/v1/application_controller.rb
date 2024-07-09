@@ -1,4 +1,6 @@
 class Api::V1::ApplicationController < ActionController::API
+  include Pagy::Backend
+
   def encode_token payload
     JWT.encode(payload, "salt")
   end
