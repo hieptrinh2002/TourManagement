@@ -1,0 +1,46 @@
+<div class="container my-4 text-body" id="review-<%= review.id %>">
+  <div class="row d-flex justify-content-start">
+    <div class="col-10">
+      <div class="d-flex flex-start">
+        <%= gravatar_for review.user, Settings.digit_65 %>
+        <div class="card w-100">
+          <div class="card-body p-3">
+            <div>
+              <div class="d-flex justify-content-between w-100">
+                <div>
+                 <div class="d-flex">
+                    <h5><%= review.user.first_name %></h5>
+                    <div class="px-2">
+                      <% for i in Settings.digit_1..review.rating %>
+                        <span>⭐</span>
+                      <% end %>
+                    </div>
+                 </div>
+                  <% if (review.updated_at - review.created_at) > Settings.digit_1 %>
+                    <span class="small fst-italic">
+                      <%= t "edited" %>
+                      <%= time_ago_in_words(review.updated_at) %>
+                    </span>
+                  <% else %>
+                    <span class="small fst-italic">
+                      <%= time_ago_in_words(review.created_at) %>
+                    </span>
+                  <% end %>
+                </div>
+                <div id="review-actions-<%= review.id %>">
+                  <%= render "reviews/actions", review: review %>
+                </div>
+              </div>
+              <div id="edit-form-<%=review.id%>" class="my-2 d-none">
+                <%= render "reviews/edit_form", { review: review, tour: @tour } %>
+              </div>
+              <div id="review-body-<%= review.id %>" class="mt-2">
+                <p><%= review.comment %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

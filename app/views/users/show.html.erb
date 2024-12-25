@@ -1,0 +1,40 @@
+<div class="container my-3">
+  <div class="row">
+    <div class="col-12 d-flex align-items-center">
+      <%= gravatar_for @user, 150 %>
+      <div>
+        <h3><%= @user.first_name %><%= @user.last_name %></h3>
+        <p><%= @user.email %></p>
+      </div>
+    </div>
+    <hr class="my-4">
+    <h3 class="text-center">
+      <%= t "your_bookings" %>
+    </h3>
+    <section class="intro">
+      <div class="gradient-custom-1 h-100">
+        <div class="mask d-flex align-items-center h-100">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-12">
+                <%= render "bookings/search_form" %>
+                <span class="pb-2">
+                  <%= pluralize @pagy.count, t("result", count: @pagy.count) %>
+                </span>
+                <div class="table-responsive bg-white mt-4 row">
+                  <%= render partial: "bookings/booking", collection: @bookings %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="d-flex justify-content-between py-4">
+          <%= link_to t("create_new"), "/", class: "btn btn-primary" %>
+          <%== pagy_nav(@pagy) %>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

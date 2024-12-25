@@ -1,0 +1,11 @@
+vi:
+  devise:
+    mailer:
+      confirmation_instructions:
+        subject: "Xác nhận tài khoản của bạn"
+        greeting: "Xin chào %{email}!"
+        instructions: "Bạn vui lòng nhấn vào đường dẫn dưới đây để xác nhận tài khoản của mình:"
+        confirm_account: "Xác nhận tài khoản"
+        ignore: "Nếu bạn không yêu cầu xác nhận tài khoản này, xin vui lòng bỏ qua email này."
+        closing: "Trân trọng,"
+        signature: "Admin"

@@ -1,0 +1,53 @@
+<div class="container">
+  <h2 class="text-center my-5">Dashboard statistic</h2>
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <div class="shadow-sm py-3 mb-5 bg-body rounded">
+          <%= column_chart @monthly_revenue,
+              prefix: Settings.prefix_VND,
+              title: t("charts.monthly_revenue.title"),
+              xtitle: t("charts.monthly_revenue.xtitle"),
+              ytitle: t("charts.monthly_revenue.ytitle"),
+              colors: ["#ffc107"],
+              height: "450px",
+              messages: {empty: t("charts.monthly_revenue.empty")},
+              id: "revenue-chart"
+          %>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="shadow-sm p-3 mb-5 bg-body rounded">
+          <%= pie_chart @cancellation_rate,
+            title: t("charts.cancellation_rate.title"),
+            messages: {empty: t("charts.cancellation_rate.empty")},
+            height: "450px" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="shadow-sm p-3 mb-5 bg-body rounded">
+    <%= line_chart @customer_created_by_month,
+                   title: t("charts.user_count.title"),
+                   messages: {empty: t("charts.user_count.empty")} %>
+  </div>
+
+  <div class="shadow-sm p-3 mb-5 bg-body rounded">
+    <%= bar_chart @average_rating_per_tour,
+                  title: t("charts.average_rating.title"),
+                  xtitle: t("charts.average_rating.xtitle"),
+                  ytitle: t("charts.average_rating.ytitle"),
+                  colors: ["#00aaff"],
+                  height: "550px" %>
+  </div>
+
+  <div class="shadow-sm p-3 mb-5 bg-body rounded">
+    <%= line_chart @bookings_per_month,
+                   title: t("charts.bookings_per_month.title"),
+                   xtitle: t("charts.bookings_per_month.xtitle"),
+                   ytitle: t("charts.bookings_per_month.ytitle"),
+                   colors: ["#0d6efd"],
+                   messages: {empty: t("charts.bookings_per_month.empty")} %>
+  </div>
+</div>

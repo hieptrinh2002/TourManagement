@@ -1,0 +1,17 @@
+<tr>
+  <td><%= index+1 %></td>
+  <td scope="row" class="fst-italic">
+    <%= truncate(booking.tour.tour_name, length: Settings.digit_30, omission: "....") %>
+  </td>
+  <td><%= "#{booking.user.last_name} #{booking.user.first_name}" %></td>
+  <td class="text-center"><%= booking.number_of_guests %></td>
+  <td><%= booking.started_date.strftime(Settings.dd_mm_yyyy) %></td>
+  <td><%= number_to_currency(booking.total_price) %></td>
+  <td class="text-center">
+    <button class="border-0 focus:shadow-none bg-transparent"
+            data-bs-toggle="tooltip" data-bs-placement="top" title=<%= booking.status %>>
+            <%= status_badge(booking.status) %>
+    </button>
+  </td>
+  <td><%= link_to t("view"), admin_booking_path(booking), class:"btn text-primary" %></td>
+</tr>

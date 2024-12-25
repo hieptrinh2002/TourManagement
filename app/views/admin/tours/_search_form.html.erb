@@ -1,0 +1,54 @@
+<%= search_form_for @q, url: admin_tours_path, class: "form-inline g-5" do |f| %>
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <%= f.search_field :city_or_tour_destination_or_price_or_day_duration_cont,
+            class: "form-control border-2", placeholder: t("search_by_keyword") %>
+    </div>
+    <div class="col-md-6 py-2">
+      <% Tour.statuses.each do |key, value| %>
+        <div class="form-check form-check-inline">
+          <%= check_box_tag "statuses[]", value, params[:statuses].present? && params[:statuses].include?(value), class: "form-check-input" %>
+          <%= label_tag "tours.status.#{value}", t("tours.statuses.#{key}"), class: "form-check-label" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row d-flex justify-content-start flex-wrap">
+        <div class="col-md-2">
+          <%= f.label :price_gteq, t("price_from"), class: "form-label fw-bold" %>
+          <%= f.number_field :price_gteq, class: "form-control" %>
+        </div>
+        <div class="col-md-2">
+          <%= f.label :price_lteq, t("price_to"), class: "form-label fw-bold" %>
+          <%= f.number_field :price_lteq, class: "form-control" %>
+        </div>
+        <div class="col-md-2">
+          <%= f.label :deposit_percent_gteq, t("deposit_min"), class: "form-label fw-bold" %>
+          <%= f.number_field :deposit_percent_gteq, class: "form-control" %>
+        </div>
+        <div class="col-md-2">
+          <%= f.label :deposit_percent_lteq, t("deposit_max"), class: "form-label fw-bold" %>
+          <%= f.number_field :deposit_percent_lteq, class: "form-control" %>
+        </div>
+        <div class="col-md-2">
+          <%= f.label :day_duration_gteq, t("duration_from"), class: "form-label fw-bold" %>
+          <%= f.number_field :day_duration_gteq, class: "form-control" %>
+        </div>
+        <div class="col-md-2">
+          <%= f.label :day_duration_lteq, t("duration_to"), class: "form-label fw-bold" %>
+          <%= f.number_field :day_duration_lteq, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class="mt-3">
+      <div class="d-flex flex-nowrap align-items-center">
+        <%= submit_tag t("search"), class: "btn btn-outline-success px-3" %>
+        <%= link_to t("refresh"), admin_tours_path, class: "btn btn-secondary mx-3 px-3" %>
+      </div>
+    </div>
+  </div>
+
+<% end %>

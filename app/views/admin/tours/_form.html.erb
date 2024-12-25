@@ -1,0 +1,92 @@
+<%= form_with(model: [:admin, @tour]) do |f| %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group mb-4">
+        <%= f.label :tour_name, class: "fw-bold mb-2" %>
+        <small class="text-danger fw-bold">*</small>
+        <%= f.text_field :tour_name, class: "form-control" %>
+      </div>
+
+      <div class="form-group mb-4">
+        <%= f.label :city, class: "fw-bold mb-2" %>
+        <small class="text-danger fw-bold">*</small>
+        <%= f.text_field :city, class: "form-control" %>
+      </div>
+
+      <div class="form-group mb-4">
+        <%= f.label :tour_destination, class: "fw-bold mb-2" %>
+        <small class="text-danger fw-bold">*</small>
+        <%= f.text_field :tour_destination, class: "form-control" %>
+      </div>
+
+      <div class="form-group mb-4">
+        <%= f.label :description, class: "fw-bold mb-2" %>
+        <small class="text-danger fw-bold">*</small>
+        <%= f.text_area :description, class: "form-control" %>
+      </div>
+
+      <div class="container my-3">
+        <% if @tour.images.attached? %>
+          <% @tour.images.each do |image| %>
+            <%= f.hidden_field :images, multiple: true, value: image.signed_id %>
+          <% end %>
+        <% end %>
+
+        <div class="container my-4">
+          <%= render "show_images", tour: @tour %>
+        </div>
+        <div class="mt-3">
+          <%= f.file_field :images, accept: Settings.img_format,
+                                    multiple: true, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group mb-4">
+        <%= f.label :price, class: "fw-bold mb-2" %>
+        <small class="text-danger fw-bold">*</small>
+        <%= f.number_field :price, class: "form-control", min: 1 %>
+      </div>
+
+      <div class="form-group mb-4">
+        <%= f.label :day_duration, class: "fw-bold mb-2" %>
+        <small class="text-danger fw-bold">*</small>
+        <%= f.number_field :day_duration, class: "form-control", min: 1 %>
+      </div>
+
+      <div class="form-group mb-4">
+        <%= f.label :min_guests, class: "fw-bold mb-2" %>
+        <small class="text-danger fw-bold">*</small>
+        <%= f.number_field :min_guests, class: "form-control", min: 1 %>
+      </div>
+
+      <div class="form-group mb-4">
+        <%= f.label :max_guests, class: "fw-bold mb-2" %>
+        <small class="text-danger fw-bold">*</small>
+        <%= f.number_field :max_guests, class: "form-control", min: 1 %>
+      </div>
+
+      <div class="form-group mb-4">
+        <%= f.label :deposit_percent, class: "fw-bold mb-2" %>
+        <small class="text-danger fw-bold">*</small>
+        <%= f.number_field :deposit_percent, class: "form-control", min: 0, max: 100,step: 0.01 %>
+      </div>
+
+      <div class="form-group mb-4">
+        <%= f.label :status, class: "fw-bold mb-2" %>
+        <small class="text-danger fw-bold">*</small>
+        <%= f.collection_select :status, Tour.statuses.keys, :to_s, :humanize, {}, { class: "form-control" } %>
+      </div>
+
+      <div class="form-group mb-4">
+        <%= f.label :tour_type_id, class: "fw-bold mb-2" %>
+        <small class="text-danger fw-bold">*</small>
+        <%= f.collection_select :tour_type_id, TourType.all, :id, :type_name, {},
+                                              { class: "form-control" } %>
+      </div>
+      <div class="actions py-4">
+        <%= f.submit class: "btn btn-primary w-100" %>
+      </div>
+    </div>
+  </div>
+<% end %>

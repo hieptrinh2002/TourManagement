@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "custom", media: "all", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
@@ -13,48 +12,57 @@
 
   <body>
     <div class="main">
-      <header class="navbar bg-light border-bottom sticky-top row">
+      <header class="navbar sticky-top row">
         <div class="navbar-container">
           <div class="navbar-left">
             <span class="navbar-logo">
-              <%= link_to t("base_title"), root_path, class: "text-info" %>
+              <%= link_to image_tag("logo.png", alt: t("base_title")), root_path, class: "app-logo" %>
             </span>
             <span class="navbar-locale">
-              <%= link_to t("en"), locale: :en %>
-              <%= link_to t("vi"), locale: :vi %>
+              <span class="navbar-en">
+                <%= link_to t("en"), locale: :en %>
+              </span>
+              <span class="navbar-vi">
+                <%= link_to t("vi"), locale: :vi %>
+              </span>
             </span>
           </div>
+          <div class="navbar-center mx-auto">
+            <%= link_to t("view_tour"), tours_path, class: "navbar-tours navbar-btn" %>
+          </div>
           <div class="navbar-right text-primary">
-            <%= link_to t("register"), root_path %>
-            <%= link_to t("login"), root_path %>
-            <%= link_to t("view_tour"), root_path %>
-            <div class="navbar-dropdown dropdown">
-              <%= t "account" %>
-
-              <ul class="dropdown-menu">
-                <li>
-                  <%= link_to t("profile"), root_path, class: "dropdown-item" %>
-                </li>
-                <li>
-                  <%= link_to t("booked"), root_path, class: "dropdown-item" %>
-                </li>
-                <li>
-                  <%= link_to t("logout"), root_path, class: "dropdown-item" %>
-                </li>
-              </ul>
-            </div>
+            <% if current_user.present? %>
+              <div class="navbar-dropdown dropdown">
+                <span class="navbar-btn"><%= t "account" %></span>
+                <ul class="dropdown-menu">
+                  <li>
+                    <%= link_to t("profile"), current_user, class: "dropdown-item" %>
+                  </li>
+                  <li>
+                    <%= link_to t("booked"), current_user, class: "dropdown-item" %>
+                  </li>
+                  <li>
+                   <li><%= button_to t("logout"), destroy_user_session_path, method: :delete, class:"dropdown-item" %></li>
+                  </li>
+                </ul>
+              </div>
+            <% else %>
+              <%= link_to t("register"), new_user_registration_path, class: "navbar-btn" %>
+              <%= link_to t("login"), new_user_session_path, class: "navbar-btn" %>
+            <% end %>
           </div>
         </div>
       </header>
-      <div class="container vh-100">
+      <div class="container min-vh-100">
+        <%= render "shared/flash_messages" %>
         <%= yield %>
       </div>
-      <footer class="navbar bg-light border-top sticky-bottom row">
-        <div class="navbar-container">
-          <span class="text-secondary navbar-left">
+      <footer class="bg-light row">
+        <div class="footer">
+          <span class="text-secondary footer-left">
             <%= t "footer_left" %>
           </span>
-          <span class="text-secondary navbar-right">
+          <span class="text-secondary footer-right">
             <%= t "footer_right" %>
           </span>
         </div>

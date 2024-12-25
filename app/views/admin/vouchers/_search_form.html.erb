@@ -1,0 +1,29 @@
+<%= form_tag(admin_vouchers_path, method: :get) do |f| %>
+  <div class="row">
+    <div class="col-6">
+      <%= label_tag :code, t("vouchers.search.code"), class: "form-label" %>
+      <%= text_field_tag :code, params[:code], class: "form-control" %>
+    </div>
+    <div class="col-3">
+      <%= label_tag :min_total_price, t("vouchers.search.min_total_price"), class: "form-label" %>
+      <%= text_field_tag :min_total_price, params[:min_total_price], class: "form-control" %>
+    </div>
+    <div class="col-3">
+      <%= label_tag :percent_discount, t("vouchers.search.percent_discount"), class: "form-label" %>
+      <%= text_field_tag :percent_discount, params[:percent_discount], class: "form-control" %>
+    </div>
+  </div>
+  <div class="row">
+    <%= form_tag(admin_vouchers_path, method: :get) do |f| %>
+    <div class="row">
+      <div class="col-3">
+        <%= label_tag :status, t("vouchers.search.status"), class: "form-label" %>
+        <%= select_tag :status, options_for_select(voucher_status_options, params[:status]), class: "form-control" %>
+      </div>
+    </div>    
+  <% end %>
+    <div class="col-2">
+      <%= submit_tag t("vouchers.search.action"), class: "btn btn-submit" %>
+    </div>
+  </div>
+<% end %>

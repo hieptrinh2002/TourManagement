@@ -1,0 +1,33 @@
+<div class="tours-search-form">
+  <%= search_form_for @q do |f| %>
+    <div class="row">
+      <div class="col-6">
+        <%= f.label :tour_name_cont, t("tours.search.name") %>
+        <%= f.search_field :tour_name_cont, class: "tours-search-input" %>
+      </div>
+      <div class="col-6">
+        <%= f.label :address_cont, t("tours.search.city") %>
+        <%= f.search_field :address_cont, class: "tours-search-input" %>
+      </div>
+    </div>
+    <div class="row">
+      <% Tour.statuses.each do |key, value| %>
+        <div class="form-check">
+          <%= check_box_tag "statuses[]", value, params[:statuses].present? && params[:statuses].include?(value), class: "form-check-input" %>
+          <%= label_tag "tours.status.#{value}", t("tours.statuses.#{key}"), class: "form-check-label" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <%= f.label :status_eq, t("tours.search.status") %>
+        <%= f.select :status_eq, Tour.statuses.to_a.map, {:include_blank => true} %>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-6 mx-auto">
+        <%= submit_tag t("tours.search.action"), class: "btn btn-submit" %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,63 @@
+<%= form_with model: booking, url: tour_bookings_path, local: true do |f| %>
+  <%= f.hidden_field :user_id %>
+
+  <%= f.hidden_field :tour_id  %>
+
+  <%= f.hidden_field :flight_ticket_id, class:"flight-ticket-id" %>
+
+  <div class="mb-4">
+    <%= f.label :phone_number, t("bookings.phone_number") %>
+    <%= f.text_field :phone_number, class: "form-control", placeholder: t("enter_your_phone"), required: true %>
+  </div>
+
+  <div class="row">
+    <div class="col mb-4">
+      <%= f.label :number_of_guests, t("bookings.number_of_guests") %>
+      <%= f.number_field :number_of_guests, class: "form-control number-of-guest",
+            value: Settings.default_number_of_guests,
+            min: Settings.min_number_of_guests,
+            max: Settings.max_number_of_guests
+      %>
+      <small class="text-danger">
+        <%= t "tours.details.min_guests" %>
+        <%= @tour.min_guests %>
+        <%= t "tours.details.max_guests" %>
+        <%= pluralize @tour.max_guests, t("tours.guest", count: @tour.max_guests) %>
+    </small>
+    </div>
+
+    <div class="col mb-4">
+      <%= f.label :started_date, t("bookings.started_date") %>
+      <%= f.date_field :started_date, class: "form-control",value: @tour.start_date %>
+    </div>
+  </div>
+
+  <hr class="mt-4">
+
+  <h4 class="mt-4"><%= t "choose_voucher" %></h4>
+  <div class="row">
+    <div class="mt-4 d-flex flex-column col-lg-4 col-12">
+      <%= f.label :voucher_code %>
+      <%= f.text_field :voucher_code, id: "voucher-code-input", class: "voucher-code-input voucher-id rounded-3 border-1 p-2" %>
+    </div>
+    <div class="d-flex flex-column mt-4 col-lg-8 col-12">
+      <% if @available_vouchers.present? %>
+        <span class="offset-lg-5 offset-2">
+          <%= t "available_vouchers" %>
+        </span>
+        <div class="d-flex flex-column choose-voucher">
+          <%= render partial: "bookings/available_voucher", collection: @available_vouchers, as: :voucher %>
+        </div>
+      <% else %>
+        <span>
+          <%= t "vouchers.no_voucher" %>
+        </span>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="d-grid gap-2 mt-4">
+    <%= f.submit t("book_tour"), class: "btn btn-primary" %>
+  </div>
+
+<% end %>

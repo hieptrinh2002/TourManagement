@@ -1,0 +1,98 @@
+<div class="row my-4 tour mx-5">
+  <div class="mb-6">
+    <%= link_to t("tours.details.back"), tours_path %>
+  </div>
+  <div class="col-8 col-lg-12 d-flex flex-column gap-4">
+    <h1>
+      <%= @tour.tour_name %>
+    </h1>
+    <span>
+      <b><%= t "tours.details.address" %></b>
+      <%= @tour.city %>
+      (<%= @tour.tour_destination %>)
+    </span>
+    <span>
+      <b><%= t "tours.details.description" %></b>
+      <%= @tour.description %>
+    </span>
+    <span>
+      <b><%= t "tours.details.price" %></b>
+      <%= @tour.price %>
+    </span>
+    <span>
+      <b><%= t "tours.details.deposit_percent" %></b>
+      <%= t "tours.details.deposit_percent_value", value: @tour.deposit_percent %>
+    </span>
+    <span>
+      <b><%= t "tours.details.min_guests" %></b>
+      <%= @tour.min_guests %>
+      <b><%= t "tours.details.max_guests" %></b>
+      <%= pluralize @tour.max_guests, t("tours.guest", count: @tour.max_guests) %>
+    </span>
+    <span>
+      <b><%= t "tours.details.duration" %></b>
+      <%= pluralize @tour.day_duration, t("tours.day", count: @tour.day_duration) %>
+    </span>
+    <span>
+      <b><%= t "tours.details.from" %></b>
+      <%= @tour.start_date %>
+      <b><%= t "tours.details.to" %></b>
+      <%= @tour.end_date %>
+    </span>
+    <div class="d-flex justify-content-start">
+      <span class="tour-tag rounded-2">
+        <%= t "tours.details.tag" %>
+        <%= @tour.tour_type.type_name %>
+      </span>
+    </div>
+    <% if @tour.active? %>
+      <%= link_to t("book_tour_icon"), new_tour_booking_path(@tour), class: "btn btn-primary" %>
+    <% else %>
+      <div class="p-2 tour-status">
+        <%= t "tours.details.status_noti" %>
+        <%= t "tours.status.#{@tour.status}" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-4 col-lg-12 image-box">
+    <% if @tour.images.present? %>
+      <div id="myCarousel" class="carousel slide">
+        <div class="carousel-inner">
+          <% @tour.images.each.with_index do |image, i| %>
+            <%= render partial: "carousel_inner", locals: {image: image, index: i} %>
+          <% end %>
+        </div>
+        <div class="carousel-control">
+          <button class="left carousel-btn" data-slide="prev">
+            <span class="sr-only">
+              <%= t "tours.carousel_prev" %>
+            </span>
+          </button>
+          <button class="right carousel-btn" data-slide="next">
+            <span class="sr-only">
+              <%= t "tours.carousel_next" %>
+            </span>
+          </button>
+        </div>
+      </div>
+    <% else %>
+      <span class="mx-auto"><%= t "tours.no_images" %></span>
+    <% end %>
+  </div>
+  <hr class="my-5">
+  <%= render "relevant_tours" %>
+</div>
+
+<div class="container my-5">
+  <h5><%= t "review" %></h5>
+  <div class="card col-10 my-4" style="background-color: #fffbf8">
+    <%= render "total_rating" , tour: @tour %>
+  </div>
+  <% if user_signed_in? %>
+    <%= render "reviews/form", review: @tour.reviews.build, tour: @tour %>
+  <% end %>
+</div>
+
+<div id="reviews" class="my-3">
+  <%= render partial: "reviews/review", collection: @reviews %>
+</div>

@@ -43,9 +43,54 @@ gem "image_processing"
 
 gem "bootstrap"
 
+gem "ancestry"
+
+gem "figaro"
+
+gem "carrierwave"
+
+gem "mini_magick"
+
+gem "hotwire-rails"
+
+gem "font-awesome-rails"
+
+gem "cancancan"
+
+gem "ransack"
+
+gem "devise"
+
+gem "sidekiq"
+
+gem "omniauth"
+
+gem "omniauth-google-oauth2"
+
+gem "omniauth-rails_csrf_protection", "~> 1.0"
+
+gem "active_model_serializers"
+
+gem "jwt"
+
+gem "rswag"
+
+gem "rswag-api"
+
+gem "rswag-ui"
+
+gem "chartkick"
+
+gem "groupdate"
+
+gem "whenever", require: false
+
 group :development, :test do
   gem "debug", platforms: %i(mri mingw x64_mingw)
+  gem "factory_bot_rails"
   gem "pry-rails"
+  gem "rails-controller-testing"
+  gem "rspec-rails", "~> 4.0.2"
   gem "rubocop", "~> 1.26", require: false
   gem "rubocop-checkstyle_formatter", require: false
   gem "rubocop-rails", "~> 2.14.0", require: false
@@ -58,5 +103,8 @@ end
 group :test do
   gem "capybara"
   gem "selenium-webdriver"
+  gem "shoulda-matchers", "~> 5.0"
+  gem "simplecov"
+  gem "simplecov-rcov"
   gem "webdrivers"
 end

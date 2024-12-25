@@ -1,0 +1,55 @@
+<div class="container py-4 px-5">
+  <div class="row px-3">
+    <div class="col-12 order-1 px-5">
+      <h3 class="my-4 text-center"><%= t "edit_booking_info" %></h3>
+      <%= form_with(model: @booking, url: user_booking_path) do |f| %>
+        <%= f.hidden_field :user_id %>
+
+        <%= f.hidden_field :tour_id %>
+
+        <%= f.hidden_field :flight_ticket_id, class:"flight-ticket-edit" %>
+
+        <div class="mb-4">
+          <%= f.label :phone_number, t("bookings.phone_number"), class: "fw-bold mb-2" %>
+          <%= f.text_field :phone_number, class: "form-control",
+                      placeholder: t("enter_your_phone"), required: true %>
+        </div>
+
+        <div class="row">
+          <div class="col mb-4">
+            <%= f.label :number_of_guests, t("bookings.number_of_guests"), class: "fw-bold mb-2" %>
+            <%= f.number_field :number_of_guests, class: "form-control number-of-guest-edit",
+                  min: Settings.min_number_of_guests,
+                  max: Settings.max_number_of_guests
+            %>
+          </div>
+          <div class="col mb-4">
+            <%= f.label :started_date, t("start_date"), class: "fw-bold mb-2" %>
+            <%= f.date_field :started_date, class: "form-control" %>
+          </div>
+        </div>
+        <%= f.hidden_field :voucher_code %>
+        <% if  @voucher.present? %>
+          <hr>
+          <%= render "voucher_detail", voucher: @voucher %>
+        <% end %>
+
+        <% if  @flight.present? %>
+          <hr>
+          <h4><%= t "selected_flight" %></h4>
+          <%= render "booked_flight", booked_flight: @flight %>
+        <% end %>
+
+        <hr>
+        <h4><%= t "available_flight" %></h4>
+
+        <%= render "flight_selections", available_flights: @available_flights %>
+        <%== pagy_nav(@pagy) %>
+
+        <div class="d-grid gap-2 mt-4">
+          <%= f.submit "Update", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
